@@ -1,0 +1,23 @@
+2026-06-23 16:18:18,209 | INFO | Log file: C:\Users\Sthuthi Sheela\Desktop\Employee-Attrition-Prediction\attack\logs\attack_20260623_161818.log
+2026-06-23 16:18:18,209 | INFO | Loading queries from: queries_cache.csv
+2026-06-23 16:18:18,229 | INFO | ======================================================================
+2026-06-23 16:18:18,230 | INFO | MODEL STEALING ATTACK SIMULATION - DATA COLLECTION
+2026-06-23 16:18:18,230 | INFO | ======================================================================
+2026-06-23 16:18:18,231 | INFO | Target API: http://127.0.0.1:5000/api/predict
+2026-06-23 16:18:18,232 | INFO | Total queries planned: 20
+2026-06-23 16:18:18,233 | INFO | Output file: C:\Users\Sthuthi Sheela\Desktop\Employee-Attrition-Prediction\attack\stolen_dataset.csv
+2026-06-23 16:18:18,244 | INFO | API health check passed: {'model_loaded': True, 'status': 'ok'}
+2026-06-23 16:18:18,245 | INFO | ----------------------------------------------------------------------
+2026-06-23 16:18:18,245 | INFO | Starting query submission...
+2026-06-23 16:18:18,245 | INFO | ----------------------------------------------------------------------
+2026-06-23 16:18:19,425 | INFO | Progress: 20/20 (100.0%) | Success: 20 | Failed: 0 | Rate: 16.7 req/s
+2026-06-23 16:18:19,432 | INFO | ======================================================================
+2026-06-23 16:18:19,432 | INFO | ATTACK COMPLETE
+2026-06-23 16:18:19,432 | INFO | ======================================================================
+2026-06-23 16:18:19,433 | INFO | Total queries sent     : 20
+2026-06-23 16:18:19,433 | INFO | Successful responses   : 20
+2026-06-23 16:18:19,433 | INFO | Failed responses       : 0
+2026-06-23 16:18:19,433 | INFO | Success rate           : 100.0%
+2026-06-23 16:18:19,434 | INFO | Elapsed time           : 1.2 seconds
+2026-06-23 16:18:19,434 | INFO | Stolen dataset saved   : C:\Users\Sthuthi Sheela\Desktop\Employee-Attrition-Prediction\attack\stolen_dataset.csv
+2026-06-23 16:18:19,434 | INFO | ======================================================================

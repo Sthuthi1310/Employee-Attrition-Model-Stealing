@@ -1,0 +1,6 @@
+2026-06-23 16:59:00,822 | INFO | Log file: C:\Users\Sthuthi Sheela\Desktop\Employee-Attrition-Prediction\attack\logs\attack_20260623_165900.log
+2026-06-23 16:59:00,823 | INFO | ======================================================================
+2026-06-23 16:59:00,823 | INFO | SUBSTITUTE MODEL RETRAINING & EVALUATION
+2026-06-23 16:59:00,823 | INFO | ======================================================================
+2026-06-23 16:59:21,396 | INFO | Substitute training complete.
+2026-06-23 16:59:24,016 | INFO | Dashboard JSON exported: C:\Users\Sthuthi Sheela\Desktop\Employee-Attrition-Prediction\attack\surrogate\outputs\analysis_summary.json

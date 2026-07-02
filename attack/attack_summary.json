@@ -1,0 +1,11 @@
+{
+  "generated_at": "2026-06-23T16:14:55.492497+00:00",
+  "total_queries": 500,
+  "successful_queries": 500,
+  "failed_queries": 0,
+  "success_rate_pct": 100.0,
+  "average_response_time_ms": 77.05,
+  "total_records_collected": 500,
+  "elapsed_seconds": 41.46,
+  "stolen_dataset_path": "C:\\Users\\Sthuthi Sheela\\Desktop\\Employee-Attrition-Prediction\\attack\\stolen_dataset.csv"
+}

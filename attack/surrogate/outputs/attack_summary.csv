@@ -1,0 +1,2 @@
+best_substitute_model,agreement_rate_pct,agreement_rate,test_samples,train_samples,stolen_dataset_size
+Logistic Regression,97.0,97.0,100,400,500

@@ -1,0 +1,28 @@
+2026-06-23 16:57:40,920 | INFO | Log file: C:\Users\Sthuthi Sheela\Desktop\Employee-Attrition-Prediction\attack\logs\attack_20260623_165740.log
+2026-06-23 16:57:40,921 | INFO | Generating 50 synthetic queries...
+2026-06-23 16:57:40,952 | INFO | ======================================================================
+2026-06-23 16:57:40,952 | INFO | MODEL STEALING ATTACK - DATA COLLECTION
+2026-06-23 16:57:40,952 | INFO | ======================================================================
+2026-06-23 16:57:40,952 | INFO | Target API       : http://127.0.0.1:5000/api/predict
+2026-06-23 16:57:40,953 | INFO | Queries planned  : 50
+2026-06-23 16:57:40,953 | INFO | Checkpoint every : 50 queries
+2026-06-23 16:57:40,953 | INFO | Output file      : C:\Users\Sthuthi Sheela\Desktop\Employee-Attrition-Prediction\attack\stolen_dataset.csv
+2026-06-23 16:57:40,962 | INFO | API health check passed: {'model_loaded': True, 'status': 'ok'}
+2026-06-23 16:57:40,962 | INFO | ----------------------------------------------------------------------
+2026-06-23 16:57:41,640 | INFO | [LIVE] Queries: 10/50 (20.0%) | Success: 10 | Failed: 0 | Dataset: 10 rows | Avg RT: 62.85 ms | Rate: 14.5 req/s
+2026-06-23 16:57:42,320 | INFO | [LIVE] Queries: 20/50 (40.0%) | Success: 20 | Failed: 0 | Dataset: 20 rows | Avg RT: 62.64 ms | Rate: 14.6 req/s
+2026-06-23 16:57:43,018 | INFO | [LIVE] Queries: 30/50 (60.0%) | Success: 30 | Failed: 0 | Dataset: 30 rows | Avg RT: 63.18 ms | Rate: 14.5 req/s
+2026-06-23 16:57:43,771 | INFO | [LIVE] Queries: 40/50 (80.0%) | Success: 40 | Failed: 0 | Dataset: 40 rows | Avg RT: 64.79 ms | Rate: 14.2 req/s
+2026-06-23 16:57:44,401 | INFO | [LIVE] Queries: 50/50 (100.0%) | Success: 50 | Failed: 0 | Dataset: 50 rows | Avg RT: 63.29 ms | Rate: 14.5 req/s
+2026-06-23 16:57:44,424 | INFO | >> Checkpoint saved: 50 rows -> C:\Users\Sthuthi Sheela\Desktop\Employee-Attrition-Prediction\attack\stolen_dataset.csv
+2026-06-23 16:57:44,434 | INFO | ======================================================================
+2026-06-23 16:57:44,434 | INFO | ATTACK COMPLETE
+2026-06-23 16:57:44,434 | INFO | Total sent           : 50
+2026-06-23 16:57:44,434 | INFO | Successful           : 50
+2026-06-23 16:57:44,434 | INFO | Failed               : 0
+2026-06-23 16:57:44,435 | INFO | Success rate         : 100.0%
+2026-06-23 16:57:44,435 | INFO | Avg response time    : 63.29 ms
+2026-06-23 16:57:44,435 | INFO | Records collected    : 50
+2026-06-23 16:57:44,435 | INFO | Stolen dataset       : C:\Users\Sthuthi Sheela\Desktop\Employee-Attrition-Prediction\attack\stolen_dataset.csv
+2026-06-23 16:57:44,435 | INFO | Attack summary JSON  : C:\Users\Sthuthi Sheela\Desktop\Employee-Attrition-Prediction\attack\attack_summary.json
+2026-06-23 16:57:44,435 | INFO | ======================================================================

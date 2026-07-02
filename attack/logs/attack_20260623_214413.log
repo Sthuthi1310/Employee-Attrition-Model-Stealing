@@ -1,0 +1,87 @@
+2026-06-23 21:44:13,933 | INFO | Log file: C:\Users\Sthuthi Sheela\Desktop\Employee-Attrition-Prediction\attack\logs\attack_20260623_214413.log
+2026-06-23 21:44:13,933 | INFO | Generating 500 synthetic queries...
+2026-06-23 21:44:14,036 | INFO | ======================================================================
+2026-06-23 21:44:14,036 | INFO | MODEL STEALING ATTACK - DATA COLLECTION
+2026-06-23 21:44:14,036 | INFO | ======================================================================
+2026-06-23 21:44:14,037 | INFO | Target API       : http://127.0.0.1:5000/api/predict
+2026-06-23 21:44:14,038 | INFO | Queries planned  : 500
+2026-06-23 21:44:14,038 | INFO | Checkpoint every : 50 queries
+2026-06-23 21:44:14,038 | INFO | Output file      : C:\Users\Sthuthi Sheela\Desktop\Employee-Attrition-Prediction\attack\stolen_dataset.csv
+2026-06-23 21:44:14,044 | INFO | API health check passed: {'model_loaded': True, 'status': 'ok'}
+2026-06-23 21:44:14,045 | INFO | ----------------------------------------------------------------------
+2026-06-23 21:44:14,546 | INFO | [LIVE] Queries: 10/500 (2.0%) | Success: 10 | Failed: 0 | Dataset: 10 rows | Avg RT: 45.08 ms | Rate: 19.6 req/s
+2026-06-23 21:44:15,061 | INFO | [LIVE] Queries: 20/500 (4.0%) | Success: 20 | Failed: 0 | Dataset: 20 rows | Avg RT: 45.58 ms | Rate: 19.5 req/s
+2026-06-23 21:44:15,636 | INFO | [LIVE] Queries: 30/500 (6.0%) | Success: 30 | Failed: 0 | Dataset: 30 rows | Avg RT: 47.69 ms | Rate: 18.7 req/s
+2026-06-23 21:44:16,189 | INFO | [LIVE] Queries: 40/500 (8.0%) | Success: 40 | Failed: 0 | Dataset: 40 rows | Avg RT: 48.21 ms | Rate: 18.6 req/s
+2026-06-23 21:44:16,785 | INFO | [LIVE] Queries: 50/500 (10.0%) | Success: 50 | Failed: 0 | Dataset: 50 rows | Avg RT: 49.37 ms | Rate: 18.2 req/s
+2026-06-23 21:44:16,803 | INFO | >> Checkpoint saved: 50 rows -> C:\Users\Sthuthi Sheela\Desktop\Employee-Attrition-Prediction\attack\stolen_dataset.csv
+2026-06-23 21:44:17,302 | INFO | [LIVE] Queries: 60/500 (12.0%) | Success: 60 | Failed: 0 | Dataset: 60 rows | Avg RT: 48.54 ms | Rate: 18.4 req/s
+2026-06-23 21:44:17,834 | INFO | [LIVE] Queries: 70/500 (14.0%) | Success: 70 | Failed: 0 | Dataset: 70 rows | Avg RT: 48.4 ms | Rate: 18.4 req/s
+2026-06-23 21:44:18,458 | INFO | [LIVE] Queries: 80/500 (16.0%) | Success: 80 | Failed: 0 | Dataset: 80 rows | Avg RT: 49.45 ms | Rate: 18.1 req/s
+2026-06-23 21:44:18,998 | INFO | [LIVE] Queries: 90/500 (18.0%) | Success: 90 | Failed: 0 | Dataset: 90 rows | Avg RT: 49.35 ms | Rate: 18.1 req/s
+2026-06-23 21:44:19,581 | INFO | [LIVE] Queries: 100/500 (20.0%) | Success: 100 | Failed: 0 | Dataset: 100 rows | Avg RT: 49.68 ms | Rate: 18.0 req/s
+2026-06-23 21:44:19,586 | INFO | >> Checkpoint saved: 100 rows -> C:\Users\Sthuthi Sheela\Desktop\Employee-Attrition-Prediction\attack\stolen_dataset.csv
+2026-06-23 21:44:20,129 | INFO | [LIVE] Queries: 110/500 (22.0%) | Success: 110 | Failed: 0 | Dataset: 110 rows | Avg RT: 49.6 ms | Rate: 18.1 req/s
+2026-06-23 21:44:20,780 | INFO | [LIVE] Queries: 120/500 (24.0%) | Success: 120 | Failed: 0 | Dataset: 120 rows | Avg RT: 50.41 ms | Rate: 17.8 req/s
+2026-06-23 21:44:21,348 | INFO | [LIVE] Queries: 130/500 (26.0%) | Success: 130 | Failed: 0 | Dataset: 130 rows | Avg RT: 50.48 ms | Rate: 17.8 req/s
+2026-06-23 21:44:21,919 | INFO | [LIVE] Queries: 140/500 (28.0%) | Success: 140 | Failed: 0 | Dataset: 140 rows | Avg RT: 50.56 ms | Rate: 17.8 req/s
+2026-06-23 21:44:22,475 | INFO | [LIVE] Queries: 150/500 (30.0%) | Success: 150 | Failed: 0 | Dataset: 150 rows | Avg RT: 50.52 ms | Rate: 17.8 req/s
+2026-06-23 21:44:22,484 | INFO | >> Checkpoint saved: 150 rows -> C:\Users\Sthuthi Sheela\Desktop\Employee-Attrition-Prediction\attack\stolen_dataset.csv
+2026-06-23 21:44:23,092 | INFO | [LIVE] Queries: 160/500 (32.0%) | Success: 160 | Failed: 0 | Dataset: 160 rows | Avg RT: 50.81 ms | Rate: 17.7 req/s
+2026-06-23 21:44:23,544 | INFO | [LIVE] Queries: 170/500 (34.0%) | Success: 170 | Failed: 0 | Dataset: 170 rows | Avg RT: 50.16 ms | Rate: 17.9 req/s
+2026-06-23 21:44:23,970 | INFO | [LIVE] Queries: 180/500 (36.0%) | Success: 180 | Failed: 0 | Dataset: 180 rows | Avg RT: 49.44 ms | Rate: 18.1 req/s
+2026-06-23 21:44:24,537 | INFO | [LIVE] Queries: 190/500 (38.0%) | Success: 190 | Failed: 0 | Dataset: 190 rows | Avg RT: 49.54 ms | Rate: 18.1 req/s
+2026-06-23 21:44:24,928 | INFO | [LIVE] Queries: 200/500 (40.0%) | Success: 200 | Failed: 0 | Dataset: 200 rows | Avg RT: 48.73 ms | Rate: 18.4 req/s
+2026-06-23 21:44:24,934 | INFO | >> Checkpoint saved: 200 rows -> C:\Users\Sthuthi Sheela\Desktop\Employee-Attrition-Prediction\attack\stolen_dataset.csv
+2026-06-23 21:44:25,417 | INFO | [LIVE] Queries: 210/500 (42.0%) | Success: 210 | Failed: 0 | Dataset: 210 rows | Avg RT: 48.45 ms | Rate: 18.5 req/s
+2026-06-23 21:44:26,022 | INFO | [LIVE] Queries: 220/500 (44.0%) | Success: 220 | Failed: 0 | Dataset: 220 rows | Avg RT: 48.75 ms | Rate: 18.4 req/s
+2026-06-23 21:44:26,496 | INFO | [LIVE] Queries: 230/500 (46.0%) | Success: 230 | Failed: 0 | Dataset: 230 rows | Avg RT: 48.45 ms | Rate: 18.5 req/s
+2026-06-23 21:44:27,002 | INFO | [LIVE] Queries: 240/500 (48.0%) | Success: 240 | Failed: 0 | Dataset: 240 rows | Avg RT: 48.31 ms | Rate: 18.5 req/s
+2026-06-23 21:44:27,435 | INFO | [LIVE] Queries: 250/500 (50.0%) | Success: 250 | Failed: 0 | Dataset: 250 rows | Avg RT: 47.88 ms | Rate: 18.7 req/s
+2026-06-23 21:44:27,440 | INFO | >> Checkpoint saved: 250 rows -> C:\Users\Sthuthi Sheela\Desktop\Employee-Attrition-Prediction\attack\stolen_dataset.csv
+2026-06-23 21:44:27,889 | INFO | [LIVE] Queries: 260/500 (52.0%) | Success: 260 | Failed: 0 | Dataset: 260 rows | Avg RT: 47.55 ms | Rate: 18.8 req/s
+2026-06-23 21:44:32,415 | INFO | [LIVE] Queries: 270/500 (54.0%) | Success: 270 | Failed: 0 | Dataset: 270 rows | Avg RT: 62.36 ms | Rate: 14.7 req/s
+2026-06-23 21:44:32,871 | INFO | [LIVE] Queries: 280/500 (56.0%) | Success: 280 | Failed: 0 | Dataset: 280 rows | Avg RT: 61.56 ms | Rate: 14.9 req/s
+2026-06-23 21:44:33,473 | INFO | [LIVE] Queries: 290/500 (58.0%) | Success: 290 | Failed: 0 | Dataset: 290 rows | Avg RT: 61.33 ms | Rate: 14.9 req/s
+2026-06-23 21:44:33,984 | INFO | [LIVE] Queries: 300/500 (60.0%) | Success: 300 | Failed: 0 | Dataset: 300 rows | Avg RT: 60.8 ms | Rate: 15.0 req/s
+2026-06-23 21:44:33,995 | INFO | >> Checkpoint saved: 300 rows -> C:\Users\Sthuthi Sheela\Desktop\Employee-Attrition-Prediction\attack\stolen_dataset.csv
+2026-06-23 21:44:34,503 | INFO | [LIVE] Queries: 310/500 (62.0%) | Success: 310 | Failed: 0 | Dataset: 310 rows | Avg RT: 60.3 ms | Rate: 15.1 req/s
+2026-06-23 21:44:35,152 | INFO | [LIVE] Queries: 320/500 (64.0%) | Success: 320 | Failed: 0 | Dataset: 320 rows | Avg RT: 60.27 ms | Rate: 15.2 req/s
+2026-06-23 21:44:35,793 | INFO | [LIVE] Queries: 330/500 (66.0%) | Success: 330 | Failed: 0 | Dataset: 330 rows | Avg RT: 60.21 ms | Rate: 15.2 req/s
+2026-06-23 21:44:36,374 | INFO | [LIVE] Queries: 340/500 (68.0%) | Success: 340 | Failed: 0 | Dataset: 340 rows | Avg RT: 59.99 ms | Rate: 15.2 req/s
+2026-06-23 21:44:36,955 | INFO | [LIVE] Queries: 350/500 (70.0%) | Success: 350 | Failed: 0 | Dataset: 350 rows | Avg RT: 59.77 ms | Rate: 15.3 req/s
+2026-06-23 21:44:36,980 | INFO | >> Checkpoint saved: 350 rows -> C:\Users\Sthuthi Sheela\Desktop\Employee-Attrition-Prediction\attack\stolen_dataset.csv
+2026-06-23 21:44:37,546 | INFO | [LIVE] Queries: 360/500 (72.0%) | Success: 360 | Failed: 0 | Dataset: 360 rows | Avg RT: 59.53 ms | Rate: 15.3 req/s
+2026-06-23 21:44:38,283 | INFO | [LIVE] Queries: 370/500 (74.0%) | Success: 370 | Failed: 0 | Dataset: 370 rows | Avg RT: 59.76 ms | Rate: 15.3 req/s
+2026-06-23 21:44:38,915 | INFO | [LIVE] Queries: 380/500 (76.0%) | Success: 380 | Failed: 0 | Dataset: 380 rows | Avg RT: 59.7 ms | Rate: 15.3 req/s
+2026-06-23 21:44:39,504 | INFO | [LIVE] Queries: 390/500 (78.0%) | Success: 390 | Failed: 0 | Dataset: 390 rows | Avg RT: 59.54 ms | Rate: 15.3 req/s
+2026-06-23 21:44:40,126 | INFO | [LIVE] Queries: 400/500 (80.0%) | Success: 400 | Failed: 0 | Dataset: 400 rows | Avg RT: 59.46 ms | Rate: 15.3 req/s
+2026-06-23 21:44:40,135 | INFO | >> Checkpoint saved: 400 rows -> C:\Users\Sthuthi Sheela\Desktop\Employee-Attrition-Prediction\attack\stolen_dataset.csv
+2026-06-23 21:44:40,744 | INFO | [LIVE] Queries: 410/500 (82.0%) | Success: 410 | Failed: 0 | Dataset: 410 rows | Avg RT: 59.36 ms | Rate: 15.4 req/s
+2026-06-23 21:44:41,385 | INFO | [LIVE] Queries: 420/500 (84.0%) | Success: 420 | Failed: 0 | Dataset: 420 rows | Avg RT: 59.34 ms | Rate: 15.4 req/s
+2026-06-23 21:44:43,169 | INFO | [LIVE] Queries: 430/500 (86.0%) | Success: 430 | Failed: 0 | Dataset: 430 rows | Avg RT: 61.98 ms | Rate: 14.8 req/s
+2026-06-23 21:44:47,119 | INFO | [LIVE] Queries: 440/500 (88.0%) | Success: 440 | Failed: 0 | Dataset: 440 rows | Avg RT: 69.42 ms | Rate: 13.3 req/s
+2026-06-23 21:44:50,377 | INFO | [LIVE] Queries: 450/500 (90.0%) | Success: 450 | Failed: 0 | Dataset: 450 rows | Avg RT: 74.99 ms | Rate: 12.4 req/s
+2026-06-23 21:44:50,401 | INFO | >> Checkpoint saved: 450 rows -> C:\Users\Sthuthi Sheela\Desktop\Employee-Attrition-Prediction\attack\stolen_dataset.csv
+2026-06-23 21:44:53,185 | INFO | [LIVE] Queries: 460/500 (92.0%) | Success: 460 | Failed: 0 | Dataset: 460 rows | Avg RT: 79.29 ms | Rate: 11.7 req/s
+2026-06-23 21:44:53,821 | INFO | [LIVE] Queries: 470/500 (94.0%) | Success: 470 | Failed: 0 | Dataset: 470 rows | Avg RT: 78.83 ms | Rate: 11.8 req/s
+2026-06-23 21:44:54,302 | INFO | [LIVE] Queries: 480/500 (96.0%) | Success: 480 | Failed: 0 | Dataset: 480 rows | Avg RT: 78.08 ms | Rate: 11.9 req/s
+2026-06-23 21:44:54,841 | INFO | [LIVE] Queries: 490/500 (98.0%) | Success: 490 | Failed: 0 | Dataset: 490 rows | Avg RT: 77.47 ms | Rate: 12.0 req/s
+2026-06-23 21:44:55,462 | INFO | [LIVE] Queries: 500/500 (100.0%) | Success: 500 | Failed: 0 | Dataset: 500 rows | Avg RT: 77.05 ms | Rate: 12.1 req/s
+2026-06-23 21:44:55,477 | INFO | >> Checkpoint saved: 500 rows -> C:\Users\Sthuthi Sheela\Desktop\Employee-Attrition-Prediction\attack\stolen_dataset.csv
+2026-06-23 21:44:55,493 | INFO | ======================================================================
+2026-06-23 21:44:55,494 | INFO | ATTACK COMPLETE
+2026-06-23 21:44:55,494 | INFO | Total sent           : 500
+2026-06-23 21:44:55,495 | INFO | Successful           : 500
+2026-06-23 21:44:55,495 | INFO | Failed               : 0
+2026-06-23 21:44:55,496 | INFO | Success rate         : 100.0%
+2026-06-23 21:44:55,496 | INFO | Avg response time    : 77.05 ms
+2026-06-23 21:44:55,496 | INFO | Records collected    : 500
+2026-06-23 21:44:55,497 | INFO | Stolen dataset       : C:\Users\Sthuthi Sheela\Desktop\Employee-Attrition-Prediction\attack\stolen_dataset.csv
+2026-06-23 21:44:55,498 | INFO | Attack summary JSON  : C:\Users\Sthuthi Sheela\Desktop\Employee-Attrition-Prediction\attack\attack_summary.json
+2026-06-23 21:44:55,498 | INFO | ======================================================================
+2026-06-23 21:44:55,499 | INFO | ======================================================================
+2026-06-23 21:44:55,500 | INFO | SUBSTITUTE MODEL RETRAINING & EVALUATION
+2026-06-23 21:44:55,500 | INFO | ======================================================================
+2026-06-23 21:45:25,481 | INFO | Substitute training complete.
+2026-06-23 21:45:33,380 | INFO | Dashboard JSON exported: C:\Users\Sthuthi Sheela\Desktop\Employee-Attrition-Prediction\attack\surrogate\outputs\analysis_summary.json
