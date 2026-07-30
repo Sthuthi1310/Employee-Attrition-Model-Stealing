@@ -46,9 +46,10 @@ def retrain_and_evaluate(logger: logging.Logger | None = None) -> None:
     log.info("=" * 70)
 
     train_script = SURROGATE_DIR / "train_substitute.py"
+    project_dir = ATTACK_DIR.parent
     result = subprocess.run(
         [sys.executable, str(train_script)],
-        cwd=str(SURROGATE_DIR),
+        cwd=str(project_dir),
         check=False,
     )
     if result.returncode != 0:
@@ -62,7 +63,7 @@ def retrain_and_evaluate(logger: logging.Logger | None = None) -> None:
         [
             sys.executable,
             "-c",
-            "from analysis_data import export_analysis_json; print(export_analysis_json())",
+            "import sys; from pathlib import Path; r=Path('.').resolve().parent; sys.path.insert(0,str(r)); from web.analysis_data import export_analysis_json; print(export_analysis_json())",
         ],
         cwd=str(web_dir),
         capture_output=True,

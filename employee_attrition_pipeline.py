@@ -16,27 +16,23 @@ suitable for project reports and viva voce discussions.
 # (matplotlib, seaborn), machine learning (scikit-learn), and model persistence
 # (joblib). Configuration constants keep paths and hyperparameters centralized.
 
-import warnings
+import sys
 from pathlib import Path
+
+_PROJECT_ROOT = Path(__file__).resolve().parent
+if str(_PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(_PROJECT_ROOT))
+
+import warnings
 
 import joblib
 import matplotlib.pyplot as plt
-import numpy as np
 import pandas as pd
 import seaborn as sns
-from sklearn.compose import ColumnTransformer
+from pathlib import Path
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import (
-    accuracy_score,
-    classification_report,
-    confusion_matrix,
-    f1_score,
-    precision_score,
-    recall_score,
-    roc_auc_score,
-    roc_curve,
-)
+from sklearn.metrics import roc_auc_score, roc_curve
 from sklearn.model_selection import (
     GridSearchCV,
     RandomizedSearchCV,
@@ -44,25 +40,20 @@ from sklearn.model_selection import (
     train_test_split,
 )
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import OneHotEncoder, StandardScaler
+
+from utils.helper import load_dataset
+from utils.metrics import evaluate_model, print_evaluation_report
+from utils.paths import METRICS_PATH, RESULTS_DIR, TARGET_MODEL_PATH, TRAINING_DATASET_PATH
+from utils.preprocessing import build_preprocessor, identify_target_column, preprocess_features
 
 warnings.filterwarnings("ignore")
 
 # --- Configuration ---
-DATASET_PATH = Path(
-    r"C:\Users\Sthuthi Sheela\Downloads\Employee-Attrition\employee_attrition_dataset_10000.csv"
-)
-OUTPUT_DIR = Path(__file__).resolve().parent / "outputs"
-MODEL_PATH = OUTPUT_DIR / "best_attrition_model.joblib"
-METRICS_PATH = OUTPUT_DIR / "model_comparison.csv"
+DATASET_PATH = TRAINING_DATASET_PATH
+OUTPUT_DIR = RESULTS_DIR
+MODEL_PATH = TARGET_MODEL_PATH
 RANDOM_STATE = 42
 TEST_SIZE = 0.20
-
-# Possible target column names (auto-detection)
-TARGET_CANDIDATES = ["attrition", "employee attrition", "left", "churn", "turnover"]
-
-# Columns that should never be used as predictive features
-ID_COLUMNS = ["employee_id", "emp_id", "id"]
 
 
 # =============================================================================
@@ -73,12 +64,9 @@ ID_COLUMNS = ["employee_id", "emp_id", "id"]
 # tabular data structures (DataFrame) for exploration and preprocessing.
 
 
-def load_dataset(file_path: Path) -> pd.DataFrame:
-    """Load the employee attrition dataset from a CSV file."""
-    if not file_path.exists():
-        raise FileNotFoundError(f"Dataset not found at: {file_path}")
-
-    df = pd.read_csv(file_path)
+def load_and_report_dataset(file_path):
+    """Load dataset and print loading summary."""
+    df = load_dataset(file_path)
     print(f"\n{'=' * 70}")
     print("SECTION 2: DATA LOADING")
     print(f"{'=' * 70}")
@@ -136,126 +124,23 @@ def perform_eda(df: pd.DataFrame, target_col: str) -> None:
     print(f"\nClass distribution plot saved to: {OUTPUT_DIR / 'class_distribution.png'}")
 
 
-# =============================================================================
-# SECTION 3: AUTOMATIC TARGET COLUMN IDENTIFICATION
-# =============================================================================
-# Explanation:
-# Real-world datasets may use different names for the target variable.
-# We search column names against known attrition-related keywords.
-
-
-def identify_target_column(df: pd.DataFrame) -> str:
-    """Automatically detect the attrition target column."""
+def report_target_column(target_col: str) -> None:
+    """Print target column identification summary."""
     print(f"\n{'=' * 70}")
     print("SECTION 3: TARGET COLUMN IDENTIFICATION")
     print(f"{'=' * 70}")
-
-    normalized_cols = {col: col.strip().lower().replace(" ", "_") for col in df.columns}
-
-    for original, normalized in normalized_cols.items():
-        if normalized in TARGET_CANDIDATES or "attrition" in normalized:
-            print(f"Target column identified: '{original}'")
-            return original
-
-    raise ValueError(
-        "Could not automatically identify target column. "
-        f"Expected one of: {TARGET_CANDIDATES}"
-    )
+    print(f"Target column identified: '{target_col}'")
 
 
-# =============================================================================
-# SECTION 5: DATA PREPROCESSING
-# =============================================================================
-# Explanation:
-# Preprocessing steps:
-# 1. Remove identifier columns (Employee_ID) to prevent meaningless patterns.
-# 2. Encode target labels (Yes/No -> 1/0).
-# 3. Separate numerical and categorical features.
-# 4. Build a ColumnTransformer that scales numeric features and one-hot
-#    encodes categorical features.
-#
-# IMPORTANT (Data Leakage Prevention):
-# All transformers are wrapped inside sklearn Pipeline and fitted ONLY on
-# training data during model training. Test data is never used for fitting.
-
-
-def preprocess_features(df: pd.DataFrame, target_col: str):
-    """
-    Prepare feature matrix X and encoded target vector y.
-    Returns feature names list and column type groups for the pipeline.
-    """
+def report_preprocessing(X, numeric_features, categorical_features) -> None:
+    """Print preprocessing summary."""
     print(f"\n{'=' * 70}")
     print("SECTION 5: DATA PREPROCESSING")
     print(f"{'=' * 70}")
-
-    data = df.copy()
-
-    # Handle missing values (if any appear in future data)
-    missing_before = data.isnull().sum().sum()
-    if missing_before > 0:
-        print(f"Handling {missing_before} missing values...")
-        numeric_cols = data.select_dtypes(include=[np.number]).columns
-        categorical_cols = data.select_dtypes(include=["object"]).columns
-
-        for col in numeric_cols:
-            if col != target_col and data[col].isnull().any():
-                data[col].fillna(data[col].median(), inplace=True)
-
-        for col in categorical_cols:
-            if col != target_col and data[col].isnull().any():
-                data[col].fillna(data[col].mode()[0], inplace=True)
-    else:
-        print("No missing values to impute.")
-
-    # Encode target: Yes -> 1 (leave), No -> 0 (stay)
-    target_mapping = {"Yes": 1, "No": 0, "yes": 1, "no": 0, 1: 1, 0: 0}
-    y = data[target_col].map(target_mapping)
-
-    if y.isnull().any():
-        raise ValueError(f"Unrecognized target values in column '{target_col}'.")
-
-    # Drop ID and target columns from features
-    drop_cols = [target_col]
-    for col in data.columns:
-        if col.strip().lower().replace(" ", "_") in ID_COLUMNS:
-            drop_cols.append(col)
-
-    X = data.drop(columns=drop_cols)
-
-    # Identify feature types
-    numeric_features = X.select_dtypes(include=[np.number]).columns.tolist()
-    categorical_features = X.select_dtypes(include=["object"]).columns.tolist()
-
     print(f"Features used for modeling: {X.shape[1]}")
     print(f"  - Numerical features ({len(numeric_features)}): {numeric_features}")
     print(f"  - Categorical features ({len(categorical_features)}): {categorical_features}")
-    print(f"Target encoding: Yes/1 = Employee likely to leave | No/0 = Employee likely to stay")
-
-    return X, y, numeric_features, categorical_features
-
-
-def build_preprocessor(numeric_features, categorical_features) -> ColumnTransformer:
-    """Create preprocessing pipeline: scale numeric, encode categorical."""
-    numeric_transformer = Pipeline(
-        steps=[("scaler", StandardScaler())]
-    )
-
-    categorical_transformer = Pipeline(
-        steps=[
-            (
-                "onehot",
-                OneHotEncoder(handle_unknown="ignore", sparse_output=False),
-            )
-        ]
-    )
-
-    preprocessor = ColumnTransformer(
-        transformers=[
-            ("num", numeric_transformer, numeric_features),
-            ("cat", categorical_transformer, categorical_features),
-        ]
-    )
-    return preprocessor
+    print("Target encoding: Yes/1 = Employee likely to leave | No/0 = Employee likely to stay")
 
 
 # =============================================================================
@@ -401,36 +286,6 @@ def train_and_tune_models(preprocessor, X_train, y_train):
 # Multiple metrics are reported because accuracy alone can be misleading on
 # imbalanced data. Precision, Recall, F1, ROC-AUC, and Confusion Matrix
 # provide a comprehensive view of model behavior.
-
-
-def evaluate_model(model, X_test, y_test, model_name: str) -> dict:
-    """Compute classification metrics for a trained model."""
-    y_pred = model.predict(X_test)
-    y_proba = model.predict_proba(X_test)[:, 1]
-
-    metrics = {
-        "Model": model_name,
-        "Accuracy": accuracy_score(y_test, y_pred),
-        "Precision": precision_score(y_test, y_pred, zero_division=0),
-        "Recall": recall_score(y_test, y_pred, zero_division=0),
-        "F1-Score": f1_score(y_test, y_pred, zero_division=0),
-        "ROC-AUC": roc_auc_score(y_test, y_proba),
-    }
-
-    print(f"\n--- {model_name}: Evaluation on Test Set ---")
-    for metric, value in metrics.items():
-        if metric != "Model":
-            print(f"  {metric:<12}: {value:.4f}")
-
-    print("\n  Confusion Matrix:")
-    cm = confusion_matrix(y_test, y_pred)
-    print(f"  {cm}")
-    print(f"  (Rows: Actual | Columns: Predicted | [0=Stay, 1=Leave])")
-
-    print("\n  Classification Report:")
-    print(classification_report(y_test, y_pred, target_names=["Stay (0)", "Leave (1)"]))
-
-    return metrics, y_pred, y_proba
 
 
 def plot_roc_curves(y_test, probas_dict: dict) -> None:
@@ -617,16 +472,18 @@ def main():
     print("=" * 70)
 
     # Step 1: Load data
-    df = load_dataset(DATASET_PATH)
+    df = load_and_report_dataset(DATASET_PATH)
 
     # Step 2: Identify target (required before EDA on class distribution)
     target_col = identify_target_column(df)
+    report_target_column(target_col)
 
     # Step 3: EDA
     perform_eda(df, target_col)
 
     # Step 4: Preprocess
     X, y, numeric_features, categorical_features = preprocess_features(df, target_col)
+    report_preprocessing(X, numeric_features, categorical_features)
     preprocessor = build_preprocessor(numeric_features, categorical_features)
 
     # Step 5: Split
@@ -644,9 +501,14 @@ def main():
     probas_dict = {}
 
     for name, grid_search in tuned_models.items():
-        metrics, _, y_proba = evaluate_model(
+        metrics, y_pred, y_proba = evaluate_model(
             grid_search.best_estimator_, X_test, y_test, name
         )
+        print(f"\n--- {name}: Evaluation on Test Set ---")
+        for metric, value in metrics.items():
+            if metric != "Model":
+                print(f"  {metric:<12}: {value:.4f}")
+        print_evaluation_report(y_test, y_pred, name)
         all_metrics.append(metrics)
         probas_dict[name] = y_proba
 

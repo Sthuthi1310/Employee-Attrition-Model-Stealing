@@ -4,41 +4,34 @@ Substitute Model Training - Configuration
 Paths and hyperparameters for training a surrogate model on stolen API labels.
 """
 
+import sys
 from pathlib import Path
 
-# ---------------------------------------------------------------------------
-# Directory paths
-# ---------------------------------------------------------------------------
+_PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+if str(_PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(_PROJECT_ROOT))
 
-SURROGATE_DIR = Path(__file__).resolve().parent
-ATTACK_DIR = SURROGATE_DIR.parent
-PROJECT_DIR = ATTACK_DIR.parent
-
-STOLEN_DATASET_PATH = ATTACK_DIR / "stolen_dataset.csv"
-ORIGINAL_MODEL_PATH = PROJECT_DIR / "outputs" / "best_attrition_model.joblib"
-SUBSTITUTE_MODEL_PATH = SURROGATE_DIR / "substitute_model.joblib"
-OUTPUT_DIR = SURROGATE_DIR / "outputs"
-
-TRAINING_DATASET_PATH = Path(
-    r"C:\Users\Sthuthi Sheela\Downloads\Employee-Attrition\employee_attrition_dataset_10000.csv"
+from utils.helper import API_FEATURE_COLUMNS
+from utils.paths import (
+    ATTACK_RESULTS_DIR,
+    ATTACK_DIR,
+    PROJECT_DIR,
+    STOLEN_DATASET_PATH,
+    SUBSTITUTE_MODEL_PATH,
+    TARGET_MODEL_PATH,
+    TRAINING_DATASET_PATH,
 )
+
+SURROGATE_DIR = PROJECT_DIR / "attack" / "surrogate"
+
+ORIGINAL_MODEL_PATH = TARGET_MODEL_PATH
+OUTPUT_DIR = ATTACK_RESULTS_DIR
 
 # ---------------------------------------------------------------------------
 # Feature schema (matches attack / API exposed features)
 # ---------------------------------------------------------------------------
 
-FEATURE_COLUMNS = [
-    "Age",
-    "Gender",
-    "Department",
-    "Job_Role",
-    "Monthly_Income",
-    "Years_at_Company",
-    "Job_Satisfaction",
-    "Work_Life_Balance",
-    "Overtime",
-    "Number_of_Companies_Worked",
-]
+FEATURE_COLUMNS = API_FEATURE_COLUMNS
 
 NUMERIC_FEATURES = [
     "Age",

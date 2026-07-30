@@ -9,7 +9,7 @@ Usage:
 
 Prerequisites:
     Run employee_attrition_pipeline.py first to generate:
-        outputs/best_attrition_model.joblib
+        models/target_model.pkl
 """
 
 from __future__ import annotations
@@ -21,12 +21,14 @@ from typing import Any
 import joblib
 import pandas as pd
 
+from utils.paths import TARGET_MODEL_PATH
+
 # =============================================================================
 # CONFIGURATION
 # =============================================================================
 
 PROJECT_DIR = Path(__file__).resolve().parent
-MODEL_PATH = PROJECT_DIR / "outputs" / "best_attrition_model.joblib"
+MODEL_PATH = TARGET_MODEL_PATH
 
 # Human-readable descriptions shown during data entry (for project demo)
 FEATURE_DESCRIPTIONS: dict[str, str] = {

@@ -19,13 +19,13 @@ Usage
 
 Outputs
 -------
-    substitute_model.joblib
-    outputs/substitute_metrics.csv
-    outputs/model_comparison.csv
-    outputs/confusion_matrix_substitute.png
-    outputs/confusion_matrix_original.png
-    outputs/agreement_analysis.png
-    outputs/roc_comparison.png
+    models/substitute_model.pkl
+    results/attack/substitute_metrics.csv
+    results/attack/model_comparison.csv
+    results/attack/confusion_matrix_substitute.png
+    results/attack/confusion_matrix_original.png
+    results/attack/agreement_analysis.png
+    results/attack/roc_comparison.png
 """
 
 from __future__ import annotations
@@ -42,20 +42,13 @@ import seaborn as sns
 from sklearn.compose import ColumnTransformer
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import (
-    accuracy_score,
-    classification_report,
-    confusion_matrix,
-    f1_score,
-    precision_score,
-    recall_score,
-    roc_auc_score,
-    roc_curve,
-)
+from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score, roc_curve
 from sklearn.model_selection import GridSearchCV, StratifiedKFold, train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
+from utils.helper import compute_feature_defaults
+from utils.metrics import evaluate_predictions
 from config import (
     CATEGORICAL_FEATURES,
     CV_FOLDS,
@@ -348,23 +341,6 @@ def train_and_evaluate_candidates(
     return tuned_models, comparison_df
 
 
-def evaluate_predictions(
-    y_true: pd.Series,
-    y_pred: np.ndarray,
-    y_proba: np.ndarray,
-    model_name: str,
-) -> dict:
-    """Compute standard classification metrics."""
-    return {
-        "Model": model_name,
-        "Accuracy": round(accuracy_score(y_true, y_pred), 4),
-        "Precision": round(precision_score(y_true, y_pred, zero_division=0), 4),
-        "Recall": round(recall_score(y_true, y_pred, zero_division=0), 4),
-        "F1-Score": round(f1_score(y_true, y_pred, zero_division=0), 4),
-        "ROC-AUC": round(roc_auc_score(y_true, y_proba), 4),
-    }
-
-
 # =============================================================================
 # SECTION 5: SELECT BEST SUBSTITUTE MODEL
 # =============================================================================
@@ -398,36 +374,7 @@ def select_best_model(comparison_df: pd.DataFrame, tuned_models: dict):
 
 def compute_original_feature_defaults(feature_columns: list[str]) -> dict:
     """Compute default values for features not in the stolen 10-feature set."""
-    defaults: dict = {}
-
-    if TRAINING_DATASET_PATH.exists():
-        df = pd.read_csv(TRAINING_DATASET_PATH)
-        df = df.drop(columns=["Employee_ID", "Attrition"], errors="ignore")
-        for col in feature_columns:
-            if col not in FEATURE_COLUMNS and col in df.columns:
-                if df[col].dtype == "object":
-                    defaults[col] = df[col].mode()[0]
-                else:
-                    defaults[col] = int(df[col].median())
-    else:
-        defaults = {
-            "Marital_Status": "Married",
-            "Job_Level": 3,
-            "Hourly_Rate": 50,
-            "Years_in_Current_Role": 5,
-            "Years_Since_Last_Promotion": 2,
-            "Performance_Rating": 2,
-            "Training_Hours_Last_Year": 50,
-            "Project_Count": 5,
-            "Average_Hours_Worked_Per_Week": 45,
-            "Absenteeism": 7,
-            "Work_Environment_Satisfaction": 3,
-            "Relationship_with_Manager": 3,
-            "Job_Involvement": 3,
-            "Distance_From_Home": 15,
-        }
-
-    return defaults
+    return compute_feature_defaults(feature_columns, api_columns=FEATURE_COLUMNS)
 
 
 def get_original_predictions(X: pd.DataFrame) -> tuple[np.ndarray, np.ndarray]:

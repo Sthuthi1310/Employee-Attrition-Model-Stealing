@@ -9,8 +9,13 @@ from __future__ import annotations
 
 import json
 import re
+import sys
 from datetime import datetime
 from pathlib import Path
+
+_PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if str(_PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(_PROJECT_ROOT))
 
 import joblib
 import numpy as np
@@ -21,41 +26,34 @@ from sklearn.inspection import permutation_importance
 # Paths
 # ---------------------------------------------------------------------------
 
-WEB_DIR = Path(__file__).resolve().parent
-PROJECT_DIR = WEB_DIR.parent
-
-ORIGINAL_MODEL_PATH = PROJECT_DIR / "outputs" / "best_attrition_model.joblib"
-ORIGINAL_FEATURE_IMPORTANCE = PROJECT_DIR / "outputs" / "feature_importance.csv"
-SUBSTITUTE_MODEL_PATH = PROJECT_DIR / "attack" / "surrogate" / "substitute_model.joblib"
-SURROGATE_OUTPUT_DIR = PROJECT_DIR / "attack" / "surrogate" / "outputs"
-STOLEN_DATASET_PATH = PROJECT_DIR / "attack" / "stolen_dataset.csv"
-ATTACK_SUMMARY_JSON = PROJECT_DIR / "attack" / "attack_summary.json"
-ATTACK_LOGS_DIR = PROJECT_DIR / "attack" / "logs"
-TRAINING_DATASET_PATH = Path(
-    r"C:\Users\Sthuthi Sheela\Downloads\Employee-Attrition\employee_attrition_dataset_10000.csv"
+from utils.helper import API_FEATURE_COLUMNS, compute_feature_defaults, read_csv_safe
+from utils.paths import (
+    ATTACK_LOGS_DIR,
+    ATTACK_RESULTS_DIR,
+    ATTACK_SUMMARY_JSON,
+    FEATURE_IMPORTANCE_PATH,
+    STOLEN_DATASET_PATH,
+    SUBSTITUTE_MODEL_PATH,
+    TARGET_MODEL_PATH,
+    TRAINING_DATASET_PATH,
 )
 
-FEATURE_COLUMNS = [
-    "Age",
-    "Gender",
-    "Department",
-    "Job_Role",
-    "Monthly_Income",
-    "Years_at_Company",
-    "Job_Satisfaction",
-    "Work_Life_Balance",
-    "Overtime",
-    "Number_of_Companies_Worked",
-]
+FEATURE_COLUMNS = API_FEATURE_COLUMNS
+ORIGINAL_MODEL_PATH = TARGET_MODEL_PATH
+ORIGINAL_FEATURE_IMPORTANCE = FEATURE_IMPORTANCE_PATH
+SUBSTITUTE_MODEL_PATH = SUBSTITUTE_MODEL_PATH
+SURROGATE_OUTPUT_DIR = ATTACK_RESULTS_DIR
+STOLEN_DATASET_PATH = STOLEN_DATASET_PATH
+ATTACK_SUMMARY_JSON = ATTACK_SUMMARY_JSON
+ATTACK_LOGS_DIR = ATTACK_LOGS_DIR
+TRAINING_DATASET_PATH = TRAINING_DATASET_PATH
 
 TARGET_MAPPING = {"Leave": 1, "Stay": 0}
 
 
 def _read_csv_safe(path: Path) -> pd.DataFrame | None:
     """Read CSV if it exists, else return None."""
-    if path.exists():
-        return pd.read_csv(path)
-    return None
+    return read_csv_safe(path)
 
 
 def _get_original_model_name() -> str:
@@ -77,17 +75,7 @@ def _get_substitute_model_name() -> str:
 
 def _compute_original_feature_defaults(feature_columns: list[str]) -> dict:
     """Default values for features not exposed via the API."""
-    defaults: dict = {}
-    if TRAINING_DATASET_PATH.exists():
-        df = pd.read_csv(TRAINING_DATASET_PATH)
-        df = df.drop(columns=["Employee_ID", "Attrition"], errors="ignore")
-        for col in feature_columns:
-            if col not in FEATURE_COLUMNS and col in df.columns:
-                if df[col].dtype == "object":
-                    defaults[col] = df[col].mode()[0]
-                else:
-                    defaults[col] = int(df[col].median())
-    return defaults
+    return compute_feature_defaults(feature_columns, api_columns=FEATURE_COLUMNS)
 
 
 def _build_full_features(row: pd.Series, feature_columns: list[str], defaults: dict) -> pd.DataFrame:

@@ -7,40 +7,37 @@ Serves the web dashboard and handles ML predictions using the saved pipeline.
 from __future__ import annotations
 
 import json
+import sys
 import uuid
 from datetime import datetime, timezone
 from pathlib import Path
+
+_PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if str(_PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(_PROJECT_ROOT))
 
 import joblib
 import pandas as pd
 from flask import Flask, jsonify, render_template, request, send_from_directory
 
+from utils.helper import API_FEATURE_COLUMNS, compute_feature_defaults
+from utils.paths import (
+    ATTACK_RESULTS_DIR,
+    PREDICTIONS_FILE,
+    TARGET_MODEL_PATH,
+    TRAINING_DATASET_PATH,
+)
+
 # ---------------------------------------------------------------------------
 # Configuration
 # ---------------------------------------------------------------------------
 
-BASE_DIR = Path(__file__).resolve().parent
-PROJECT_DIR = BASE_DIR.parent
-MODEL_PATH = PROJECT_DIR / "outputs" / "best_attrition_model.joblib"
-DATASET_PATH = Path(
-    r"C:\Users\Sthuthi Sheela\Downloads\Employee-Attrition\employee_attrition_dataset_10000.csv"
-)
-PREDICTIONS_FILE = BASE_DIR / "data" / "predictions.json"
-SURROGATE_OUTPUT_DIR = PROJECT_DIR / "attack" / "surrogate" / "outputs"
+MODEL_PATH = TARGET_MODEL_PATH
+DATASET_PATH = TRAINING_DATASET_PATH
+SURROGATE_OUTPUT_DIR = ATTACK_RESULTS_DIR
 
 # Form fields exposed in the UI (subset of model features)
-FORM_FIELDS = [
-    "Age",
-    "Gender",
-    "Department",
-    "Job_Role",
-    "Monthly_Income",
-    "Years_at_Company",
-    "Job_Satisfaction",
-    "Work_Life_Balance",
-    "Overtime",
-    "Number_of_Companies_Worked",
-]
+FORM_FIELDS = list(API_FEATURE_COLUMNS)
 
 VALID_OPTIONS = {
     "Gender": ["Female", "Male"],
@@ -65,44 +62,6 @@ def load_model() -> dict:
             f"Model not found at {MODEL_PATH}. Run employee_attrition_pipeline.py first."
         )
     return joblib.load(MODEL_PATH)
-
-
-def compute_feature_defaults(feature_columns: list[str]) -> dict:
-    """
-    Compute median/mode defaults for features not collected in the web form.
-    Ensures the full feature vector matches training schema.
-    """
-    defaults: dict = {}
-
-    if DATASET_PATH.exists():
-        df = pd.read_csv(DATASET_PATH)
-        df = df.drop(columns=["Employee_ID", "Attrition"], errors="ignore")
-        for col in feature_columns:
-            if col in df.columns:
-                if df[col].dtype == "object":
-                    defaults[col] = df[col].mode()[0]
-                else:
-                    defaults[col] = int(df[col].median())
-    else:
-        # Fallback values when dataset path is unavailable
-        defaults = {
-            "Marital_Status": "Married",
-            "Job_Level": 3,
-            "Hourly_Rate": 50,
-            "Years_in_Current_Role": 5,
-            "Years_Since_Last_Promotion": 2,
-            "Performance_Rating": 2,
-            "Training_Hours_Last_Year": 50,
-            "Project_Count": 5,
-            "Average_Hours_Worked_Per_Week": 45,
-            "Absenteeism": 7,
-            "Work_Environment_Satisfaction": 3,
-            "Relationship_with_Manager": 3,
-            "Job_Involvement": 3,
-            "Distance_From_Home": 15,
-        }
-
-    return {col: defaults.get(col, 0) for col in feature_columns if col not in FORM_FIELDS}
 
 
 def ensure_predictions_store() -> None:
