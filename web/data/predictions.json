@@ -1,5 +1,23 @@
 [
   {
+    "id": "8be3b98b",
+    "timestamp": "2026-08-01T16:44:09.782597+00:00",
+    "department": "IT",
+    "job_role": "Assistant",
+    "attrition_status": "Likely to Leave",
+    "attrition_risk": 50.08,
+    "confidence": 50.08
+  },
+  {
+    "id": "101d6775",
+    "timestamp": "2026-08-01T16:43:54.572281+00:00",
+    "department": "IT",
+    "job_role": "Assistant",
+    "attrition_status": "Likely to Stay",
+    "attrition_risk": 49.92,
+    "confidence": 50.08
+  },
+  {
     "id": "2ee206ea",
     "timestamp": "2026-06-23T16:14:55.439270+00:00",
     "department": "IT",
@@ -880,23 +898,5 @@
     "attrition_status": "Likely to Leave",
     "attrition_risk": 52.67,
     "confidence": 52.67
-  },
-  {
-    "id": "ca5f9aaf",
-    "timestamp": "2026-06-23T16:14:40.259236+00:00",
-    "department": "Finance",
-    "job_role": "Analyst",
-    "attrition_status": "Likely to Leave",
-    "attrition_risk": 50.78,
-    "confidence": 50.78
-  },
-  {
-    "id": "6ce85811",
-    "timestamp": "2026-06-23T16:14:40.183293+00:00",
-    "department": "IT",
-    "job_role": "Executive",
-    "attrition_status": "Likely to Stay",
-    "attrition_risk": 47.89,
-    "confidence": 52.11
   }
 ]

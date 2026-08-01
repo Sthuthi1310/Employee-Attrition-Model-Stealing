@@ -40,6 +40,10 @@ def read_csv_safe(path: Path) -> pd.DataFrame | None:
     return None
 
 
+from pathlib import Path
+import pandas as pd
+from pandas.api.types import is_numeric_dtype
+
 def compute_feature_defaults(
     feature_columns: list[str],
     api_columns: list[str] | None = None,
@@ -55,13 +59,22 @@ def compute_feature_defaults(
 
     if dataset_path.exists():
         df = pd.read_csv(dataset_path)
+
+        # Remove columns not used for prediction
         df = df.drop(columns=["Employee_ID", "Attrition"], errors="ignore")
+
         for col in feature_columns:
             if col not in api_columns and col in df.columns:
-                if df[col].dtype == "object":
-                    defaults[col] = df[col].mode()[0]
-                else:
+
+                # Numeric columns -> median
+                if is_numeric_dtype(df[col]):
                     defaults[col] = int(df[col].median())
+
+                # Categorical/String columns -> mode
+                else:
+                    mode = df[col].mode(dropna=True)
+                    defaults[col] = mode.iloc[0] if not mode.empty else ""
+
     else:
         defaults = {
             "Marital_Status": "Married",
