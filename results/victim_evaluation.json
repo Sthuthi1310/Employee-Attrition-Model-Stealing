@@ -1,0 +1,41 @@
+{
+  "model_name": "Logistic Regression",
+  "dataset_path": "C:\\Users\\Sthuthi Sheela\\Desktop\\Employee-Attrition-Prediction\\data\\raw\\employee_attrition_dataset_10000.csv",
+  "target_column": "Attrition",
+  "feature_columns": [
+    "Age",
+    "Gender",
+    "Department",
+    "Job_Role",
+    "Monthly_Income",
+    "Years_at_Company",
+    "Job_Satisfaction",
+    "Work_Life_Balance",
+    "Overtime",
+    "Number_of_Companies_Worked"
+  ],
+  "random_state": 42,
+  "test_size": 0.2,
+  "test_samples": 2000,
+  "metrics": {
+    "Accuracy": 0.812,
+    "Precision": 0.7808676307007787,
+    "Recall": 0.7968217934165721,
+    "F1-Score": 0.7887640449438202,
+    "ROC-AUC": 0.897317919051691
+  },
+  "confusion_matrix": [
+    [
+      922,
+      197
+    ],
+    [
+      179,
+      702
+    ]
+  ],
+  "confusion_matrix_labels": [
+    "Stay",
+    "Leave"
+  ]
+}

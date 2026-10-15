@@ -20,12 +20,12 @@ import joblib
 import pandas as pd
 from flask import Flask, jsonify, render_template, request, send_from_directory
 
-from utils.helper import API_FEATURE_COLUMNS, compute_feature_defaults
+from utils.helper import API_FEATURE_COLUMNS
 from utils.paths import (
     ATTACK_RESULTS_DIR,
     PREDICTIONS_FILE,
+    RESULTS_DIR,
     TARGET_MODEL_PATH,
-    TRAINING_DATASET_PATH,
 )
 
 # ---------------------------------------------------------------------------
@@ -33,7 +33,6 @@ from utils.paths import (
 # ---------------------------------------------------------------------------
 
 MODEL_PATH = TARGET_MODEL_PATH
-DATASET_PATH = TRAINING_DATASET_PATH
 SURROGATE_OUTPUT_DIR = ATTACK_RESULTS_DIR
 
 # Form fields exposed in the UI (subset of model features)
@@ -132,12 +131,12 @@ def validate_payload(data: dict) -> tuple[dict | None, str | None]:
     except (TypeError, ValueError):
         return None, "Years at Company must be a valid number."
 
-    # Ratings (1-4 per form specification)
+    # Rating domains match the values present in the training dataset.
     for field in ["Job_Satisfaction", "Work_Life_Balance"]:
         try:
             rating = int(data.get(field))
-            if rating < 1 or rating > 4:
-                return None, f"{field.replace('_', ' ')} must be between 1 and 4."
+            if rating < 1 or rating > 5:
+                return None, f"{field.replace('_', ' ')} must be between 1 and 5."
             cleaned[field] = rating
         except (TypeError, ValueError):
             return None, f"{field.replace('_', ' ')} must be a valid number."
@@ -155,12 +154,13 @@ def validate_payload(data: dict) -> tuple[dict | None, str | None]:
 
 
 def build_feature_vector(form_data: dict) -> pd.DataFrame:
-    """Merge form inputs with defaults to create model-ready feature row."""
-    global artifact, feature_defaults
-
+    """Build an input row using the exact victim/API feature schema."""
+    global artifact
     feature_columns = artifact["feature_columns"]
-    full_record = {**feature_defaults, **form_data}
-    return pd.DataFrame([full_record])[feature_columns]
+    missing = set(feature_columns) - set(form_data)
+    if missing:
+        raise ValueError(f"Missing required feature(s): {sorted(missing)}")
+    return pd.DataFrame([form_data])[feature_columns]
 
 
 def run_prediction(form_data: dict) -> dict:
@@ -172,19 +172,29 @@ def run_prediction(form_data: dict) -> dict:
     input_df = build_feature_vector(form_data)
 
     prediction_code = int(pipeline.predict(input_df)[0])
-    attrition_prob = float(pipeline.predict_proba(input_df)[0][1])
-    stay_prob = 1.0 - attrition_prob
-
     label = labels[prediction_code]
+    classes = pipeline.named_steps["classifier"].classes_
+    probabilities = pipeline.predict_proba(input_df)[0]
+    class_probabilities = {
+        labels[int(class_code)]: round(float(probability), 6)
+        for class_code, probability in zip(classes, probabilities)
+    }
+    attrition_prob = class_probabilities["Leave"]
+    stay_prob = class_probabilities["Stay"]
     confidence = attrition_prob if prediction_code == 1 else stay_prob
 
+    model_name = artifact.get("model_name", "Logistic Regression")
+    attrition_binary = "Yes" if prediction_code == 1 else "No"
+
     return {
+        "attrition": attrition_binary,
         "prediction_label": label,
+        "class_probabilities": class_probabilities,
         "attrition_status": "Likely to Leave" if label == "Leave" else "Likely to Stay",
         "attrition_probability": round(attrition_prob * 100, 2),
         "stay_probability": round(stay_prob * 100, 2),
         "prediction_confidence": round(confidence * 100, 2),
-        "model_name": artifact.get("model_name", "Unknown"),
+        "model_name": model_name,
     }
 
 
@@ -211,10 +221,12 @@ def get_options():
     return jsonify(VALID_OPTIONS)
 
 
+@app.route("/predict", methods=["POST"])
 @app.route("/api/predict", methods=["POST"])
 def predict():
     """
     Accept employee details via POST JSON and return attrition prediction.
+    Exposed at both /predict and /api/predict.
     """
     if artifact is None:
         return jsonify({"error": "Model is not loaded."}), 503
@@ -295,7 +307,10 @@ def analysis_api():
     Data is read dynamically from CSV files and computed from saved models.
     """
     try:
-        from analysis_data import build_analysis_payload
+        try:
+            from analysis_data import build_analysis_payload
+        except ModuleNotFoundError:
+            from web.analysis_data import build_analysis_payload
 
         payload = build_analysis_payload()
         return jsonify(payload)
@@ -306,6 +321,8 @@ def analysis_api():
 @app.route("/analysis/assets/<path:filename>")
 def analysis_assets(filename):
     """Serve confusion matrix and other analysis images from surrogate outputs."""
+    if filename == "victim_confusion_matrix.png":
+        return send_from_directory(RESULTS_DIR, filename)
     return send_from_directory(SURROGATE_OUTPUT_DIR, filename)
 
 
@@ -314,12 +331,13 @@ def analysis_assets(filename):
 # ---------------------------------------------------------------------------
 
 def init_app():
-    """Initialize model and defaults on startup."""
-    global artifact, feature_defaults
+    """Initialize the trained victim model on startup."""
+    global artifact
     artifact = load_model()
-    feature_defaults = compute_feature_defaults(artifact["feature_columns"])
+    if artifact.get("feature_columns") != API_FEATURE_COLUMNS:
+        raise ValueError("Victim model feature schema does not match the prediction API schema.")
     ensure_predictions_store()
-    print(f"Model loaded: {artifact.get('model_name', 'Unknown')}")
+    print("Victim model loaded.")
     print(f"Features: {len(artifact['feature_columns'])}")
 
 

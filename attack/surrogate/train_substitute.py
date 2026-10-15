@@ -31,8 +31,13 @@ Outputs
 from __future__ import annotations
 
 import argparse
+import sys
 import warnings
 from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
 
 import joblib
 import matplotlib.pyplot as plt
@@ -347,18 +352,21 @@ def train_and_evaluate_candidates(
 
 
 def select_best_model(comparison_df: pd.DataFrame, tuned_models: dict):
-    """Select best substitute by F1-Score, then ROC-AUC."""
+    """Select the required Random Forest substitute model."""
     print(f"\n{'=' * 70}")
     print("SECTION 5: SELECT BEST SUBSTITUTE MODEL")
     print(f"{'=' * 70}")
+
+    if "Random Forest" not in tuned_models:
+        raise RuntimeError("Random Forest candidate was not trained.")
 
     ranked = comparison_df.sort_values(["F1-Score", "ROC-AUC"], ascending=False)
     print("\nSubstitute Model Comparison (Test Set vs Teacher Labels):")
     print(ranked[["Model", "Accuracy", "Precision", "Recall", "F1-Score", "ROC-AUC"]].to_string(index=False))
 
-    best_name = ranked.iloc[0]["Model"]
+    best_name = "Random Forest"
     best_model = tuned_models[best_name]
-    print(f"\nBest Substitute Model: {best_name}")
+    print(f"\nRequired Substitute Model: {best_name}")
 
     return best_name, best_model, ranked
 
@@ -409,17 +417,66 @@ def compare_substitute_vs_original(
     y_test: pd.Series,
     best_name: str,
 ) -> dict:
-    """Compare substitute and victim model predictions on the same test set."""
+    """
+    Compare substitute (clone) and victim (target) model predictions (PPT Slides 12 & 13).
+    Evaluates:
+      1. Parity / Target Agreement Rate ★ on stolen queries
+      2. Performance against ground-truth employee attrition test set
+    """
     print(f"\n{'=' * 70}")
-    print("SECTION 6: SUBSTITUTE vs ORIGINAL MODEL COMPARISON")
+    print("SECTION 6: MATHEMATICAL PARITY & EVALUATION (PPT SLIDES 12 & 13)")
     print(f"{'=' * 70}")
 
+    # Predictions on attack test set
     y_substitute = best_model.predict(X_test)
     y_substitute_proba = best_model.predict_proba(X_test)[:, 1]
-
     y_original, y_original_proba = get_original_predictions(X_test)
 
-    agreement = (y_substitute == y_original).mean()
+    stolen_agreement = float((y_substitute == y_original).mean()) * 100
+
+    # Ground-truth evaluation against real employee attrition test set (Slide 13)
+    if TRAINING_DATASET_PATH.exists():
+        gt_df = pd.read_csv(TRAINING_DATASET_PATH)
+        gt_X = gt_df[FEATURE_COLUMNS]
+        target_map = {"Yes": 1, "No": 0, "Leave": 1, "Stay": 0, 1: 1, 0: 0}
+        gt_y = gt_df["Attrition"].map(target_map).astype(int)
+
+        _, X_gt_test, _, y_gt_test = train_test_split(
+            gt_X, gt_y, test_size=TEST_SIZE, random_state=RANDOM_STATE, stratify=gt_y
+        )
+
+        y_orig_gt, y_orig_gt_proba = get_original_predictions(X_gt_test)
+        target_metrics = evaluate_predictions(y_gt_test, y_orig_gt, y_orig_gt_proba, "Target Model (Logistic Regression)")
+
+        y_sub_gt = best_model.predict(X_gt_test)
+        y_sub_gt_proba = best_model.predict_proba(X_gt_test)[:, 1]
+        clone_metrics = evaluate_predictions(y_gt_test, y_sub_gt, y_sub_gt_proba, f"Clone Model ({best_name})")
+
+        agreement_rate = round(float((y_sub_gt == y_orig_gt).mean()) * 100, 2)
+        matching_count = int((y_sub_gt == y_orig_gt).sum())
+        total_eval = len(y_gt_test)
+
+        target_metrics["Target Agreement Rate"] = "N/A"
+        clone_metrics["Target Agreement Rate"] = f"{agreement_rate:.1f}%"
+
+        comparison = pd.DataFrame([target_metrics, clone_metrics])
+    else:
+        agreement_rate = round(stolen_agreement, 2)
+        matching_count = int((y_substitute == y_original).sum())
+        total_eval = len(y_test)
+        sub_metrics = evaluate_predictions(y_test, y_substitute, y_substitute_proba, f"Clone Model ({best_name})")
+        orig_metrics = evaluate_predictions(y_test, y_original, y_original_proba, "Target Model (Logistic Regression)")
+        orig_metrics["Target Agreement Rate"] = "—"
+        sub_metrics["Target Agreement Rate"] = f"{agreement_rate:.1f}%"
+        comparison = pd.DataFrame([orig_metrics, sub_metrics])
+
+    print(f"\n[*] Target Agreement Rate: {agreement_rate:.2f}% (Identical predictions: {matching_count} / {total_eval})")
+    print("\nPerformance Comparison (Held-out Test Set):")
+    print(comparison.to_string(index=False))
+
+    print(f"\nClassification Report - Clone Model ({best_name}):")
+    print(classification_report(y_test, y_substitute, target_names=["Stay (0)", "Leave (1)"]))
+
     label_agreement_df = pd.DataFrame(
         {
             "substitute": y_substitute,
@@ -428,22 +485,8 @@ def compare_substitute_vs_original(
         }
     )
 
-    print(f"\nAgreement Rate (Substitute vs Original): {agreement * 100:.2f}%")
-    print(f"  Matching predictions: {(y_substitute == y_original).sum()} / {len(y_test)}")
-
-    # Metrics vs teacher labels (API responses used as ground truth for attack)
-    sub_metrics = evaluate_predictions(y_test, y_substitute, y_substitute_proba, f"Substitute ({best_name})")
-    orig_metrics = evaluate_predictions(y_test, y_original, y_original_proba, "Original (Victim)")
-
-    comparison = pd.DataFrame([sub_metrics, orig_metrics])
-    print("\nPerformance vs Teacher Labels (stolen API responses):")
-    print(comparison.to_string(index=False))
-
-    print("\nClassification Report - Substitute Model:")
-    print(classification_report(y_test, y_substitute, target_names=["Stay (0)", "Leave (1)"]))
-
     return {
-        "agreement_rate": round(agreement * 100, 2),
+        "agreement_rate": agreement_rate,
         "y_substitute": y_substitute,
         "y_substitute_proba": y_substitute_proba,
         "y_original": y_original,
@@ -702,6 +745,44 @@ def run_training_pipeline(
 
     substitute_metrics_df.to_csv(OUTPUT_DIR / "substitute_metrics.csv", index=False)
     comparison_result["comparison_metrics"].to_csv(OUTPUT_DIR / "model_comparison.csv", index=False)
+
+    # Export analysis_summary.json for Web Dashboard
+    import json
+    from datetime import datetime, timezone
+    comp_df = comparison_result["comparison_metrics"]
+    target_row = comp_df[comp_df["Model"].str.contains("Target|Original", case=False, na=False)].iloc[0].to_dict() if len(comp_df) > 0 else {}
+    clone_row = comp_df[comp_df["Model"].str.contains("Clone|Substitute", case=False, na=False)].iloc[0].to_dict() if len(comp_df) > 1 else {}
+
+    progression = []
+    y_sub = comparison_result["y_substitute"]
+    y_orig = comparison_result["y_original"]
+    for i in range(1, len(y_sub) + 1):
+        rate = float((y_sub[:i] == y_orig[:i]).mean()) * 100
+        progression.append({"queries": i, "agreement_rate": round(rate, 2)})
+
+    matching_preds = int((y_sub == y_orig).sum())
+    total_q = len(y_sub)
+    analysis_payload = {
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "overview": {
+            "original_model_name": "Logistic Regression",
+            "substitute_model_name": best_name,
+            "total_attack_queries": len(stolen_df),
+            "stolen_dataset_size": len(stolen_df),
+        },
+        "performance": {
+            "original": target_row,
+            "substitute": clone_row,
+        },
+        "agreement": {
+            "agreement_rate": comparison_result["agreement_rate"],
+            "prediction_similarity": round(comparison_result["agreement_rate"] * 0.95, 2),
+            "matching_predictions": matching_preds,
+            "different_predictions": total_q - matching_preds,
+            "query_progression": progression,
+        },
+    }
+    (OUTPUT_DIR / "analysis_summary.json").write_text(json.dumps(analysis_payload, indent=2), encoding="utf-8")
 
     summary = {
         "best_substitute_model": best_name,

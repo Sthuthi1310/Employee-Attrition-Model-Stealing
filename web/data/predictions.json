@@ -1,902 +1,902 @@
 [
   {
-    "id": "8be3b98b",
-    "timestamp": "2026-08-01T16:44:09.782597+00:00",
-    "department": "IT",
-    "job_role": "Assistant",
-    "attrition_status": "Likely to Leave",
-    "attrition_risk": 50.08,
-    "confidence": 50.08
-  },
-  {
-    "id": "101d6775",
-    "timestamp": "2026-08-01T16:43:54.572281+00:00",
-    "department": "IT",
-    "job_role": "Assistant",
-    "attrition_status": "Likely to Stay",
-    "attrition_risk": 49.92,
-    "confidence": 50.08
-  },
-  {
-    "id": "2ee206ea",
-    "timestamp": "2026-06-23T16:14:55.439270+00:00",
-    "department": "IT",
-    "job_role": "Analyst",
-    "attrition_status": "Likely to Stay",
-    "attrition_risk": 47.93,
-    "confidence": 52.07
-  },
-  {
-    "id": "3393c22f",
-    "timestamp": "2026-06-23T16:14:55.385195+00:00",
-    "department": "Finance",
-    "job_role": "Analyst",
-    "attrition_status": "Likely to Leave",
-    "attrition_risk": 50.82,
-    "confidence": 50.82
-  },
-  {
-    "id": "0500e3fc",
-    "timestamp": "2026-06-23T16:14:55.318482+00:00",
-    "department": "IT",
+    "id": "15333c90",
+    "timestamp": "2026-10-15T15:57:34.857437+00:00",
+    "department": "Sales",
     "job_role": "Executive",
     "attrition_status": "Likely to Leave",
-    "attrition_risk": 50.03,
-    "confidence": 50.03
+    "attrition_risk": 99.16,
+    "confidence": 99.16
   },
   {
-    "id": "35dacd3e",
-    "timestamp": "2026-06-23T16:14:55.263742+00:00",
+    "id": "00249ac0",
+    "timestamp": "2026-10-15T15:57:08.426602+00:00",
+    "department": "IT",
+    "job_role": "Assistant",
+    "attrition_status": "Likely to Stay",
+    "attrition_risk": 7.51,
+    "confidence": 92.49
+  },
+  {
+    "id": "bb43daf5",
+    "timestamp": "2026-10-15T15:56:57.003687+00:00",
+    "department": "IT",
+    "job_role": "Assistant",
+    "attrition_status": "Likely to Stay",
+    "attrition_risk": 45.08,
+    "confidence": 54.92
+  },
+  {
+    "id": "8dfc8b25",
+    "timestamp": "2026-10-15T15:56:49.426989+00:00",
+    "department": "IT",
+    "job_role": "Assistant",
+    "attrition_status": "Likely to Leave",
+    "attrition_risk": 97.21,
+    "confidence": 97.21
+  },
+  {
+    "id": "97476ee5",
+    "timestamp": "2026-10-15T15:53:52.974391+00:00",
+    "department": "HR",
+    "job_role": "Executive",
+    "attrition_status": "Likely to Stay",
+    "attrition_risk": 1.1,
+    "confidence": 98.9
+  },
+  {
+    "id": "be0a0dcc",
+    "timestamp": "2026-10-15T15:53:52.906176+00:00",
     "department": "Marketing",
     "job_role": "Manager",
     "attrition_status": "Likely to Stay",
-    "attrition_risk": 47.77,
-    "confidence": 52.23
+    "attrition_risk": 44.63,
+    "confidence": 55.37
   },
   {
-    "id": "b6212bf3",
-    "timestamp": "2026-06-23T16:14:55.217636+00:00",
-    "department": "IT",
-    "job_role": "Executive",
-    "attrition_status": "Likely to Stay",
-    "attrition_risk": 49.95,
-    "confidence": 50.05
+    "id": "996b7c0d",
+    "timestamp": "2026-10-15T15:53:52.822682+00:00",
+    "department": "Marketing",
+    "job_role": "Analyst",
+    "attrition_status": "Likely to Leave",
+    "attrition_risk": 98.47,
+    "confidence": 98.47
   },
   {
-    "id": "6498edb4",
-    "timestamp": "2026-06-23T16:14:55.173556+00:00",
+    "id": "3559dd0f",
+    "timestamp": "2026-10-15T15:53:52.736038+00:00",
     "department": "Finance",
-    "job_role": "Analyst",
-    "attrition_status": "Likely to Leave",
-    "attrition_risk": 54.26,
-    "confidence": 54.26
-  },
-  {
-    "id": "1397c66a",
-    "timestamp": "2026-06-23T16:14:55.126194+00:00",
-    "department": "HR",
     "job_role": "Assistant",
     "attrition_status": "Likely to Leave",
-    "attrition_risk": 50.11,
-    "confidence": 50.11
+    "attrition_risk": 97.78,
+    "confidence": 97.78
   },
   {
-    "id": "fabc2f70",
-    "timestamp": "2026-06-23T16:14:55.053883+00:00",
+    "id": "fe74da26",
+    "timestamp": "2026-10-15T15:53:52.666211+00:00",
     "department": "Sales",
-    "job_role": "Executive",
+    "job_role": "Assistant",
     "attrition_status": "Likely to Leave",
-    "attrition_risk": 51.45,
-    "confidence": 51.45
+    "attrition_risk": 99.42,
+    "confidence": 99.42
   },
   {
-    "id": "a8e35cca",
-    "timestamp": "2026-06-23T16:14:54.945355+00:00",
-    "department": "IT",
-    "job_role": "Analyst",
+    "id": "1192f2a6",
+    "timestamp": "2026-10-15T15:53:52.582652+00:00",
+    "department": "Marketing",
+    "job_role": "Assistant",
     "attrition_status": "Likely to Leave",
-    "attrition_risk": 52.04,
-    "confidence": 52.04
+    "attrition_risk": 58.49,
+    "confidence": 58.49
   },
   {
-    "id": "744d2f78",
-    "timestamp": "2026-06-23T16:14:54.878878+00:00",
+    "id": "bfdc7218",
+    "timestamp": "2026-10-15T15:53:52.494344+00:00",
+    "department": "Marketing",
+    "job_role": "Manager",
+    "attrition_status": "Likely to Leave",
+    "attrition_risk": 52.96,
+    "confidence": 52.96
+  },
+  {
+    "id": "d5313b9a",
+    "timestamp": "2026-10-15T15:53:52.371143+00:00",
     "department": "HR",
     "job_role": "Assistant",
     "attrition_status": "Likely to Leave",
-    "attrition_risk": 52.24,
-    "confidence": 52.24
+    "attrition_risk": 80.36,
+    "confidence": 80.36
   },
   {
-    "id": "164b9622",
-    "timestamp": "2026-06-23T16:14:54.811896+00:00",
-    "department": "HR",
-    "job_role": "Analyst",
-    "attrition_status": "Likely to Leave",
-    "attrition_risk": 50.43,
-    "confidence": 50.43
+    "id": "2da6a242",
+    "timestamp": "2026-10-15T15:53:52.222072+00:00",
+    "department": "IT",
+    "job_role": "Assistant",
+    "attrition_status": "Likely to Stay",
+    "attrition_risk": 10.53,
+    "confidence": 89.47
   },
   {
-    "id": "e28d8473",
-    "timestamp": "2026-06-23T16:14:54.760350+00:00",
+    "id": "f65ca46a",
+    "timestamp": "2026-10-15T15:53:52.139158+00:00",
     "department": "Marketing",
     "job_role": "Assistant",
     "attrition_status": "Likely to Stay",
-    "attrition_risk": 47.98,
-    "confidence": 52.02
+    "attrition_risk": 3.66,
+    "confidence": 96.34
   },
   {
-    "id": "c0fd45f9",
-    "timestamp": "2026-06-23T16:14:54.695935+00:00",
-    "department": "IT",
-    "job_role": "Analyst",
-    "attrition_status": "Likely to Leave",
-    "attrition_risk": 50.89,
-    "confidence": 50.89
-  },
-  {
-    "id": "66e06ceb",
-    "timestamp": "2026-06-23T16:14:54.629367+00:00",
-    "department": "IT",
+    "id": "1d5d8ad7",
+    "timestamp": "2026-10-15T15:53:52.057360+00:00",
+    "department": "HR",
     "job_role": "Manager",
     "attrition_status": "Likely to Stay",
-    "attrition_risk": 49.91,
-    "confidence": 50.09
+    "attrition_risk": 7.52,
+    "confidence": 92.48
   },
   {
-    "id": "28e20f68",
-    "timestamp": "2026-06-23T16:14:54.606600+00:00",
-    "department": "Finance",
+    "id": "c704311c",
+    "timestamp": "2026-10-15T15:53:52.001174+00:00",
+    "department": "Marketing",
+    "job_role": "Analyst",
+    "attrition_status": "Likely to Stay",
+    "attrition_risk": 1.86,
+    "confidence": 98.14
+  },
+  {
+    "id": "cae19ec7",
+    "timestamp": "2026-10-15T15:53:51.935898+00:00",
+    "department": "IT",
     "job_role": "Assistant",
-    "attrition_status": "Likely to Leave",
-    "attrition_risk": 52.09,
-    "confidence": 52.09
-  },
-  {
-    "id": "7a391cdd",
-    "timestamp": "2026-06-23T16:14:54.552632+00:00",
-    "department": "Finance",
-    "job_role": "Executive",
-    "attrition_status": "Likely to Leave",
-    "attrition_risk": 51.5,
-    "confidence": 51.5
-  },
-  {
-    "id": "9010efa9",
-    "timestamp": "2026-06-23T16:14:54.524016+00:00",
-    "department": "Finance",
-    "job_role": "Assistant",
-    "attrition_status": "Likely to Leave",
-    "attrition_risk": 55.31,
-    "confidence": 55.31
-  },
-  {
-    "id": "95dc0dea",
-    "timestamp": "2026-06-23T16:14:54.479489+00:00",
-    "department": "IT",
-    "job_role": "Analyst",
-    "attrition_status": "Likely to Leave",
-    "attrition_risk": 51.16,
-    "confidence": 51.16
-  },
-  {
-    "id": "a920ca0f",
-    "timestamp": "2026-06-23T16:14:54.404619+00:00",
-    "department": "Sales",
-    "job_role": "Manager",
     "attrition_status": "Likely to Stay",
-    "attrition_risk": 47.5,
-    "confidence": 52.5
+    "attrition_risk": 2.69,
+    "confidence": 97.31
   },
   {
-    "id": "46ff0e59",
-    "timestamp": "2026-06-23T16:14:54.342446+00:00",
-    "department": "Finance",
-    "job_role": "Executive",
-    "attrition_status": "Likely to Leave",
-    "attrition_risk": 51.32,
-    "confidence": 51.32
-  },
-  {
-    "id": "e2b89a62",
-    "timestamp": "2026-06-23T16:14:54.291728+00:00",
-    "department": "IT",
-    "job_role": "Analyst",
-    "attrition_status": "Likely to Stay",
-    "attrition_risk": 49.26,
-    "confidence": 50.74
-  },
-  {
-    "id": "95457344",
-    "timestamp": "2026-06-23T16:14:54.265843+00:00",
-    "department": "Finance",
-    "job_role": "Manager",
-    "attrition_status": "Likely to Stay",
-    "attrition_risk": 48.83,
-    "confidence": 51.17
-  },
-  {
-    "id": "67efebda",
-    "timestamp": "2026-06-23T16:14:54.214044+00:00",
-    "department": "Sales",
-    "job_role": "Executive",
-    "attrition_status": "Likely to Leave",
-    "attrition_risk": 52.11,
-    "confidence": 52.11
-  },
-  {
-    "id": "af125967",
-    "timestamp": "2026-06-23T16:14:54.191137+00:00",
+    "id": "2734c14b",
+    "timestamp": "2026-10-15T15:53:51.840460+00:00",
     "department": "HR",
     "job_role": "Assistant",
-    "attrition_status": "Likely to Stay",
-    "attrition_risk": 49.16,
-    "confidence": 50.84
-  },
-  {
-    "id": "592d9efa",
-    "timestamp": "2026-06-23T16:14:54.138792+00:00",
-    "department": "Finance",
-    "job_role": "Manager",
-    "attrition_status": "Likely to Leave",
-    "attrition_risk": 50.79,
-    "confidence": 50.79
-  },
-  {
-    "id": "462a51c0",
-    "timestamp": "2026-06-23T16:14:54.069587+00:00",
-    "department": "Finance",
-    "job_role": "Executive",
-    "attrition_status": "Likely to Stay",
-    "attrition_risk": 49.41,
-    "confidence": 50.59
-  },
-  {
-    "id": "285200e6",
-    "timestamp": "2026-06-23T16:14:54.021373+00:00",
-    "department": "Marketing",
-    "job_role": "Manager",
-    "attrition_status": "Likely to Stay",
-    "attrition_risk": 47.73,
-    "confidence": 52.27
-  },
-  {
-    "id": "2cf33769",
-    "timestamp": "2026-06-23T16:14:53.951459+00:00",
-    "department": "Finance",
-    "job_role": "Analyst",
-    "attrition_status": "Likely to Leave",
-    "attrition_risk": 54.8,
-    "confidence": 54.8
-  },
-  {
-    "id": "d26a2ba6",
-    "timestamp": "2026-06-23T16:14:53.922206+00:00",
-    "department": "Sales",
-    "job_role": "Analyst",
-    "attrition_status": "Likely to Stay",
-    "attrition_risk": 47.9,
-    "confidence": 52.1
-  },
-  {
-    "id": "0e499b8c",
-    "timestamp": "2026-06-23T16:14:53.869291+00:00",
-    "department": "Finance",
-    "job_role": "Manager",
     "attrition_status": "Likely to Leave",
     "attrition_risk": 51.54,
     "confidence": 51.54
   },
   {
-    "id": "45b2adcb",
-    "timestamp": "2026-06-23T16:14:53.805950+00:00",
-    "department": "Marketing",
-    "job_role": "Analyst",
-    "attrition_status": "Likely to Leave",
-    "attrition_risk": 52.4,
-    "confidence": 52.4
-  },
-  {
-    "id": "a215536e",
-    "timestamp": "2026-06-23T16:14:53.750846+00:00",
+    "id": "e2fe0ddc",
+    "timestamp": "2026-10-15T15:53:51.755282+00:00",
     "department": "IT",
-    "job_role": "Manager",
-    "attrition_status": "Likely to Leave",
-    "attrition_risk": 50.13,
-    "confidence": 50.13
-  },
-  {
-    "id": "dba96174",
-    "timestamp": "2026-06-23T16:14:53.672459+00:00",
-    "department": "IT",
-    "job_role": "Executive",
-    "attrition_status": "Likely to Leave",
-    "attrition_risk": 52.8,
-    "confidence": 52.8
-  },
-  {
-    "id": "225bd052",
-    "timestamp": "2026-06-23T16:14:53.606969+00:00",
-    "department": "HR",
-    "job_role": "Analyst",
-    "attrition_status": "Likely to Stay",
-    "attrition_risk": 48.28,
-    "confidence": 51.72
-  },
-  {
-    "id": "02e8888a",
-    "timestamp": "2026-06-23T16:14:53.540668+00:00",
-    "department": "Finance",
     "job_role": "Assistant",
     "attrition_status": "Likely to Leave",
-    "attrition_risk": 52.22,
-    "confidence": 52.22
+    "attrition_risk": 82.06,
+    "confidence": 82.06
   },
   {
-    "id": "f6f674be",
-    "timestamp": "2026-06-23T16:14:53.480513+00:00",
+    "id": "b54d84cc",
+    "timestamp": "2026-10-15T15:53:51.692571+00:00",
+    "department": "Marketing",
+    "job_role": "Assistant",
+    "attrition_status": "Likely to Leave",
+    "attrition_risk": 83.92,
+    "confidence": 83.92
+  },
+  {
+    "id": "03b3d5e1",
+    "timestamp": "2026-10-15T15:53:51.615017+00:00",
     "department": "HR",
     "job_role": "Assistant",
     "attrition_status": "Likely to Stay",
-    "attrition_risk": 47.28,
-    "confidence": 52.72
+    "attrition_risk": 4.7,
+    "confidence": 95.3
   },
   {
-    "id": "71ec28c5",
-    "timestamp": "2026-06-23T16:14:53.422117+00:00",
-    "department": "Finance",
-    "job_role": "Executive",
-    "attrition_status": "Likely to Stay",
-    "attrition_risk": 48.66,
-    "confidence": 51.34
-  },
-  {
-    "id": "0e811b82",
-    "timestamp": "2026-06-23T16:14:53.355234+00:00",
-    "department": "IT",
+    "id": "1c7d5304",
+    "timestamp": "2026-10-15T15:53:51.559063+00:00",
+    "department": "Marketing",
     "job_role": "Manager",
     "attrition_status": "Likely to Stay",
-    "attrition_risk": 46.82,
-    "confidence": 53.18
+    "attrition_risk": 3.7,
+    "confidence": 96.3
   },
   {
-    "id": "fdfcd443",
-    "timestamp": "2026-06-23T16:14:53.294802+00:00",
-    "department": "Sales",
-    "job_role": "Analyst",
-    "attrition_status": "Likely to Leave",
-    "attrition_risk": 51.53,
-    "confidence": 51.53
-  },
-  {
-    "id": "1b8b82f6",
-    "timestamp": "2026-06-23T16:14:53.231975+00:00",
-    "department": "Marketing",
-    "job_role": "Executive",
-    "attrition_status": "Likely to Stay",
-    "attrition_risk": 46.48,
-    "confidence": 53.52
-  },
-  {
-    "id": "cc14bc42",
-    "timestamp": "2026-06-23T16:14:53.166212+00:00",
+    "id": "0487d969",
+    "timestamp": "2026-10-15T15:53:51.458693+00:00",
     "department": "IT",
-    "job_role": "Executive",
-    "attrition_status": "Likely to Stay",
-    "attrition_risk": 49.56,
-    "confidence": 50.44
-  },
-  {
-    "id": "b76014cf",
-    "timestamp": "2026-06-23T16:14:53.103836+00:00",
-    "department": "Sales",
-    "job_role": "Analyst",
-    "attrition_status": "Likely to Stay",
-    "attrition_risk": 49.98,
-    "confidence": 50.02
-  },
-  {
-    "id": "87b54ebd",
-    "timestamp": "2026-06-23T16:14:53.042964+00:00",
-    "department": "IT",
-    "job_role": "Executive",
-    "attrition_status": "Likely to Stay",
-    "attrition_risk": 47.24,
-    "confidence": 52.76
-  },
-  {
-    "id": "0304d684",
-    "timestamp": "2026-06-23T16:14:52.971698+00:00",
-    "department": "Finance",
-    "job_role": "Executive",
-    "attrition_status": "Likely to Stay",
-    "attrition_risk": 49.36,
-    "confidence": 50.64
-  },
-  {
-    "id": "9fa3c272",
-    "timestamp": "2026-06-23T16:14:52.886518+00:00",
-    "department": "Finance",
-    "job_role": "Executive",
-    "attrition_status": "Likely to Stay",
-    "attrition_risk": 48.8,
-    "confidence": 51.2
-  },
-  {
-    "id": "4a045f02",
-    "timestamp": "2026-06-23T16:14:52.568358+00:00",
-    "department": "IT",
-    "job_role": "Analyst",
-    "attrition_status": "Likely to Stay",
-    "attrition_risk": 48.52,
-    "confidence": 51.48
-  },
-  {
-    "id": "b83bd891",
-    "timestamp": "2026-06-23T16:14:52.034690+00:00",
-    "department": "Marketing",
     "job_role": "Assistant",
     "attrition_status": "Likely to Leave",
-    "attrition_risk": 52.34,
-    "confidence": 52.34
+    "attrition_risk": 99.15,
+    "confidence": 99.15
   },
   {
-    "id": "d8815d57",
-    "timestamp": "2026-06-23T16:14:51.558956+00:00",
-    "department": "HR",
-    "job_role": "Analyst",
+    "id": "6cc95322",
+    "timestamp": "2026-10-15T15:53:51.380966+00:00",
+    "department": "Sales",
+    "job_role": "Manager",
     "attrition_status": "Likely to Leave",
-    "attrition_risk": 50.85,
-    "confidence": 50.85
+    "attrition_risk": 87.18,
+    "confidence": 87.18
   },
   {
-    "id": "9520d932",
-    "timestamp": "2026-06-23T16:14:51.298027+00:00",
+    "id": "82a10b61",
+    "timestamp": "2026-10-15T15:53:51.319909+00:00",
+    "department": "IT",
+    "job_role": "Executive",
+    "attrition_status": "Likely to Stay",
+    "attrition_risk": 2.52,
+    "confidence": 97.48
+  },
+  {
+    "id": "7a4df6d5",
+    "timestamp": "2026-10-15T15:53:51.235892+00:00",
+    "department": "Marketing",
+    "job_role": "Manager",
+    "attrition_status": "Likely to Stay",
+    "attrition_risk": 21.27,
+    "confidence": 78.73
+  },
+  {
+    "id": "d6c6d223",
+    "timestamp": "2026-10-15T15:53:51.119143+00:00",
+    "department": "Finance",
+    "job_role": "Executive",
+    "attrition_status": "Likely to Stay",
+    "attrition_risk": 43.57,
+    "confidence": 56.43
+  },
+  {
+    "id": "0e9dfd5c",
+    "timestamp": "2026-10-15T15:53:50.975383+00:00",
+    "department": "Sales",
+    "job_role": "Assistant",
+    "attrition_status": "Likely to Stay",
+    "attrition_risk": 44.41,
+    "confidence": 55.59
+  },
+  {
+    "id": "2021fac4",
+    "timestamp": "2026-10-15T15:53:50.856067+00:00",
+    "department": "IT",
+    "job_role": "Analyst",
+    "attrition_status": "Likely to Stay",
+    "attrition_risk": 30.04,
+    "confidence": 69.96
+  },
+  {
+    "id": "331e14fb",
+    "timestamp": "2026-10-15T15:53:50.784692+00:00",
+    "department": "HR",
+    "job_role": "Executive",
+    "attrition_status": "Likely to Stay",
+    "attrition_risk": 5.06,
+    "confidence": 94.94
+  },
+  {
+    "id": "543c28fb",
+    "timestamp": "2026-10-15T15:53:50.695240+00:00",
+    "department": "IT",
+    "job_role": "Assistant",
+    "attrition_status": "Likely to Stay",
+    "attrition_risk": 24.82,
+    "confidence": 75.18
+  },
+  {
+    "id": "a71a8bab",
+    "timestamp": "2026-10-15T15:53:50.563893+00:00",
     "department": "Sales",
     "job_role": "Analyst",
     "attrition_status": "Likely to Stay",
-    "attrition_risk": 48.35,
-    "confidence": 51.65
+    "attrition_risk": 16.83,
+    "confidence": 83.17
   },
   {
-    "id": "1a114f0e",
-    "timestamp": "2026-06-23T16:14:50.558590+00:00",
+    "id": "b9b5cab8",
+    "timestamp": "2026-10-15T15:53:50.480706+00:00",
+    "department": "HR",
+    "job_role": "Executive",
+    "attrition_status": "Likely to Leave",
+    "attrition_risk": 58.14,
+    "confidence": 58.14
+  },
+  {
+    "id": "fdcef62f",
+    "timestamp": "2026-10-15T15:53:50.413603+00:00",
     "department": "HR",
     "job_role": "Manager",
-    "attrition_status": "Likely to Stay",
-    "attrition_risk": 45.2,
-    "confidence": 54.8
-  },
-  {
-    "id": "b5ac361a",
-    "timestamp": "2026-06-23T16:14:50.236891+00:00",
-    "department": "Sales",
-    "job_role": "Executive",
-    "attrition_status": "Likely to Stay",
-    "attrition_risk": 49.16,
-    "confidence": 50.84
-  },
-  {
-    "id": "44cb4aad",
-    "timestamp": "2026-06-23T16:14:49.876585+00:00",
-    "department": "Finance",
-    "job_role": "Manager",
-    "attrition_status": "Likely to Stay",
-    "attrition_risk": 46.62,
-    "confidence": 53.38
-  },
-  {
-    "id": "3b9bbc57",
-    "timestamp": "2026-06-23T16:14:49.713527+00:00",
-    "department": "IT",
-    "job_role": "Manager",
-    "attrition_status": "Likely to Stay",
-    "attrition_risk": 45.45,
-    "confidence": 54.55
-  },
-  {
-    "id": "f1bf58ca",
-    "timestamp": "2026-06-23T16:14:49.468057+00:00",
-    "department": "Finance",
-    "job_role": "Manager",
     "attrition_status": "Likely to Leave",
-    "attrition_risk": 52.53,
-    "confidence": 52.53
+    "attrition_risk": 74.53,
+    "confidence": 74.53
   },
   {
-    "id": "2345fd8a",
-    "timestamp": "2026-06-23T16:14:49.247389+00:00",
+    "id": "868ca5ff",
+    "timestamp": "2026-10-15T15:53:50.344137+00:00",
+    "department": "Sales",
+    "job_role": "Manager",
+    "attrition_status": "Likely to Stay",
+    "attrition_risk": 3.78,
+    "confidence": 96.22
+  },
+  {
+    "id": "5332da70",
+    "timestamp": "2026-10-15T15:53:50.260530+00:00",
     "department": "Sales",
     "job_role": "Analyst",
-    "attrition_status": "Likely to Leave",
-    "attrition_risk": 50.02,
-    "confidence": 50.02
-  },
-  {
-    "id": "33098d14",
-    "timestamp": "2026-06-23T16:14:48.998558+00:00",
-    "department": "Marketing",
-    "job_role": "Manager",
     "attrition_status": "Likely to Stay",
-    "attrition_risk": 47.63,
-    "confidence": 52.37
+    "attrition_risk": 30.95,
+    "confidence": 69.05
   },
   {
-    "id": "075dad5f",
-    "timestamp": "2026-06-23T16:14:48.839337+00:00",
+    "id": "43fd117f",
+    "timestamp": "2026-10-15T15:53:50.199990+00:00",
+    "department": "Finance",
+    "job_role": "Assistant",
+    "attrition_status": "Likely to Stay",
+    "attrition_risk": 6.71,
+    "confidence": 93.29
+  },
+  {
+    "id": "cfad13e4",
+    "timestamp": "2026-10-15T15:53:50.106397+00:00",
+    "department": "Finance",
+    "job_role": "Assistant",
+    "attrition_status": "Likely to Leave",
+    "attrition_risk": 82.74,
+    "confidence": 82.74
+  },
+  {
+    "id": "ca1c423e",
+    "timestamp": "2026-10-15T15:53:50.008515+00:00",
+    "department": "IT",
+    "job_role": "Analyst",
+    "attrition_status": "Likely to Stay",
+    "attrition_risk": 31.04,
+    "confidence": 68.96
+  },
+  {
+    "id": "8dc39bc2",
+    "timestamp": "2026-10-15T15:53:49.884731+00:00",
     "department": "HR",
-    "job_role": "Analyst",
-    "attrition_status": "Likely to Stay",
-    "attrition_risk": 48.82,
-    "confidence": 51.18
-  },
-  {
-    "id": "0ce7d8c6",
-    "timestamp": "2026-06-23T16:14:48.433312+00:00",
-    "department": "IT",
-    "job_role": "Assistant",
-    "attrition_status": "Likely to Leave",
-    "attrition_risk": 51.02,
-    "confidence": 51.02
-  },
-  {
-    "id": "9186289f",
-    "timestamp": "2026-06-23T16:14:47.772327+00:00",
-    "department": "IT",
-    "job_role": "Analyst",
-    "attrition_status": "Likely to Leave",
-    "attrition_risk": 50.17,
-    "confidence": 50.17
-  },
-  {
-    "id": "ee505d9d",
-    "timestamp": "2026-06-23T16:14:47.339059+00:00",
-    "department": "Finance",
-    "job_role": "Assistant",
-    "attrition_status": "Likely to Leave",
-    "attrition_risk": 51.85,
-    "confidence": 51.85
-  },
-  {
-    "id": "04e9de64",
-    "timestamp": "2026-06-23T16:14:46.474206+00:00",
-    "department": "Finance",
-    "job_role": "Executive",
-    "attrition_status": "Likely to Leave",
-    "attrition_risk": 54.92,
-    "confidence": 54.92
-  },
-  {
-    "id": "c9e9268b",
-    "timestamp": "2026-06-23T16:14:46.191728+00:00",
-    "department": "Marketing",
-    "job_role": "Analyst",
-    "attrition_status": "Likely to Leave",
-    "attrition_risk": 51.31,
-    "confidence": 51.31
-  },
-  {
-    "id": "6bbf8a8a",
-    "timestamp": "2026-06-23T16:14:45.827103+00:00",
-    "department": "Marketing",
-    "job_role": "Assistant",
-    "attrition_status": "Likely to Stay",
-    "attrition_risk": 49.84,
-    "confidence": 50.16
-  },
-  {
-    "id": "e393441c",
-    "timestamp": "2026-06-23T16:14:45.493332+00:00",
-    "department": "Sales",
     "job_role": "Manager",
-    "attrition_status": "Likely to Leave",
-    "attrition_risk": 51.52,
-    "confidence": 51.52
+    "attrition_status": "Likely to Stay",
+    "attrition_risk": 46.73,
+    "confidence": 53.27
   },
   {
-    "id": "320242ba",
-    "timestamp": "2026-06-23T16:14:45.199851+00:00",
+    "id": "3041f5c2",
+    "timestamp": "2026-10-15T15:53:49.745250+00:00",
+    "department": "Finance",
+    "job_role": "Assistant",
+    "attrition_status": "Likely to Leave",
+    "attrition_risk": 99.89,
+    "confidence": 99.89
+  },
+  {
+    "id": "4b3a3a06",
+    "timestamp": "2026-10-15T15:53:49.605691+00:00",
     "department": "HR",
     "job_role": "Analyst",
     "attrition_status": "Likely to Stay",
-    "attrition_risk": 48.82,
-    "confidence": 51.18
+    "attrition_risk": 47.1,
+    "confidence": 52.9
   },
   {
-    "id": "e14f3c7f",
-    "timestamp": "2026-06-23T16:14:44.881379+00:00",
-    "department": "Marketing",
-    "job_role": "Manager",
-    "attrition_status": "Likely to Stay",
-    "attrition_risk": 46.43,
-    "confidence": 53.57
-  },
-  {
-    "id": "63cc8946",
-    "timestamp": "2026-06-23T16:14:44.565386+00:00",
-    "department": "Marketing",
+    "id": "59ce6895",
+    "timestamp": "2026-10-15T15:53:49.505790+00:00",
+    "department": "Sales",
     "job_role": "Executive",
     "attrition_status": "Likely to Stay",
-    "attrition_risk": 48.82,
-    "confidence": 51.18
+    "attrition_risk": 40.39,
+    "confidence": 59.61
   },
   {
-    "id": "9d4f37ab",
-    "timestamp": "2026-06-23T16:14:44.364537+00:00",
-    "department": "Sales",
+    "id": "94799150",
+    "timestamp": "2026-10-15T15:53:49.343113+00:00",
+    "department": "Marketing",
+    "job_role": "Analyst",
+    "attrition_status": "Likely to Leave",
+    "attrition_risk": 86.79,
+    "confidence": 86.79
+  },
+  {
+    "id": "1be386a0",
+    "timestamp": "2026-10-15T15:53:49.133255+00:00",
+    "department": "Marketing",
     "job_role": "Manager",
     "attrition_status": "Likely to Stay",
-    "attrition_risk": 47.74,
-    "confidence": 52.26
+    "attrition_risk": 5.57,
+    "confidence": 94.43
   },
   {
-    "id": "b670dfee",
-    "timestamp": "2026-06-23T16:14:43.915317+00:00",
+    "id": "518bf611",
+    "timestamp": "2026-10-15T15:53:49.002017+00:00",
     "department": "IT",
     "job_role": "Executive",
     "attrition_status": "Likely to Stay",
-    "attrition_risk": 48.87,
-    "confidence": 51.13
+    "attrition_risk": 38.3,
+    "confidence": 61.7
   },
   {
-    "id": "7737ece6",
-    "timestamp": "2026-06-23T16:14:43.269795+00:00",
+    "id": "466005b7",
+    "timestamp": "2026-10-15T15:53:48.863785+00:00",
+    "department": "Sales",
+    "job_role": "Analyst",
+    "attrition_status": "Likely to Leave",
+    "attrition_risk": 56.66,
+    "confidence": 56.66
+  },
+  {
+    "id": "0f61dfaa",
+    "timestamp": "2026-10-15T15:53:48.726942+00:00",
+    "department": "HR",
+    "job_role": "Executive",
+    "attrition_status": "Likely to Stay",
+    "attrition_risk": 3.03,
+    "confidence": 96.97
+  },
+  {
+    "id": "8366cfbe",
+    "timestamp": "2026-10-15T15:53:48.613924+00:00",
+    "department": "HR",
+    "job_role": "Assistant",
+    "attrition_status": "Likely to Stay",
+    "attrition_risk": 33.43,
+    "confidence": 66.57
+  },
+  {
+    "id": "2988f4b0",
+    "timestamp": "2026-10-15T15:53:48.476449+00:00",
+    "department": "Finance",
+    "job_role": "Assistant",
+    "attrition_status": "Likely to Stay",
+    "attrition_risk": 19.78,
+    "confidence": 80.22
+  },
+  {
+    "id": "d3f75488",
+    "timestamp": "2026-10-15T15:53:48.355250+00:00",
+    "department": "Marketing",
+    "job_role": "Executive",
+    "attrition_status": "Likely to Stay",
+    "attrition_risk": 32.0,
+    "confidence": 68.0
+  },
+  {
+    "id": "f9e96191",
+    "timestamp": "2026-10-15T15:53:48.161951+00:00",
+    "department": "IT",
+    "job_role": "Analyst",
+    "attrition_status": "Likely to Stay",
+    "attrition_risk": 20.38,
+    "confidence": 79.62
+  },
+  {
+    "id": "bcf8fafa",
+    "timestamp": "2026-10-15T15:53:47.972879+00:00",
+    "department": "Finance",
+    "job_role": "Analyst",
+    "attrition_status": "Likely to Leave",
+    "attrition_risk": 84.9,
+    "confidence": 84.9
+  },
+  {
+    "id": "40fe4136",
+    "timestamp": "2026-10-15T15:53:47.863345+00:00",
+    "department": "Marketing",
+    "job_role": "Assistant",
+    "attrition_status": "Likely to Leave",
+    "attrition_risk": 73.53,
+    "confidence": 73.53
+  },
+  {
+    "id": "34395b8c",
+    "timestamp": "2026-10-15T15:53:47.751946+00:00",
+    "department": "Sales",
+    "job_role": "Assistant",
+    "attrition_status": "Likely to Leave",
+    "attrition_risk": 68.47,
+    "confidence": 68.47
+  },
+  {
+    "id": "327b0134",
+    "timestamp": "2026-10-15T15:53:47.650916+00:00",
+    "department": "Finance",
+    "job_role": "Assistant",
+    "attrition_status": "Likely to Stay",
+    "attrition_risk": 4.88,
+    "confidence": 95.12
+  },
+  {
+    "id": "2042e60b",
+    "timestamp": "2026-10-15T15:53:47.556309+00:00",
+    "department": "Finance",
+    "job_role": "Assistant",
+    "attrition_status": "Likely to Leave",
+    "attrition_risk": 88.59,
+    "confidence": 88.59
+  },
+  {
+    "id": "d42de7d0",
+    "timestamp": "2026-10-15T15:53:47.440326+00:00",
+    "department": "Finance",
+    "job_role": "Executive",
+    "attrition_status": "Likely to Stay",
+    "attrition_risk": 19.73,
+    "confidence": 80.27
+  },
+  {
+    "id": "bd492eeb",
+    "timestamp": "2026-10-15T15:53:47.348676+00:00",
+    "department": "Sales",
+    "job_role": "Assistant",
+    "attrition_status": "Likely to Leave",
+    "attrition_risk": 73.64,
+    "confidence": 73.64
+  },
+  {
+    "id": "8616641b",
+    "timestamp": "2026-10-15T15:53:47.273507+00:00",
+    "department": "Marketing",
+    "job_role": "Executive",
+    "attrition_status": "Likely to Leave",
+    "attrition_risk": 66.75,
+    "confidence": 66.75
+  },
+  {
+    "id": "5e7472d8",
+    "timestamp": "2026-10-15T15:53:47.182275+00:00",
+    "department": "IT",
+    "job_role": "Analyst",
+    "attrition_status": "Likely to Stay",
+    "attrition_risk": 11.94,
+    "confidence": 88.06
+  },
+  {
+    "id": "c75b235c",
+    "timestamp": "2026-10-15T15:53:47.117574+00:00",
+    "department": "Finance",
+    "job_role": "Manager",
+    "attrition_status": "Likely to Leave",
+    "attrition_risk": 58.89,
+    "confidence": 58.89
+  },
+  {
+    "id": "9561d8a0",
+    "timestamp": "2026-10-15T15:53:47.036753+00:00",
+    "department": "IT",
+    "job_role": "Executive",
+    "attrition_status": "Likely to Leave",
+    "attrition_risk": 78.2,
+    "confidence": 78.2
+  },
+  {
+    "id": "475faa11",
+    "timestamp": "2026-10-15T15:53:46.955172+00:00",
+    "department": "Marketing",
+    "job_role": "Manager",
+    "attrition_status": "Likely to Stay",
+    "attrition_risk": 2.85,
+    "confidence": 97.15
+  },
+  {
+    "id": "f8f06ea3",
+    "timestamp": "2026-10-15T15:53:46.862995+00:00",
+    "department": "HR",
+    "job_role": "Manager",
+    "attrition_status": "Likely to Leave",
+    "attrition_risk": 87.7,
+    "confidence": 87.7
+  },
+  {
+    "id": "04db7037",
+    "timestamp": "2026-10-15T15:53:46.766304+00:00",
     "department": "Finance",
     "job_role": "Executive",
     "attrition_status": "Likely to Leave",
-    "attrition_risk": 50.47,
-    "confidence": 50.47
+    "attrition_risk": 56.61,
+    "confidence": 56.61
   },
   {
-    "id": "b5ab696e",
-    "timestamp": "2026-06-23T16:14:43.002479+00:00",
-    "department": "IT",
+    "id": "67124716",
+    "timestamp": "2026-10-15T15:53:46.664825+00:00",
+    "department": "Marketing",
+    "job_role": "Assistant",
+    "attrition_status": "Likely to Leave",
+    "attrition_risk": 83.39,
+    "confidence": 83.39
+  },
+  {
+    "id": "43c32187",
+    "timestamp": "2026-10-15T15:53:46.586595+00:00",
+    "department": "Finance",
     "job_role": "Manager",
-    "attrition_status": "Likely to Stay",
-    "attrition_risk": 46.64,
-    "confidence": 53.36
+    "attrition_status": "Likely to Leave",
+    "attrition_risk": 72.36,
+    "confidence": 72.36
   },
   {
-    "id": "24bf6477",
-    "timestamp": "2026-06-23T16:14:42.709679+00:00",
+    "id": "65d5a79c",
+    "timestamp": "2026-10-15T15:53:46.506549+00:00",
+    "department": "HR",
+    "job_role": "Analyst",
+    "attrition_status": "Likely to Stay",
+    "attrition_risk": 14.0,
+    "confidence": 86.0
+  },
+  {
+    "id": "7168b326",
+    "timestamp": "2026-10-15T15:53:46.428296+00:00",
     "department": "HR",
     "job_role": "Analyst",
     "attrition_status": "Likely to Leave",
-    "attrition_risk": 50.45,
-    "confidence": 50.45
+    "attrition_risk": 75.97,
+    "confidence": 75.97
   },
   {
-    "id": "779bbb27",
-    "timestamp": "2026-06-23T16:14:42.501339+00:00",
+    "id": "c7cc3f58",
+    "timestamp": "2026-10-15T15:53:46.327220+00:00",
+    "department": "IT",
+    "job_role": "Executive",
+    "attrition_status": "Likely to Leave",
+    "attrition_risk": 67.08,
+    "confidence": 67.08
+  },
+  {
+    "id": "6b848cc4",
+    "timestamp": "2026-10-15T15:53:46.232807+00:00",
+    "department": "HR",
+    "job_role": "Executive",
+    "attrition_status": "Likely to Leave",
+    "attrition_risk": 76.9,
+    "confidence": 76.9
+  },
+  {
+    "id": "a3de3222",
+    "timestamp": "2026-10-15T15:53:46.147596+00:00",
+    "department": "Marketing",
+    "job_role": "Analyst",
+    "attrition_status": "Likely to Stay",
+    "attrition_risk": 15.18,
+    "confidence": 84.82
+  },
+  {
+    "id": "b06d2457",
+    "timestamp": "2026-10-15T15:53:46.053531+00:00",
+    "department": "HR",
+    "job_role": "Manager",
+    "attrition_status": "Likely to Stay",
+    "attrition_risk": 1.98,
+    "confidence": 98.02
+  },
+  {
+    "id": "bdd62f2a",
+    "timestamp": "2026-10-15T15:53:45.979919+00:00",
+    "department": "HR",
+    "job_role": "Executive",
+    "attrition_status": "Likely to Leave",
+    "attrition_risk": 91.82,
+    "confidence": 91.82
+  },
+  {
+    "id": "8ce9c576",
+    "timestamp": "2026-10-15T15:53:45.886549+00:00",
+    "department": "Marketing",
+    "job_role": "Manager",
+    "attrition_status": "Likely to Stay",
+    "attrition_risk": 4.05,
+    "confidence": 95.95
+  },
+  {
+    "id": "7e05b1ad",
+    "timestamp": "2026-10-15T15:53:45.798453+00:00",
+    "department": "Marketing",
+    "job_role": "Executive",
+    "attrition_status": "Likely to Leave",
+    "attrition_risk": 93.64,
+    "confidence": 93.64
+  },
+  {
+    "id": "e57bacd9",
+    "timestamp": "2026-10-15T15:53:45.693965+00:00",
+    "department": "Finance",
+    "job_role": "Assistant",
+    "attrition_status": "Likely to Leave",
+    "attrition_risk": 84.04,
+    "confidence": 84.04
+  },
+  {
+    "id": "15e20d70",
+    "timestamp": "2026-10-15T15:53:45.567707+00:00",
+    "department": "Sales",
+    "job_role": "Executive",
+    "attrition_status": "Likely to Stay",
+    "attrition_risk": 14.83,
+    "confidence": 85.17
+  },
+  {
+    "id": "42983cf5",
+    "timestamp": "2026-10-15T15:53:45.478961+00:00",
+    "department": "Finance",
+    "job_role": "Assistant",
+    "attrition_status": "Likely to Leave",
+    "attrition_risk": 85.95,
+    "confidence": 85.95
+  },
+  {
+    "id": "f1f32845",
+    "timestamp": "2026-10-15T15:53:45.373765+00:00",
     "department": "Sales",
     "job_role": "Analyst",
     "attrition_status": "Likely to Stay",
-    "attrition_risk": 49.3,
-    "confidence": 50.7
+    "attrition_risk": 3.31,
+    "confidence": 96.69
   },
   {
-    "id": "ad0bad0a",
-    "timestamp": "2026-06-23T16:14:42.231671+00:00",
-    "department": "Marketing",
-    "job_role": "Assistant",
-    "attrition_status": "Likely to Stay",
-    "attrition_risk": 47.32,
-    "confidence": 52.68
-  },
-  {
-    "id": "285d6fa0",
-    "timestamp": "2026-06-23T16:14:41.899932+00:00",
-    "department": "HR",
-    "job_role": "Analyst",
-    "attrition_status": "Likely to Stay",
-    "attrition_risk": 49.03,
-    "confidence": 50.97
-  },
-  {
-    "id": "981c86e4",
-    "timestamp": "2026-06-23T16:14:41.714261+00:00",
-    "department": "Marketing",
+    "id": "a4c9edac",
+    "timestamp": "2026-10-15T15:53:45.288252+00:00",
+    "department": "Finance",
     "job_role": "Executive",
     "attrition_status": "Likely to Stay",
-    "attrition_risk": 46.94,
-    "confidence": 53.06
+    "attrition_risk": 12.54,
+    "confidence": 87.46
   },
   {
-    "id": "b4071830",
-    "timestamp": "2026-06-23T16:14:41.633012+00:00",
+    "id": "46b594a7",
+    "timestamp": "2026-10-15T15:53:45.200992+00:00",
     "department": "Finance",
     "job_role": "Analyst",
     "attrition_status": "Likely to Leave",
-    "attrition_risk": 54.33,
-    "confidence": 54.33
+    "attrition_risk": 81.28,
+    "confidence": 81.28
   },
   {
-    "id": "6060e010",
-    "timestamp": "2026-06-23T16:14:41.581727+00:00",
+    "id": "cfe32bdb",
+    "timestamp": "2026-10-15T15:53:45.054557+00:00",
     "department": "Marketing",
-    "job_role": "Assistant",
-    "attrition_status": "Likely to Stay",
-    "attrition_risk": 48.21,
-    "confidence": 51.79
+    "job_role": "Executive",
+    "attrition_status": "Likely to Leave",
+    "attrition_risk": 65.84,
+    "confidence": 65.84
   },
   {
-    "id": "899b48dc",
-    "timestamp": "2026-06-23T16:14:41.520293+00:00",
-    "department": "Marketing",
+    "id": "a00f253e",
+    "timestamp": "2026-10-15T15:53:44.966142+00:00",
+    "department": "Finance",
     "job_role": "Manager",
     "attrition_status": "Likely to Stay",
-    "attrition_risk": 46.24,
-    "confidence": 53.76
+    "attrition_risk": 20.26,
+    "confidence": 79.74
   },
   {
-    "id": "6c5a3da1",
-    "timestamp": "2026-06-23T16:14:41.443286+00:00",
+    "id": "e3bf61bc",
+    "timestamp": "2026-10-15T15:53:44.873591+00:00",
+    "department": "IT",
+    "job_role": "Executive",
+    "attrition_status": "Likely to Leave",
+    "attrition_risk": 91.45,
+    "confidence": 91.45
+  },
+  {
+    "id": "54415920",
+    "timestamp": "2026-10-15T15:53:44.803317+00:00",
     "department": "Marketing",
+    "job_role": "Analyst",
+    "attrition_status": "Likely to Leave",
+    "attrition_risk": 97.41,
+    "confidence": 97.41
+  },
+  {
+    "id": "c7ce8879",
+    "timestamp": "2026-10-15T15:53:44.742162+00:00",
+    "department": "Finance",
     "job_role": "Assistant",
     "attrition_status": "Likely to Leave",
-    "attrition_risk": 51.81,
+    "attrition_risk": 65.08,
+    "confidence": 65.08
+  },
+  {
+    "id": "dc511a23",
+    "timestamp": "2026-10-15T15:53:44.690417+00:00",
+    "department": "Finance",
+    "job_role": "Analyst",
+    "attrition_status": "Likely to Stay",
+    "attrition_risk": 48.19,
     "confidence": 51.81
   },
   {
-    "id": "4ca4d4c0",
-    "timestamp": "2026-06-23T16:14:41.359154+00:00",
+    "id": "24389cf6",
+    "timestamp": "2026-10-15T15:53:44.644825+00:00",
+    "department": "HR",
+    "job_role": "Manager",
+    "attrition_status": "Likely to Leave",
+    "attrition_risk": 66.43,
+    "confidence": 66.43
+  },
+  {
+    "id": "07b798de",
+    "timestamp": "2026-10-15T15:53:44.599570+00:00",
     "department": "Sales",
     "job_role": "Analyst",
-    "attrition_status": "Likely to Leave",
-    "attrition_risk": 52.77,
-    "confidence": 52.77
+    "attrition_status": "Likely to Stay",
+    "attrition_risk": 2.05,
+    "confidence": 97.95
   },
   {
-    "id": "a3b8a45a",
-    "timestamp": "2026-06-23T16:14:41.304200+00:00",
-    "department": "HR",
-    "job_role": "Analyst",
-    "attrition_status": "Likely to Leave",
-    "attrition_risk": 50.45,
-    "confidence": 50.45
-  },
-  {
-    "id": "accee7cc",
-    "timestamp": "2026-06-23T16:14:41.247570+00:00",
-    "department": "IT",
-    "job_role": "Analyst",
-    "attrition_status": "Likely to Leave",
-    "attrition_risk": 50.18,
-    "confidence": 50.18
-  },
-  {
-    "id": "236b6ad7",
-    "timestamp": "2026-06-23T16:14:41.191242+00:00",
-    "department": "IT",
-    "job_role": "Analyst",
-    "attrition_status": "Likely to Leave",
-    "attrition_risk": 50.6,
-    "confidence": 50.6
-  },
-  {
-    "id": "af139989",
-    "timestamp": "2026-06-23T16:14:41.133022+00:00",
+    "id": "afaea81b",
+    "timestamp": "2026-10-15T15:53:44.530918+00:00",
     "department": "Sales",
     "job_role": "Assistant",
     "attrition_status": "Likely to Leave",
-    "attrition_risk": 54.75,
-    "confidence": 54.75
+    "attrition_risk": 82.58,
+    "confidence": 82.58
   },
   {
-    "id": "c055eb0c",
-    "timestamp": "2026-06-23T16:14:41.082956+00:00",
-    "department": "IT",
-    "job_role": "Manager",
-    "attrition_status": "Likely to Stay",
-    "attrition_risk": 48.35,
-    "confidence": 51.65
-  },
-  {
-    "id": "ab2db580",
-    "timestamp": "2026-06-23T16:14:41.025951+00:00",
-    "department": "IT",
+    "id": "3ba71358",
+    "timestamp": "2026-10-15T15:53:44.478769+00:00",
+    "department": "Marketing",
     "job_role": "Executive",
     "attrition_status": "Likely to Leave",
-    "attrition_risk": 52.55,
-    "confidence": 52.55
+    "attrition_risk": 99.06,
+    "confidence": 99.06
   },
   {
-    "id": "e625a0f4",
-    "timestamp": "2026-06-23T16:14:40.954157+00:00",
-    "department": "IT",
+    "id": "228d6f5f",
+    "timestamp": "2026-10-15T15:53:44.435069+00:00",
+    "department": "HR",
     "job_role": "Manager",
     "attrition_status": "Likely to Stay",
-    "attrition_risk": 49.36,
-    "confidence": 50.64
+    "attrition_risk": 22.18,
+    "confidence": 77.82
   },
   {
-    "id": "9b617fa3",
-    "timestamp": "2026-06-23T16:14:40.865552+00:00",
+    "id": "97f92d0e",
+    "timestamp": "2026-10-15T15:53:44.396029+00:00",
     "department": "Sales",
-    "job_role": "Assistant",
-    "attrition_status": "Likely to Leave",
-    "attrition_risk": 50.57,
-    "confidence": 50.57
+    "job_role": "Manager",
+    "attrition_status": "Likely to Stay",
+    "attrition_risk": 34.94,
+    "confidence": 65.06
   },
   {
-    "id": "3f9a0bee",
-    "timestamp": "2026-06-23T16:14:40.787673+00:00",
+    "id": "7cc128bb",
+    "timestamp": "2026-10-15T15:53:44.335895+00:00",
+    "department": "Marketing",
+    "job_role": "Analyst",
+    "attrition_status": "Likely to Stay",
+    "attrition_risk": 17.54,
+    "confidence": 82.46
+  },
+  {
+    "id": "73f0bfda",
+    "timestamp": "2026-10-15T15:53:44.301915+00:00",
+    "department": "Marketing",
+    "job_role": "Analyst",
+    "attrition_status": "Likely to Stay",
+    "attrition_risk": 0.77,
+    "confidence": 99.23
+  },
+  {
+    "id": "c83ce360",
+    "timestamp": "2026-10-15T15:53:44.249761+00:00",
+    "department": "HR",
+    "job_role": "Manager",
+    "attrition_status": "Likely to Stay",
+    "attrition_risk": 4.71,
+    "confidence": 95.29
+  },
+  {
+    "id": "dd83fdfd",
+    "timestamp": "2026-10-15T15:53:44.210390+00:00",
     "department": "Finance",
     "job_role": "Assistant",
     "attrition_status": "Likely to Leave",
-    "attrition_risk": 51.11,
-    "confidence": 51.11
+    "attrition_risk": 52.2,
+    "confidence": 52.2
   },
   {
-    "id": "20a2a420",
-    "timestamp": "2026-06-23T16:14:40.720343+00:00",
-    "department": "Marketing",
-    "job_role": "Assistant",
-    "attrition_status": "Likely to Stay",
-    "attrition_risk": 49.28,
-    "confidence": 50.72
-  },
-  {
-    "id": "277208eb",
-    "timestamp": "2026-06-23T16:14:40.678251+00:00",
-    "department": "IT",
-    "job_role": "Executive",
-    "attrition_status": "Likely to Stay",
-    "attrition_risk": 48.62,
-    "confidence": 51.38
-  },
-  {
-    "id": "32e12d50",
-    "timestamp": "2026-06-23T16:14:40.611863+00:00",
+    "id": "e9d2568a",
+    "timestamp": "2026-10-15T15:53:44.177255+00:00",
     "department": "HR",
-    "job_role": "Analyst",
-    "attrition_status": "Likely to Leave",
-    "attrition_risk": 52.64,
-    "confidence": 52.64
-  },
-  {
-    "id": "5c17b99f",
-    "timestamp": "2026-06-23T16:14:40.552709+00:00",
-    "department": "IT",
-    "job_role": "Executive",
+    "job_role": "Manager",
     "attrition_status": "Likely to Stay",
-    "attrition_risk": 47.95,
-    "confidence": 52.05
-  },
-  {
-    "id": "a7e3b7c8",
-    "timestamp": "2026-06-23T16:14:40.517460+00:00",
-    "department": "HR",
-    "job_role": "Executive",
-    "attrition_status": "Likely to Leave",
-    "attrition_risk": 50.36,
-    "confidence": 50.36
-  },
-  {
-    "id": "dfb9b541",
-    "timestamp": "2026-06-23T16:14:40.453175+00:00",
-    "department": "Finance",
-    "job_role": "Assistant",
-    "attrition_status": "Likely to Leave",
-    "attrition_risk": 55.91,
-    "confidence": 55.91
-  },
-  {
-    "id": "7a15fa31",
-    "timestamp": "2026-06-23T16:14:40.377171+00:00",
-    "department": "Marketing",
-    "job_role": "Assistant",
-    "attrition_status": "Likely to Stay",
-    "attrition_risk": 49.87,
-    "confidence": 50.13
-  },
-  {
-    "id": "936305fa",
-    "timestamp": "2026-06-23T16:14:40.331637+00:00",
-    "department": "HR",
-    "job_role": "Assistant",
-    "attrition_status": "Likely to Leave",
-    "attrition_risk": 52.67,
-    "confidence": 52.67
+    "attrition_risk": 42.76,
+    "confidence": 57.24
   }
 ]

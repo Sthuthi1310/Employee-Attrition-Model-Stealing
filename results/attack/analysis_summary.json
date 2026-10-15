@@ -1,34 +1,34 @@
 {
-  "generated_at": "2026-06-23T16:15:33.042668Z",
+  "generated_at": "2026-10-15T15:54:37.719560Z",
   "overview": {
     "original_model_name": "Logistic Regression",
-    "substitute_model_name": "Logistic Regression",
+    "substitute_model_name": "Random Forest",
     "total_attack_queries": 500,
     "stolen_dataset_size": 500
   },
   "performance": {
     "original": {
-      "Model": "Original",
-      "Accuracy": 1.0,
-      "Precision": 1.0,
-      "Recall": 1.0,
-      "F1-Score": 1.0,
-      "ROC-AUC": 1.0
+      "Model": "Logistic Regression",
+      "Accuracy": 0.812,
+      "Precision": 0.7808676307007787,
+      "Recall": 0.7968217934165721,
+      "F1-Score": 0.7887640449438202,
+      "ROC-AUC": 0.897317919051691
     },
     "substitute": {
-      "Model": "Substitute",
-      "Accuracy": 0.97,
-      "Precision": 1.0,
-      "Recall": 0.9434,
-      "F1-Score": 0.9709,
-      "ROC-AUC": 1.0
+      "Model": "Random Forest",
+      "Accuracy": 0.8025,
+      "Precision": 0.7866,
+      "Recall": 0.7571,
+      "F1-Score": 0.7715,
+      "ROC-AUC": 0.88
     }
   },
   "agreement": {
-    "agreement_rate": 99.0,
-    "prediction_similarity": 56.41,
-    "matching_predictions": 495,
-    "different_predictions": 5,
+    "agreement_rate": 98.2,
+    "matching_predictions": 491,
+    "different_predictions": 9,
+    "total_queries": 500,
     "query_progression": [
       {
         "queries": 1,
@@ -564,955 +564,955 @@
       },
       {
         "queries": 134,
-        "agreement_rate": 100.0
+        "agreement_rate": 99.25
       },
       {
         "queries": 135,
-        "agreement_rate": 100.0
+        "agreement_rate": 99.26
       },
       {
         "queries": 136,
-        "agreement_rate": 100.0
+        "agreement_rate": 99.26
       },
       {
         "queries": 137,
-        "agreement_rate": 100.0
+        "agreement_rate": 99.27
       },
       {
         "queries": 138,
-        "agreement_rate": 100.0
+        "agreement_rate": 99.28
       },
       {
         "queries": 139,
-        "agreement_rate": 100.0
+        "agreement_rate": 99.28
       },
       {
         "queries": 140,
-        "agreement_rate": 100.0
+        "agreement_rate": 99.29
       },
       {
         "queries": 141,
-        "agreement_rate": 100.0
+        "agreement_rate": 99.29
       },
       {
         "queries": 142,
-        "agreement_rate": 100.0
+        "agreement_rate": 99.3
       },
       {
         "queries": 143,
-        "agreement_rate": 100.0
+        "agreement_rate": 99.3
       },
       {
         "queries": 144,
-        "agreement_rate": 100.0
+        "agreement_rate": 99.31
       },
       {
         "queries": 145,
-        "agreement_rate": 100.0
+        "agreement_rate": 99.31
       },
       {
         "queries": 146,
-        "agreement_rate": 100.0
+        "agreement_rate": 99.32
       },
       {
         "queries": 147,
-        "agreement_rate": 100.0
+        "agreement_rate": 98.64
       },
       {
         "queries": 148,
-        "agreement_rate": 100.0
+        "agreement_rate": 98.65
       },
       {
         "queries": 149,
-        "agreement_rate": 100.0
+        "agreement_rate": 98.66
       },
       {
         "queries": 150,
-        "agreement_rate": 100.0
+        "agreement_rate": 98.67
       },
       {
         "queries": 151,
-        "agreement_rate": 100.0
+        "agreement_rate": 98.68
       },
       {
         "queries": 152,
-        "agreement_rate": 100.0
+        "agreement_rate": 98.68
       },
       {
         "queries": 153,
-        "agreement_rate": 100.0
+        "agreement_rate": 98.69
       },
       {
         "queries": 154,
-        "agreement_rate": 100.0
+        "agreement_rate": 98.7
       },
       {
         "queries": 155,
-        "agreement_rate": 100.0
+        "agreement_rate": 98.71
       },
       {
         "queries": 156,
-        "agreement_rate": 100.0
+        "agreement_rate": 98.72
       },
       {
         "queries": 157,
-        "agreement_rate": 100.0
+        "agreement_rate": 98.73
       },
       {
         "queries": 158,
-        "agreement_rate": 100.0
+        "agreement_rate": 98.73
       },
       {
         "queries": 159,
-        "agreement_rate": 100.0
+        "agreement_rate": 98.74
       },
       {
         "queries": 160,
-        "agreement_rate": 100.0
+        "agreement_rate": 98.75
       },
       {
         "queries": 161,
-        "agreement_rate": 100.0
+        "agreement_rate": 98.76
       },
       {
         "queries": 162,
-        "agreement_rate": 100.0
+        "agreement_rate": 98.77
       },
       {
         "queries": 163,
-        "agreement_rate": 100.0
+        "agreement_rate": 98.77
       },
       {
         "queries": 164,
-        "agreement_rate": 100.0
+        "agreement_rate": 98.78
       },
       {
         "queries": 165,
-        "agreement_rate": 100.0
+        "agreement_rate": 98.79
       },
       {
         "queries": 166,
-        "agreement_rate": 100.0
+        "agreement_rate": 98.8
       },
       {
         "queries": 167,
-        "agreement_rate": 100.0
+        "agreement_rate": 98.8
       },
       {
         "queries": 168,
-        "agreement_rate": 100.0
+        "agreement_rate": 98.81
       },
       {
         "queries": 169,
-        "agreement_rate": 99.41
+        "agreement_rate": 98.82
       },
       {
         "queries": 170,
-        "agreement_rate": 99.41
+        "agreement_rate": 98.82
       },
       {
         "queries": 171,
-        "agreement_rate": 99.42
+        "agreement_rate": 98.83
       },
       {
         "queries": 172,
-        "agreement_rate": 99.42
+        "agreement_rate": 98.84
       },
       {
         "queries": 173,
-        "agreement_rate": 99.42
+        "agreement_rate": 98.84
       },
       {
         "queries": 174,
-        "agreement_rate": 99.43
+        "agreement_rate": 98.85
       },
       {
         "queries": 175,
-        "agreement_rate": 99.43
+        "agreement_rate": 98.86
       },
       {
         "queries": 176,
-        "agreement_rate": 99.43
+        "agreement_rate": 98.86
       },
       {
         "queries": 177,
-        "agreement_rate": 99.44
+        "agreement_rate": 98.87
       },
       {
         "queries": 178,
-        "agreement_rate": 99.44
+        "agreement_rate": 98.88
       },
       {
         "queries": 179,
-        "agreement_rate": 99.44
+        "agreement_rate": 98.88
       },
       {
         "queries": 180,
-        "agreement_rate": 99.44
+        "agreement_rate": 98.89
       },
       {
         "queries": 181,
-        "agreement_rate": 99.45
+        "agreement_rate": 98.9
       },
       {
         "queries": 182,
-        "agreement_rate": 99.45
+        "agreement_rate": 98.9
       },
       {
         "queries": 183,
-        "agreement_rate": 99.45
+        "agreement_rate": 98.91
       },
       {
         "queries": 184,
-        "agreement_rate": 99.46
+        "agreement_rate": 98.91
       },
       {
         "queries": 185,
-        "agreement_rate": 99.46
+        "agreement_rate": 98.92
       },
       {
         "queries": 186,
-        "agreement_rate": 99.46
+        "agreement_rate": 98.92
       },
       {
         "queries": 187,
-        "agreement_rate": 99.47
+        "agreement_rate": 98.93
       },
       {
         "queries": 188,
-        "agreement_rate": 99.47
+        "agreement_rate": 98.94
       },
       {
         "queries": 189,
-        "agreement_rate": 99.47
+        "agreement_rate": 98.94
       },
       {
         "queries": 190,
-        "agreement_rate": 99.47
+        "agreement_rate": 98.95
       },
       {
         "queries": 191,
-        "agreement_rate": 99.48
+        "agreement_rate": 98.95
       },
       {
         "queries": 192,
-        "agreement_rate": 99.48
+        "agreement_rate": 98.96
       },
       {
         "queries": 193,
-        "agreement_rate": 99.48
+        "agreement_rate": 98.96
       },
       {
         "queries": 194,
-        "agreement_rate": 99.48
+        "agreement_rate": 98.97
       },
       {
         "queries": 195,
-        "agreement_rate": 99.49
+        "agreement_rate": 98.97
       },
       {
         "queries": 196,
-        "agreement_rate": 99.49
+        "agreement_rate": 98.98
       },
       {
         "queries": 197,
-        "agreement_rate": 99.49
+        "agreement_rate": 98.98
       },
       {
         "queries": 198,
-        "agreement_rate": 99.49
+        "agreement_rate": 98.99
       },
       {
         "queries": 199,
-        "agreement_rate": 99.5
+        "agreement_rate": 98.99
       },
       {
         "queries": 200,
-        "agreement_rate": 99.5
+        "agreement_rate": 99.0
       },
       {
         "queries": 201,
-        "agreement_rate": 99.5
+        "agreement_rate": 99.0
       },
       {
         "queries": 202,
-        "agreement_rate": 99.5
+        "agreement_rate": 99.01
       },
       {
         "queries": 203,
-        "agreement_rate": 99.51
+        "agreement_rate": 99.01
       },
       {
         "queries": 204,
-        "agreement_rate": 99.51
+        "agreement_rate": 99.02
       },
       {
         "queries": 205,
-        "agreement_rate": 99.51
+        "agreement_rate": 99.02
       },
       {
         "queries": 206,
-        "agreement_rate": 99.51
+        "agreement_rate": 99.03
       },
       {
         "queries": 207,
-        "agreement_rate": 99.52
+        "agreement_rate": 99.03
       },
       {
         "queries": 208,
-        "agreement_rate": 99.52
+        "agreement_rate": 99.04
       },
       {
         "queries": 209,
-        "agreement_rate": 99.52
+        "agreement_rate": 99.04
       },
       {
         "queries": 210,
-        "agreement_rate": 99.52
+        "agreement_rate": 99.05
       },
       {
         "queries": 211,
-        "agreement_rate": 99.53
+        "agreement_rate": 99.05
       },
       {
         "queries": 212,
-        "agreement_rate": 99.53
+        "agreement_rate": 99.06
       },
       {
         "queries": 213,
-        "agreement_rate": 99.53
+        "agreement_rate": 99.06
       },
       {
         "queries": 214,
-        "agreement_rate": 99.53
+        "agreement_rate": 99.07
       },
       {
         "queries": 215,
-        "agreement_rate": 99.53
+        "agreement_rate": 99.07
       },
       {
         "queries": 216,
-        "agreement_rate": 99.54
+        "agreement_rate": 99.07
       },
       {
         "queries": 217,
-        "agreement_rate": 99.54
+        "agreement_rate": 99.08
       },
       {
         "queries": 218,
-        "agreement_rate": 99.54
+        "agreement_rate": 99.08
       },
       {
         "queries": 219,
-        "agreement_rate": 99.54
+        "agreement_rate": 99.09
       },
       {
         "queries": 220,
-        "agreement_rate": 99.55
+        "agreement_rate": 99.09
       },
       {
         "queries": 221,
-        "agreement_rate": 99.55
+        "agreement_rate": 99.1
       },
       {
         "queries": 222,
-        "agreement_rate": 99.55
+        "agreement_rate": 99.1
       },
       {
         "queries": 223,
-        "agreement_rate": 99.55
+        "agreement_rate": 99.1
       },
       {
         "queries": 224,
-        "agreement_rate": 99.55
+        "agreement_rate": 98.66
       },
       {
         "queries": 225,
-        "agreement_rate": 99.56
+        "agreement_rate": 98.67
       },
       {
         "queries": 226,
-        "agreement_rate": 99.56
+        "agreement_rate": 98.67
       },
       {
         "queries": 227,
-        "agreement_rate": 99.56
+        "agreement_rate": 98.68
       },
       {
         "queries": 228,
-        "agreement_rate": 99.56
+        "agreement_rate": 98.68
       },
       {
         "queries": 229,
-        "agreement_rate": 99.56
+        "agreement_rate": 98.69
       },
       {
         "queries": 230,
-        "agreement_rate": 99.57
+        "agreement_rate": 98.7
       },
       {
         "queries": 231,
-        "agreement_rate": 99.57
+        "agreement_rate": 98.7
       },
       {
         "queries": 232,
-        "agreement_rate": 99.57
+        "agreement_rate": 98.71
       },
       {
         "queries": 233,
-        "agreement_rate": 99.57
+        "agreement_rate": 98.71
       },
       {
         "queries": 234,
-        "agreement_rate": 99.57
+        "agreement_rate": 98.72
       },
       {
         "queries": 235,
-        "agreement_rate": 99.57
+        "agreement_rate": 98.72
       },
       {
         "queries": 236,
-        "agreement_rate": 99.58
+        "agreement_rate": 98.73
       },
       {
         "queries": 237,
-        "agreement_rate": 99.58
+        "agreement_rate": 98.73
       },
       {
         "queries": 238,
-        "agreement_rate": 99.58
+        "agreement_rate": 98.74
       },
       {
         "queries": 239,
-        "agreement_rate": 99.58
+        "agreement_rate": 98.74
       },
       {
         "queries": 240,
-        "agreement_rate": 99.58
+        "agreement_rate": 98.75
       },
       {
         "queries": 241,
-        "agreement_rate": 99.59
+        "agreement_rate": 98.76
       },
       {
         "queries": 242,
-        "agreement_rate": 99.59
+        "agreement_rate": 98.76
       },
       {
         "queries": 243,
-        "agreement_rate": 99.59
+        "agreement_rate": 98.77
       },
       {
         "queries": 244,
-        "agreement_rate": 99.59
+        "agreement_rate": 98.77
       },
       {
         "queries": 245,
-        "agreement_rate": 99.59
+        "agreement_rate": 98.78
       },
       {
         "queries": 246,
-        "agreement_rate": 99.59
+        "agreement_rate": 98.78
       },
       {
         "queries": 247,
-        "agreement_rate": 99.6
+        "agreement_rate": 98.79
       },
       {
         "queries": 248,
-        "agreement_rate": 99.6
+        "agreement_rate": 98.79
       },
       {
         "queries": 249,
-        "agreement_rate": 99.6
+        "agreement_rate": 98.8
       },
       {
         "queries": 250,
-        "agreement_rate": 99.6
+        "agreement_rate": 98.8
       },
       {
         "queries": 251,
-        "agreement_rate": 99.6
+        "agreement_rate": 98.8
       },
       {
         "queries": 252,
-        "agreement_rate": 99.6
+        "agreement_rate": 98.81
       },
       {
         "queries": 253,
-        "agreement_rate": 99.6
+        "agreement_rate": 98.81
       },
       {
         "queries": 254,
-        "agreement_rate": 99.61
+        "agreement_rate": 98.82
       },
       {
         "queries": 255,
-        "agreement_rate": 99.61
+        "agreement_rate": 98.82
       },
       {
         "queries": 256,
-        "agreement_rate": 99.61
+        "agreement_rate": 98.83
       },
       {
         "queries": 257,
-        "agreement_rate": 99.61
+        "agreement_rate": 98.83
       },
       {
         "queries": 258,
-        "agreement_rate": 99.61
+        "agreement_rate": 98.84
       },
       {
         "queries": 259,
-        "agreement_rate": 99.61
+        "agreement_rate": 98.84
       },
       {
         "queries": 260,
-        "agreement_rate": 99.62
+        "agreement_rate": 98.85
       },
       {
         "queries": 261,
-        "agreement_rate": 99.62
+        "agreement_rate": 98.85
       },
       {
         "queries": 262,
-        "agreement_rate": 99.62
+        "agreement_rate": 98.85
       },
       {
         "queries": 263,
-        "agreement_rate": 99.62
+        "agreement_rate": 98.48
       },
       {
         "queries": 264,
-        "agreement_rate": 99.62
+        "agreement_rate": 98.48
       },
       {
         "queries": 265,
-        "agreement_rate": 99.62
+        "agreement_rate": 98.49
       },
       {
         "queries": 266,
-        "agreement_rate": 99.62
+        "agreement_rate": 98.5
       },
       {
         "queries": 267,
-        "agreement_rate": 99.63
+        "agreement_rate": 98.5
       },
       {
         "queries": 268,
-        "agreement_rate": 99.63
+        "agreement_rate": 98.51
       },
       {
         "queries": 269,
-        "agreement_rate": 99.63
+        "agreement_rate": 98.51
       },
       {
         "queries": 270,
-        "agreement_rate": 99.63
+        "agreement_rate": 98.52
       },
       {
         "queries": 271,
-        "agreement_rate": 99.63
+        "agreement_rate": 98.52
       },
       {
         "queries": 272,
-        "agreement_rate": 99.63
+        "agreement_rate": 98.53
       },
       {
         "queries": 273,
-        "agreement_rate": 99.63
+        "agreement_rate": 98.53
       },
       {
         "queries": 274,
-        "agreement_rate": 99.64
+        "agreement_rate": 98.54
       },
       {
         "queries": 275,
-        "agreement_rate": 99.64
+        "agreement_rate": 98.55
       },
       {
         "queries": 276,
-        "agreement_rate": 99.64
+        "agreement_rate": 98.55
       },
       {
         "queries": 277,
-        "agreement_rate": 99.64
+        "agreement_rate": 98.56
       },
       {
         "queries": 278,
-        "agreement_rate": 99.64
+        "agreement_rate": 98.56
       },
       {
         "queries": 279,
-        "agreement_rate": 99.64
+        "agreement_rate": 98.57
       },
       {
         "queries": 280,
-        "agreement_rate": 99.64
+        "agreement_rate": 98.57
       },
       {
         "queries": 281,
-        "agreement_rate": 99.64
+        "agreement_rate": 98.58
       },
       {
         "queries": 282,
-        "agreement_rate": 99.65
+        "agreement_rate": 98.58
       },
       {
         "queries": 283,
-        "agreement_rate": 99.65
+        "agreement_rate": 98.59
       },
       {
         "queries": 284,
-        "agreement_rate": 99.65
+        "agreement_rate": 98.59
       },
       {
         "queries": 285,
-        "agreement_rate": 99.65
+        "agreement_rate": 98.6
       },
       {
         "queries": 286,
-        "agreement_rate": 99.65
+        "agreement_rate": 98.6
       },
       {
         "queries": 287,
-        "agreement_rate": 99.65
+        "agreement_rate": 98.61
       },
       {
         "queries": 288,
-        "agreement_rate": 99.65
+        "agreement_rate": 98.61
       },
       {
         "queries": 289,
-        "agreement_rate": 99.65
+        "agreement_rate": 98.62
       },
       {
         "queries": 290,
-        "agreement_rate": 99.66
+        "agreement_rate": 98.62
       },
       {
         "queries": 291,
-        "agreement_rate": 99.66
+        "agreement_rate": 98.63
       },
       {
         "queries": 292,
-        "agreement_rate": 99.66
+        "agreement_rate": 98.63
       },
       {
         "queries": 293,
-        "agreement_rate": 99.66
+        "agreement_rate": 98.63
       },
       {
         "queries": 294,
-        "agreement_rate": 99.66
+        "agreement_rate": 98.64
       },
       {
         "queries": 295,
-        "agreement_rate": 99.66
+        "agreement_rate": 98.64
       },
       {
         "queries": 296,
-        "agreement_rate": 99.66
+        "agreement_rate": 98.65
       },
       {
         "queries": 297,
-        "agreement_rate": 99.66
+        "agreement_rate": 98.65
       },
       {
         "queries": 298,
-        "agreement_rate": 99.66
+        "agreement_rate": 98.66
       },
       {
         "queries": 299,
-        "agreement_rate": 99.67
+        "agreement_rate": 98.66
       },
       {
         "queries": 300,
-        "agreement_rate": 99.67
+        "agreement_rate": 98.67
       },
       {
         "queries": 301,
-        "agreement_rate": 99.67
+        "agreement_rate": 98.67
       },
       {
         "queries": 302,
-        "agreement_rate": 99.67
+        "agreement_rate": 98.68
       },
       {
         "queries": 303,
-        "agreement_rate": 99.67
+        "agreement_rate": 98.68
       },
       {
         "queries": 304,
-        "agreement_rate": 99.67
+        "agreement_rate": 98.68
       },
       {
         "queries": 305,
-        "agreement_rate": 99.67
+        "agreement_rate": 98.69
       },
       {
         "queries": 306,
-        "agreement_rate": 99.67
+        "agreement_rate": 98.69
       },
       {
         "queries": 307,
-        "agreement_rate": 99.67
+        "agreement_rate": 98.7
       },
       {
         "queries": 308,
-        "agreement_rate": 99.68
+        "agreement_rate": 98.7
       },
       {
         "queries": 309,
-        "agreement_rate": 99.68
+        "agreement_rate": 98.71
       },
       {
         "queries": 310,
-        "agreement_rate": 99.68
+        "agreement_rate": 98.71
       },
       {
         "queries": 311,
-        "agreement_rate": 99.68
+        "agreement_rate": 98.71
       },
       {
         "queries": 312,
-        "agreement_rate": 99.68
+        "agreement_rate": 98.72
       },
       {
         "queries": 313,
-        "agreement_rate": 99.68
+        "agreement_rate": 98.72
       },
       {
         "queries": 314,
-        "agreement_rate": 99.68
+        "agreement_rate": 98.73
       },
       {
         "queries": 315,
-        "agreement_rate": 99.68
+        "agreement_rate": 98.73
       },
       {
         "queries": 316,
-        "agreement_rate": 99.68
+        "agreement_rate": 98.73
       },
       {
         "queries": 317,
-        "agreement_rate": 99.68
+        "agreement_rate": 98.74
       },
       {
         "queries": 318,
-        "agreement_rate": 99.69
+        "agreement_rate": 98.74
       },
       {
         "queries": 319,
-        "agreement_rate": 99.69
+        "agreement_rate": 98.75
       },
       {
         "queries": 320,
-        "agreement_rate": 99.69
+        "agreement_rate": 98.75
       },
       {
         "queries": 321,
-        "agreement_rate": 99.69
+        "agreement_rate": 98.75
       },
       {
         "queries": 322,
-        "agreement_rate": 99.69
+        "agreement_rate": 98.76
       },
       {
         "queries": 323,
-        "agreement_rate": 99.69
+        "agreement_rate": 98.76
       },
       {
         "queries": 324,
-        "agreement_rate": 99.69
+        "agreement_rate": 98.77
       },
       {
         "queries": 325,
-        "agreement_rate": 99.69
+        "agreement_rate": 98.77
       },
       {
         "queries": 326,
-        "agreement_rate": 99.69
+        "agreement_rate": 98.77
       },
       {
         "queries": 327,
-        "agreement_rate": 99.69
+        "agreement_rate": 98.78
       },
       {
         "queries": 328,
-        "agreement_rate": 99.7
+        "agreement_rate": 98.78
       },
       {
         "queries": 329,
-        "agreement_rate": 99.7
+        "agreement_rate": 98.78
       },
       {
         "queries": 330,
-        "agreement_rate": 99.7
+        "agreement_rate": 98.79
       },
       {
         "queries": 331,
-        "agreement_rate": 99.7
+        "agreement_rate": 98.79
       },
       {
         "queries": 332,
-        "agreement_rate": 99.7
+        "agreement_rate": 98.8
       },
       {
         "queries": 333,
-        "agreement_rate": 99.7
+        "agreement_rate": 98.8
       },
       {
         "queries": 334,
-        "agreement_rate": 99.7
+        "agreement_rate": 98.8
       },
       {
         "queries": 335,
-        "agreement_rate": 99.7
+        "agreement_rate": 98.81
       },
       {
         "queries": 336,
-        "agreement_rate": 99.7
+        "agreement_rate": 98.81
       },
       {
         "queries": 337,
-        "agreement_rate": 99.7
+        "agreement_rate": 98.81
       },
       {
         "queries": 338,
-        "agreement_rate": 99.7
+        "agreement_rate": 98.82
       },
       {
         "queries": 339,
-        "agreement_rate": 99.71
+        "agreement_rate": 98.82
       },
       {
         "queries": 340,
-        "agreement_rate": 99.71
+        "agreement_rate": 98.82
       },
       {
         "queries": 341,
-        "agreement_rate": 99.71
+        "agreement_rate": 98.83
       },
       {
         "queries": 342,
-        "agreement_rate": 99.71
+        "agreement_rate": 98.83
       },
       {
         "queries": 343,
-        "agreement_rate": 99.71
+        "agreement_rate": 98.83
       },
       {
         "queries": 344,
-        "agreement_rate": 99.71
+        "agreement_rate": 98.84
       },
       {
         "queries": 345,
-        "agreement_rate": 99.71
+        "agreement_rate": 98.84
       },
       {
         "queries": 346,
-        "agreement_rate": 99.71
+        "agreement_rate": 98.84
       },
       {
         "queries": 347,
-        "agreement_rate": 99.71
+        "agreement_rate": 98.85
       },
       {
         "queries": 348,
-        "agreement_rate": 99.71
+        "agreement_rate": 98.85
       },
       {
         "queries": 349,
-        "agreement_rate": 99.71
+        "agreement_rate": 98.85
       },
       {
         "queries": 350,
-        "agreement_rate": 99.43
+        "agreement_rate": 98.86
       },
       {
         "queries": 351,
-        "agreement_rate": 99.15
+        "agreement_rate": 98.86
       },
       {
         "queries": 352,
-        "agreement_rate": 99.15
+        "agreement_rate": 98.86
       },
       {
         "queries": 353,
-        "agreement_rate": 99.15
+        "agreement_rate": 98.87
       },
       {
         "queries": 354,
-        "agreement_rate": 99.15
+        "agreement_rate": 98.87
       },
       {
         "queries": 355,
-        "agreement_rate": 99.15
+        "agreement_rate": 98.87
       },
       {
         "queries": 356,
-        "agreement_rate": 99.16
+        "agreement_rate": 98.88
       },
       {
         "queries": 357,
-        "agreement_rate": 99.16
+        "agreement_rate": 98.88
       },
       {
         "queries": 358,
-        "agreement_rate": 99.16
+        "agreement_rate": 98.88
       },
       {
         "queries": 359,
-        "agreement_rate": 99.16
+        "agreement_rate": 98.89
       },
       {
         "queries": 360,
-        "agreement_rate": 99.17
+        "agreement_rate": 98.89
       },
       {
         "queries": 361,
-        "agreement_rate": 99.17
+        "agreement_rate": 98.89
       },
       {
         "queries": 362,
-        "agreement_rate": 99.17
+        "agreement_rate": 98.9
       },
       {
         "queries": 363,
-        "agreement_rate": 99.17
+        "agreement_rate": 98.9
       },
       {
         "queries": 364,
-        "agreement_rate": 99.18
+        "agreement_rate": 98.9
       },
       {
         "queries": 365,
-        "agreement_rate": 99.18
+        "agreement_rate": 98.9
       },
       {
         "queries": 366,
-        "agreement_rate": 99.18
+        "agreement_rate": 98.91
       },
       {
         "queries": 367,
-        "agreement_rate": 99.18
+        "agreement_rate": 98.91
       },
       {
         "queries": 368,
-        "agreement_rate": 99.18
+        "agreement_rate": 98.91
       },
       {
         "queries": 369,
-        "agreement_rate": 99.19
+        "agreement_rate": 98.92
       },
       {
         "queries": 370,
-        "agreement_rate": 99.19
+        "agreement_rate": 98.92
       },
       {
         "queries": 371,
-        "agreement_rate": 99.19
+        "agreement_rate": 98.92
       },
       {
         "queries": 372,
@@ -1620,521 +1620,585 @@
       },
       {
         "queries": 398,
-        "agreement_rate": 98.99
+        "agreement_rate": 98.74
       },
       {
         "queries": 399,
-        "agreement_rate": 99.0
+        "agreement_rate": 98.75
       },
       {
         "queries": 400,
-        "agreement_rate": 99.0
+        "agreement_rate": 98.75
       },
       {
         "queries": 401,
-        "agreement_rate": 99.0
+        "agreement_rate": 98.75
       },
       {
         "queries": 402,
-        "agreement_rate": 99.0
+        "agreement_rate": 98.76
       },
       {
         "queries": 403,
-        "agreement_rate": 99.01
+        "agreement_rate": 98.76
       },
       {
         "queries": 404,
-        "agreement_rate": 99.01
+        "agreement_rate": 98.76
       },
       {
         "queries": 405,
-        "agreement_rate": 99.01
+        "agreement_rate": 98.77
       },
       {
         "queries": 406,
-        "agreement_rate": 99.01
+        "agreement_rate": 98.77
       },
       {
         "queries": 407,
-        "agreement_rate": 99.02
+        "agreement_rate": 98.77
       },
       {
         "queries": 408,
-        "agreement_rate": 99.02
+        "agreement_rate": 98.77
       },
       {
         "queries": 409,
-        "agreement_rate": 99.02
+        "agreement_rate": 98.78
       },
       {
         "queries": 410,
-        "agreement_rate": 99.02
+        "agreement_rate": 98.78
       },
       {
         "queries": 411,
-        "agreement_rate": 99.03
+        "agreement_rate": 98.78
       },
       {
         "queries": 412,
-        "agreement_rate": 99.03
+        "agreement_rate": 98.79
       },
       {
         "queries": 413,
-        "agreement_rate": 99.03
+        "agreement_rate": 98.79
       },
       {
         "queries": 414,
-        "agreement_rate": 99.03
+        "agreement_rate": 98.79
       },
       {
         "queries": 415,
-        "agreement_rate": 99.04
+        "agreement_rate": 98.8
       },
       {
         "queries": 416,
-        "agreement_rate": 99.04
+        "agreement_rate": 98.8
       },
       {
         "queries": 417,
-        "agreement_rate": 99.04
+        "agreement_rate": 98.8
       },
       {
         "queries": 418,
-        "agreement_rate": 99.04
+        "agreement_rate": 98.8
       },
       {
         "queries": 419,
-        "agreement_rate": 99.05
+        "agreement_rate": 98.81
       },
       {
         "queries": 420,
-        "agreement_rate": 99.05
+        "agreement_rate": 98.81
       },
       {
         "queries": 421,
-        "agreement_rate": 99.05
+        "agreement_rate": 98.81
       },
       {
         "queries": 422,
-        "agreement_rate": 99.05
+        "agreement_rate": 98.82
       },
       {
         "queries": 423,
-        "agreement_rate": 99.05
+        "agreement_rate": 98.82
       },
       {
         "queries": 424,
-        "agreement_rate": 99.06
+        "agreement_rate": 98.82
       },
       {
         "queries": 425,
-        "agreement_rate": 99.06
+        "agreement_rate": 98.82
       },
       {
         "queries": 426,
-        "agreement_rate": 99.06
+        "agreement_rate": 98.83
       },
       {
         "queries": 427,
-        "agreement_rate": 99.06
+        "agreement_rate": 98.83
       },
       {
         "queries": 428,
-        "agreement_rate": 99.07
+        "agreement_rate": 98.83
       },
       {
         "queries": 429,
-        "agreement_rate": 99.07
+        "agreement_rate": 98.83
       },
       {
         "queries": 430,
-        "agreement_rate": 99.07
+        "agreement_rate": 98.84
       },
       {
         "queries": 431,
-        "agreement_rate": 99.07
+        "agreement_rate": 98.84
       },
       {
         "queries": 432,
-        "agreement_rate": 99.07
+        "agreement_rate": 98.84
       },
       {
         "queries": 433,
-        "agreement_rate": 99.08
+        "agreement_rate": 98.85
       },
       {
         "queries": 434,
-        "agreement_rate": 99.08
+        "agreement_rate": 98.85
       },
       {
         "queries": 435,
-        "agreement_rate": 99.08
+        "agreement_rate": 98.85
       },
       {
         "queries": 436,
-        "agreement_rate": 99.08
+        "agreement_rate": 98.85
       },
       {
         "queries": 437,
-        "agreement_rate": 99.08
+        "agreement_rate": 98.86
       },
       {
         "queries": 438,
-        "agreement_rate": 99.09
+        "agreement_rate": 98.86
       },
       {
         "queries": 439,
-        "agreement_rate": 99.09
+        "agreement_rate": 98.63
       },
       {
         "queries": 440,
-        "agreement_rate": 99.09
+        "agreement_rate": 98.64
       },
       {
         "queries": 441,
-        "agreement_rate": 99.09
+        "agreement_rate": 98.64
       },
       {
         "queries": 442,
-        "agreement_rate": 99.1
+        "agreement_rate": 98.64
       },
       {
         "queries": 443,
-        "agreement_rate": 99.1
+        "agreement_rate": 98.65
       },
       {
         "queries": 444,
-        "agreement_rate": 99.1
+        "agreement_rate": 98.65
       },
       {
         "queries": 445,
-        "agreement_rate": 99.1
+        "agreement_rate": 98.65
       },
       {
         "queries": 446,
-        "agreement_rate": 99.1
+        "agreement_rate": 98.65
       },
       {
         "queries": 447,
-        "agreement_rate": 99.11
+        "agreement_rate": 98.66
       },
       {
         "queries": 448,
-        "agreement_rate": 99.11
+        "agreement_rate": 98.66
       },
       {
         "queries": 449,
-        "agreement_rate": 99.11
+        "agreement_rate": 98.66
       },
       {
         "queries": 450,
-        "agreement_rate": 99.11
+        "agreement_rate": 98.67
       },
       {
         "queries": 451,
-        "agreement_rate": 99.11
+        "agreement_rate": 98.67
       },
       {
         "queries": 452,
-        "agreement_rate": 99.12
+        "agreement_rate": 98.67
       },
       {
         "queries": 453,
-        "agreement_rate": 99.12
+        "agreement_rate": 98.68
       },
       {
         "queries": 454,
-        "agreement_rate": 99.12
+        "agreement_rate": 98.68
       },
       {
         "queries": 455,
-        "agreement_rate": 99.12
+        "agreement_rate": 98.68
       },
       {
         "queries": 456,
-        "agreement_rate": 99.12
+        "agreement_rate": 98.68
       },
       {
         "queries": 457,
-        "agreement_rate": 99.12
+        "agreement_rate": 98.69
       },
       {
         "queries": 458,
-        "agreement_rate": 99.13
+        "agreement_rate": 98.69
       },
       {
         "queries": 459,
-        "agreement_rate": 99.13
+        "agreement_rate": 98.47
       },
       {
         "queries": 460,
-        "agreement_rate": 99.13
+        "agreement_rate": 98.48
       },
       {
         "queries": 461,
-        "agreement_rate": 99.13
+        "agreement_rate": 98.48
       },
       {
         "queries": 462,
-        "agreement_rate": 99.13
+        "agreement_rate": 98.27
       },
       {
         "queries": 463,
-        "agreement_rate": 99.14
+        "agreement_rate": 98.27
       },
       {
         "queries": 464,
-        "agreement_rate": 99.14
+        "agreement_rate": 98.28
       },
       {
         "queries": 465,
-        "agreement_rate": 99.14
+        "agreement_rate": 98.28
       },
       {
         "queries": 466,
-        "agreement_rate": 99.14
+        "agreement_rate": 98.28
       },
       {
         "queries": 467,
-        "agreement_rate": 99.14
+        "agreement_rate": 98.29
       },
       {
         "queries": 468,
-        "agreement_rate": 99.15
+        "agreement_rate": 98.29
       },
       {
         "queries": 469,
-        "agreement_rate": 99.15
+        "agreement_rate": 98.29
       },
       {
         "queries": 470,
-        "agreement_rate": 99.15
+        "agreement_rate": 98.3
       },
       {
         "queries": 471,
-        "agreement_rate": 99.15
+        "agreement_rate": 98.3
       },
       {
         "queries": 472,
-        "agreement_rate": 99.15
+        "agreement_rate": 98.31
       },
       {
         "queries": 473,
-        "agreement_rate": 99.15
+        "agreement_rate": 98.31
       },
       {
         "queries": 474,
-        "agreement_rate": 99.16
+        "agreement_rate": 98.31
       },
       {
         "queries": 475,
-        "agreement_rate": 99.16
+        "agreement_rate": 98.32
       },
       {
         "queries": 476,
-        "agreement_rate": 99.16
+        "agreement_rate": 98.32
       },
       {
         "queries": 477,
-        "agreement_rate": 99.16
+        "agreement_rate": 98.32
       },
       {
         "queries": 478,
-        "agreement_rate": 99.16
+        "agreement_rate": 98.33
       },
       {
         "queries": 479,
-        "agreement_rate": 99.16
+        "agreement_rate": 98.33
       },
       {
         "queries": 480,
-        "agreement_rate": 99.17
+        "agreement_rate": 98.33
       },
       {
         "queries": 481,
-        "agreement_rate": 99.17
+        "agreement_rate": 98.34
       },
       {
         "queries": 482,
-        "agreement_rate": 99.17
+        "agreement_rate": 98.34
       },
       {
         "queries": 483,
-        "agreement_rate": 99.17
+        "agreement_rate": 98.34
       },
       {
         "queries": 484,
-        "agreement_rate": 99.17
+        "agreement_rate": 98.35
       },
       {
         "queries": 485,
-        "agreement_rate": 99.18
+        "agreement_rate": 98.35
       },
       {
         "queries": 486,
-        "agreement_rate": 99.18
+        "agreement_rate": 98.35
       },
       {
         "queries": 487,
-        "agreement_rate": 99.18
+        "agreement_rate": 98.36
       },
       {
         "queries": 488,
-        "agreement_rate": 99.18
+        "agreement_rate": 98.36
       },
       {
         "queries": 489,
-        "agreement_rate": 99.18
+        "agreement_rate": 98.36
       },
       {
         "queries": 490,
-        "agreement_rate": 99.18
+        "agreement_rate": 98.37
       },
       {
         "queries": 491,
-        "agreement_rate": 99.19
+        "agreement_rate": 98.37
       },
       {
         "queries": 492,
-        "agreement_rate": 99.19
+        "agreement_rate": 98.37
       },
       {
         "queries": 493,
-        "agreement_rate": 99.19
+        "agreement_rate": 98.38
       },
       {
         "queries": 494,
-        "agreement_rate": 99.19
+        "agreement_rate": 98.18
       },
       {
         "queries": 495,
-        "agreement_rate": 99.19
+        "agreement_rate": 98.18
       },
       {
         "queries": 496,
-        "agreement_rate": 99.19
+        "agreement_rate": 98.19
       },
       {
         "queries": 497,
-        "agreement_rate": 99.2
+        "agreement_rate": 98.19
       },
       {
         "queries": 498,
-        "agreement_rate": 99.0
+        "agreement_rate": 98.19
       },
       {
         "queries": 499,
-        "agreement_rate": 99.0
+        "agreement_rate": 98.2
       },
       {
         "queries": 500,
-        "agreement_rate": 99.0
+        "agreement_rate": 98.2
       }
     ]
   },
   "class_distribution": {
     "original_labels": {
-      "Stay": 234,
-      "Leave": 266
+      "Stay": 266,
+      "Leave": 234
     },
     "substitute_labels": {
-      "Stay": 239,
-      "Leave": 261
+      "Stay": 265,
+      "Leave": 235
     }
   },
   "feature_importance": {
     "original": [
       {
+        "feature": "Overtime Yes",
+        "importance": 2.0094
+      },
+      {
+        "feature": "Overtime No",
+        "importance": 1.7374
+      },
+      {
         "feature": "Monthly Income",
-        "importance": 0.1172
+        "importance": 1.03
       },
       {
-        "feature": "Training Hours Last Year",
-        "importance": 0.0872
+        "feature": "Work Life Balance",
+        "importance": 0.9806
       },
       {
-        "feature": "Hourly Rate",
-        "importance": 0.0837
-      },
-      {
-        "feature": "Distance From Home",
-        "importance": 0.0725
+        "feature": "Job Satisfaction",
+        "importance": 0.7279
       },
       {
         "feature": "Age",
-        "importance": 0.0699
+        "importance": 0.3939
       },
       {
-        "feature": "Average Hours Worked Per Week",
-        "importance": 0.0655
+        "feature": "Number of Companies Worked",
+        "importance": 0.2622
+      },
+      {
+        "feature": "Department Finance",
+        "importance": 0.1968
       },
       {
         "feature": "Years at Company",
-        "importance": 0.0618
+        "importance": 0.1822
       },
       {
-        "feature": "Absenteeism",
-        "importance": 0.0529
-      },
-      {
-        "feature": "Years in Current Role",
-        "importance": 0.0441
-      },
-      {
-        "feature": "Years Since Last Promotion",
-        "importance": 0.0386
+        "feature": "Gender Female",
+        "importance": 0.1515
       }
     ],
-    "substitute": []
+    "substitute": [
+      {
+        "feature": "Overtime No",
+        "importance": 0.2632
+      },
+      {
+        "feature": "Overtime Yes",
+        "importance": 0.1949
+      },
+      {
+        "feature": "Monthly Income",
+        "importance": 0.1617
+      },
+      {
+        "feature": "Work Life Balance",
+        "importance": 0.104
+      },
+      {
+        "feature": "Job Satisfaction",
+        "importance": 0.0769
+      },
+      {
+        "feature": "Years at Company",
+        "importance": 0.0486
+      },
+      {
+        "feature": "Age",
+        "importance": 0.0456
+      },
+      {
+        "feature": "Number of Companies Worked",
+        "importance": 0.0318
+      },
+      {
+        "feature": "Department IT",
+        "importance": 0.0093
+      },
+      {
+        "feature": "Job Role Analyst",
+        "importance": 0.0072
+      }
+    ]
   },
+  "substitute_features": [
+    "Overtime No",
+    "Overtime Yes",
+    "Monthly Income",
+    "Work Life Balance",
+    "Job Satisfaction",
+    "Years at Company",
+    "Age",
+    "Number of Companies Worked",
+    "Department IT",
+    "Job Role Analyst"
+  ],
+  "substitute_importances": [
+    0.2632,
+    0.1949,
+    0.1617,
+    0.104,
+    0.0769,
+    0.0486,
+    0.0456,
+    0.0318,
+    0.0093,
+    0.0072
+  ],
   "confusion_matrices": {
-    "original": "/analysis/assets/confusion_matrix_original.png?v=1782211533",
-    "substitute": "/analysis/assets/confusion_matrix_substitute.png?v=1782211533"
+    "original": "/analysis/assets/victim_confusion_matrix.png?v=1792059877",
+    "substitute": "/analysis/assets/confusion_matrix_substitute.png?v=1792059877"
   },
   "attack_analytics": {
     "total_api_queries": 500,
     "successful_queries": 500,
     "failed_queries": 0,
-    "average_response_time_ms": 77.05,
+    "average_response_time_ms": 67.05,
     "success_rate_pct": 100.0
   },
   "conclusions": {
-    "stealing_status": "Partially Successful",
-    "status_class": "warning",
-    "agreement_interpretation": "With 99.0% agreement, the adversary partially replicated victim model behavior. Additional queries would likely improve surrogate fidelity.",
-    "performance_difference": "The substitute model trails the original by 3.00% accuracy on stolen teacher labels, with F1 gap of 2.91%.",
-    "recommendation": "Deploy API rate limiting, query monitoring, and prediction perturbation to mitigate model stealing attacks on production ML endpoints."
+    "stealing_status": "HIGH AGREEMENT OBSERVED",
+    "status_class": "success",
+    "agreement_interpretation": "The Random Forest substitute model matched the Logistic Regression victim model on 491 out of 500 black-box API query predictions, corresponding to 98.2% prediction agreement.",
+    "performance_difference": "The substitute model's accuracy is 0.95 percentage points lower than the victim model on the held-out ground-truth test set, with an F1-score difference of 1.73 percentage points."
   },
   "substitute_candidates": [
     {
       "Model": "Logistic Regression",
-      "Accuracy": 0.97,
-      "Precision": 1.0,
-      "Recall": 0.9434,
-      "F1-Score": 0.9709,
-      "ROC-AUC": 1.0,
-      "best_cv_f1": 0.9782,
-      "best_params": "{'classifier__C': 10.0, 'classifier__solver': 'lbfgs'}"
+      "Accuracy": 0.98,
+      "Precision": 0.9787,
+      "Recall": 0.9787,
+      "F1-Score": 0.9787,
+      "ROC-AUC": 0.9992,
+      "best_cv_f1": 0.9834,
+      "best_params": "{'classifier__C': 1.0, 'classifier__solver': 'lbfgs'}"
     },
     {
       "Model": "Random Forest",
-      "Accuracy": 0.89,
-      "Precision": 0.8889,
-      "Recall": 0.9057,
-      "F1-Score": 0.8972,
-      "ROC-AUC": 0.9699,
-      "best_cv_f1": 0.9172,
-      "best_params": "{'classifier__max_depth': None, 'classifier__min_samples_leaf': 4, 'classifier__n_estimators': 200}"
+      "Accuracy": 0.95,
+      "Precision": 0.9773,
+      "Recall": 0.9149,
+      "F1-Score": 0.9451,
+      "ROC-AUC": 0.9823,
+      "best_cv_f1": 0.9162,
+      "best_params": "{'classifier__max_depth': None, 'classifier__min_samples_leaf': 2, 'classifier__n_estimators': 200}"
     },
     {
       "Model": "XGBoost",
-      "Accuracy": 0.91,
-      "Precision": 0.9231,
-      "Recall": 0.9057,
-      "F1-Score": 0.9143,
-      "ROC-AUC": 0.9783,
-      "best_cv_f1": 0.9382,
-      "best_params": "{'classifier__learning_rate': 0.1, 'classifier__max_depth': 3, 'classifier__n_estimators': 200, 'classifier__subsample': 0.8}"
+      "Accuracy": 0.96,
+      "Precision": 0.9778,
+      "Recall": 0.9362,
+      "F1-Score": 0.9565,
+      "ROC-AUC": 0.9819,
+      "best_cv_f1": 0.9541,
+      "best_params": "{'classifier__learning_rate': 0.1, 'classifier__max_depth': 3, 'classifier__n_estimators': 200, 'classifier__subsample': 1.0}"
     }
   ]
 }

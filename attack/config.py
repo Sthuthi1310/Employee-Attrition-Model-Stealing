@@ -30,9 +30,10 @@ LOGS_DIR = ATTACK_LOGS_DIR
 
 API_BASE_URL = "http://127.0.0.1:5000"
 PREDICT_ENDPOINT = "/api/predict"
+PUBLIC_PREDICT_ENDPOINT = "/predict"
 HEALTH_ENDPOINT = "/api/health"
 
-# Attack scale (CLI can override up to MAX_QUERIES)
+# Attack scale (CLI can override up to MAX_QUERIES: 500 - 5000)
 DEFAULT_NUM_QUERIES = 500
 MAX_QUERIES = 5000
 
@@ -44,7 +45,7 @@ DELAY_BETWEEN_REQUESTS_SECONDS = 0.005
 CHECKPOINT_EVERY = 50  # Save CSV every N queries (success or fail)
 
 # ---------------------------------------------------------------------------
-# Feature schema (must match Flask /api/predict validation rules)
+# Bounded Synthetic Query Distribution Rules (PPT Slide 10)
 # ---------------------------------------------------------------------------
 
 CATEGORICAL_OPTIONS = {
@@ -55,13 +56,15 @@ CATEGORICAL_OPTIONS = {
 }
 
 NUMERIC_RANGES = {
-    "Age": (18, 70),
-    "Monthly_Income": (1000, 25000),
-    "Years_at_Company": (0, 40),
-    "Job_Satisfaction": (1, 4),
-    "Work_Life_Balance": (1, 4),
-    "Number_of_Companies_Worked": (0, 10),
+    "Age": (18, 65),                          # Uniform (18, 65)
+    "Monthly_Income": (1500, 25000),          # Uniform (1500, 25000)
+    "Years_at_Company": (0, 40),              # Uniform (0, 40); <= Age - 18
+    "Job_Satisfaction": (1, 4),               # Discrete Uniform (1, 4)
+    "Work_Life_Balance": (1, 4),              # Discrete Uniform (1, 4)
+    "Number_of_Companies_Worked": (0, 10),    # Discrete Uniform (0, 10)
 }
+
+OVERTIME_BERNOULLI_PROBABILITY = 0.30         # Bernoulli (p = 0.30)
 
 FEATURE_COLUMNS = API_FEATURE_COLUMNS
 
@@ -69,6 +72,7 @@ OUTPUT_COLUMNS = [
     "query_number",
     "timestamp",
     *FEATURE_COLUMNS,
+    "attrition",            # Binary Yes/No captured label (hard label)
     "prediction_label",
     "attrition_status",
     "attrition_probability",
@@ -81,3 +85,4 @@ OUTPUT_COLUMNS = [
     "success",
     "error_message",
 ]
+

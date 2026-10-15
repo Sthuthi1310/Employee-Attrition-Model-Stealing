@@ -26,9 +26,7 @@ Thumbs.db
 # Jupyter
 .ipynb_checkpoints/
 
-# Large or generated data (keep structure via .gitkeep)
-data/raw/*.csv
-data/processed/*.csv
+
 
 # Attack logs (optional local runs)
 attack/logs/*.log

@@ -236,8 +236,14 @@ def build_result_row(
         row[field] = payload.get(field)
 
     if response:
+        # Binary Yes/No prediction collected for hard-label extraction (PPT Slide 3 & Slide 10)
+        attrition_binary = response.get("attrition")
+        if not attrition_binary:
+            attrition_binary = "Yes" if response.get("prediction_label") == "Leave" else "No"
+
         row.update(
             {
+                "attrition": attrition_binary,
                 "prediction_label": response.get("prediction_label"),
                 "attrition_status": response.get("attrition_status"),
                 "attrition_probability": response.get("attrition_probability"),
@@ -254,6 +260,7 @@ def build_result_row(
     else:
         row.update(
             {
+                "attrition": None,
                 "prediction_label": None,
                 "attrition_status": None,
                 "attrition_probability": None,

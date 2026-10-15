@@ -35,12 +35,13 @@ from config import (
     CATEGORICAL_OPTIONS,
     FEATURE_COLUMNS,
     NUMERIC_RANGES,
+    OVERTIME_BERNOULLI_PROBABILITY,
     QUERIES_CACHE_PATH,
     TRAINING_DATASET_PATH,
 )
 
 # ---------------------------------------------------------------------------
-# Random record generation
+# Bounded synthetic record generation (PPT Slide 10)
 # ---------------------------------------------------------------------------
 
 
@@ -57,10 +58,14 @@ def _load_training_reference() -> pd.DataFrame | None:
 
 
 def _clip_numeric_features(record: dict) -> dict:
-    """Ensure numeric values respect API validation bounds."""
+    """Ensure numeric values respect API validation bounds and logical constraints."""
     for field, (low, high) in NUMERIC_RANGES.items():
         value = int(round(record[field]))
         record[field] = int(np.clip(value, low, high))
+    
+    # Logical constraint: Years at Company <= Age - 18 (PPT Slide 10)
+    max_tenure = max(0, int(record.get("Age", 18)) - 18)
+    record["Years_at_Company"] = min(int(record.get("Years_at_Company", 0)), max_tenure)
     return record
 
 
@@ -68,7 +73,7 @@ def _perturb_record(record: dict, rng: np.random.Generator) -> dict:
     """Apply small random perturbations to a base record for diversity."""
     out = record.copy()
 
-    # Numeric jitter
+    # Numeric jitter within bounded ranges
     out["Age"] += rng.integers(-3, 4)
     out["Monthly_Income"] += rng.integers(-1500, 1501)
     out["Years_at_Company"] = max(0, out["Years_at_Company"] + rng.integers(-2, 3))
@@ -78,24 +83,43 @@ def _perturb_record(record: dict, rng: np.random.Generator) -> dict:
 
     # Occasional categorical flip
     if rng.random() < 0.15:
-        field = rng.choice(list(CATEGORICAL_OPTIONS.keys()))
+        field = rng.choice(["Gender", "Department", "Job_Role"])
         out[field] = rng.choice(CATEGORICAL_OPTIONS[field])
 
-    if rng.random() < 0.10:
-        out["Overtime"] = rng.choice(CATEGORICAL_OPTIONS["Overtime"])
+    # Overtime sampled via Bernoulli (p = 0.30)
+    if rng.random() < 0.15:
+        out["Overtime"] = "Yes" if rng.random() < OVERTIME_BERNOULLI_PROBABILITY else "No"
 
     return _clip_numeric_features(out)
 
 
 def generate_random_record(rng: np.random.Generator) -> dict:
-    """Generate one record by uniform random sampling within valid bounds."""
+    """
+    Generate one realistic employee profile using bounded synthetic distributions (PPT Slide 10):
+    - Age: Uniform (18, 65)
+    - Monthly Income: Uniform (1500, 25000)
+    - Years at Company: Uniform (0, 40); <= Age - 18 (Logical constraint applied)
+    - Overtime: Bernoulli (p = 0.30)
+    - Job Satisfaction: Discrete Uniform (1, 4)
+    - Work-Life Balance: Discrete Uniform (1, 4)
+    - Num Companies Worked: Discrete Uniform (0, 10)
+    """
     record: dict = {}
 
     for field, (low, high) in NUMERIC_RANGES.items():
         record[field] = int(rng.integers(low, high + 1))
 
-    for field, options in CATEGORICAL_OPTIONS.items():
-        record[field] = str(rng.choice(options))
+    # Apply logical constraint: Years at Company <= Age - 18
+    max_tenure = max(0, record["Age"] - 18)
+    record["Years_at_Company"] = min(record["Years_at_Company"], max_tenure)
+
+    # Categorical sampling
+    record["Gender"] = str(rng.choice(CATEGORICAL_OPTIONS["Gender"]))
+    record["Department"] = str(rng.choice(CATEGORICAL_OPTIONS["Department"]))
+    record["Job_Role"] = str(rng.choice(CATEGORICAL_OPTIONS["Job_Role"]))
+
+    # Overtime: Bernoulli (p = 0.30)
+    record["Overtime"] = "Yes" if rng.random() < OVERTIME_BERNOULLI_PROBABILITY else "No"
 
     return record
 

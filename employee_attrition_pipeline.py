@@ -16,6 +16,7 @@ suitable for project reports and viva voce discussions.
 # (matplotlib, seaborn), machine learning (scikit-learn), and model persistence
 # (joblib). Configuration constants keep paths and hyperparameters centralized.
 
+import json
 import sys
 from pathlib import Path
 
@@ -29,22 +30,26 @@ import joblib
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
-from pathlib import Path
-from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import roc_auc_score, roc_curve
+from sklearn.metrics import confusion_matrix, roc_auc_score, roc_curve
 from sklearn.model_selection import (
     GridSearchCV,
-    RandomizedSearchCV,
     StratifiedKFold,
     train_test_split,
 )
 from sklearn.pipeline import Pipeline
 
-from utils.helper import load_dataset
+from utils.helper import API_FEATURE_COLUMNS, load_dataset
 from utils.metrics import evaluate_model, print_evaluation_report
-from utils.paths import METRICS_PATH, RESULTS_DIR, TARGET_MODEL_PATH, TRAINING_DATASET_PATH
-from utils.preprocessing import build_preprocessor, identify_target_column, preprocess_features
+from utils.paths import (
+    METRICS_PATH,
+    RESULTS_DIR,
+    TARGET_MODEL_PATH,
+    TRAINING_DATASET_PATH,
+    VICTIM_CONFUSION_MATRIX_PATH,
+    VICTIM_EVALUATION_PATH,
+)
+from utils.preprocessing import build_preprocessor, identify_target_column
 
 warnings.filterwarnings("ignore")
 
@@ -185,15 +190,9 @@ def split_data(X, y):
 
 
 def train_and_tune_models(preprocessor, X_train, y_train):
-    """
-    Train Logistic Regression (GridSearchCV) and Random Forest (RandomizedSearchCV).
-
-    Logistic Regression uses a compact grid; Random Forest uses randomized search
-    to explore a wider hyperparameter space efficiently without overfitting the
-    validation strategy itself.
-    """
+    """Tune the Logistic Regression target model (Algorithm 1) using Stratified CV."""
     print(f"\n{'=' * 70}")
-    print("SECTION 7: MODEL TRAINING & HYPERPARAMETER TUNING")
+    print("SECTION 7: MODEL TRAINING & HYPERPARAMETER TUNING (ALGORITHM 1: LOGISTIC REGRESSION)")
     print(f"{'=' * 70}")
 
     cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=RANDOM_STATE)
@@ -206,77 +205,28 @@ def train_and_tune_models(preprocessor, X_train, y_train):
                 LogisticRegression(
                     max_iter=2000,
                     random_state=RANDOM_STATE,
-                    class_weight="balanced",
                 ),
             ),
         ]
     )
 
-    rf_pipeline = Pipeline(
-        steps=[
-            ("preprocessor", preprocessor),
-            (
-                "classifier",
-                RandomForestClassifier(
-                    random_state=RANDOM_STATE,
-                    class_weight="balanced",
-                    n_jobs=-1,
-                ),
-            ),
-        ]
+    search = GridSearchCV(
+        estimator=lr_pipeline,
+        param_grid={
+            "classifier__C": [0.1, 0.5, 1.0, 5.0, 10.0],
+            "classifier__penalty": ["l2"],
+            "classifier__solver": ["lbfgs", "liblinear"],
+            "classifier__class_weight": [None, "balanced"],
+        },
+        cv=cv,
+        scoring="f1",
+        n_jobs=-1,
+        refit=True,
     )
-
-    search_configs = [
-        {
-            "name": "Logistic Regression",
-            "search": GridSearchCV(
-                estimator=lr_pipeline,
-                param_grid={
-                    "classifier__C": [0.01, 0.1, 1.0, 10.0, 100.0],
-                    "classifier__penalty": ["l2"],
-                    "classifier__solver": ["lbfgs", "liblinear"],
-                },
-                cv=cv,
-                scoring="f1",
-                n_jobs=-1,
-                refit=True,
-            ),
-        },
-        {
-            "name": "Random Forest",
-            "search": RandomizedSearchCV(
-                estimator=rf_pipeline,
-                param_distributions={
-                    "classifier__n_estimators": [100, 200, 300, 500],
-                    "classifier__max_depth": [None, 8, 12, 16, 24, 32],
-                    "classifier__min_samples_split": [2, 5, 10],
-                    "classifier__min_samples_leaf": [1, 2, 4],
-                    "classifier__max_features": ["sqrt", "log2", None],
-                },
-                n_iter=40,
-                cv=cv,
-                scoring="f1",
-                n_jobs=-1,
-                random_state=RANDOM_STATE,
-                refit=True,
-            ),
-        },
-    ]
-
-    tuned_models = {}
-
-    for config in search_configs:
-        name = config["name"]
-        search = config["search"]
-        search_type = type(search).__name__
-        print(f"\nTuning {name} using {search_type}...")
-        search.fit(X_train, y_train)
-        tuned_models[name] = search
-
-        print(f"  Best F1 (CV): {search.best_score_:.4f}")
-        print(f"  Best parameters: {search.best_params_}")
-
-    return tuned_models
+    search.fit(X_train, y_train)
+    print(f"\nBest Logistic Regression F1 (CV): {search.best_score_:.4f}")
+    print(f"Best parameters: {search.best_params_}")
+    return {"Logistic Regression": search}
 
 
 # =============================================================================
@@ -341,18 +291,25 @@ def select_best_model(comparison_df: pd.DataFrame) -> str:
 # transformed feature names for interpretability.
 
 
-def display_feature_importance(rf_model, top_n: int = 15) -> pd.DataFrame:
-    """Extract and visualize top feature importances from Random Forest."""
+def display_feature_importance(model, top_n: int = 10) -> pd.DataFrame:
+    """Extract and visualize top feature sensitivities/importances (PPT Slide 15: Overtime #1, Monthly Income #2, Work-Life Balance #3)."""
+    import numpy as np
     print(f"\n{'=' * 70}")
-    print("SECTION 10: FEATURE IMPORTANCE (RANDOM FOREST)")
+    print("SECTION 10: FEATURE SENSITIVITY / IMPORTANCE ANALYSIS")
     print(f"{'=' * 70}")
 
-    best_pipeline = rf_model.best_estimator_
+    best_pipeline = model.best_estimator_ if hasattr(model, "best_estimator_") else model
     classifier = best_pipeline.named_steps["classifier"]
     preprocessor = best_pipeline.named_steps["preprocessor"]
 
     feature_names = preprocessor.get_feature_names_out()
-    importances = classifier.feature_importances_
+    if hasattr(classifier, "feature_importances_"):
+        importances = classifier.feature_importances_
+    elif hasattr(classifier, "coef_"):
+        coef = classifier.coef_
+        importances = np.abs(coef[0]) if coef.ndim > 1 else np.abs(coef)
+    else:
+        importances = np.zeros(len(feature_names))
 
     importance_df = (
         pd.DataFrame({"Feature": feature_names, "Importance": importances})
@@ -366,7 +323,7 @@ def display_feature_importance(rf_model, top_n: int = 15) -> pd.DataFrame:
     plt.figure(figsize=(8, 6))
     top_features = importance_df.head(top_n)
     sns.barplot(data=top_features, y="Feature", x="Importance", palette="viridis")
-    plt.title(f"Top {top_n} Feature Importances - Random Forest")
+    plt.title(f"Top {top_n} Feature Sensitivities - Target Model (Logistic Regression)")
     plt.tight_layout()
     plt.savefig(OUTPUT_DIR / "feature_importance.png", dpi=150)
     plt.close()
@@ -402,6 +359,41 @@ def save_best_model(model, model_name: str, feature_columns: list) -> None:
 
     joblib.dump(artifact, MODEL_PATH)
     print(f"Best model ({model_name}) saved to:\n  {MODEL_PATH}")
+
+
+def save_victim_evaluation(y_test, y_pred, metrics: dict) -> None:
+    """Persist victim metrics and confusion matrix from the same holdout predictions."""
+    matrix = confusion_matrix(y_test, y_pred, labels=[0, 1])
+    evaluation = {
+        "model_name": "Logistic Regression",
+        "dataset_path": str(DATASET_PATH),
+        "target_column": "Attrition",
+        "feature_columns": API_FEATURE_COLUMNS,
+        "random_state": RANDOM_STATE,
+        "test_size": TEST_SIZE,
+        "test_samples": int(len(y_test)),
+        "metrics": {key: float(value) for key, value in metrics.items() if key != "Model"},
+        "confusion_matrix": matrix.tolist(),
+        "confusion_matrix_labels": ["Stay", "Leave"],
+    }
+    VICTIM_EVALUATION_PATH.parent.mkdir(parents=True, exist_ok=True)
+    VICTIM_EVALUATION_PATH.write_text(json.dumps(evaluation, indent=2), encoding="utf-8")
+
+    plt.figure(figsize=(6, 5))
+    sns.heatmap(
+        matrix,
+        annot=True,
+        fmt="d",
+        cmap="Blues",
+        xticklabels=["Stay (0)", "Leave (1)"],
+        yticklabels=["Stay (0)", "Leave (1)"],
+    )
+    plt.title("Victim Logistic Regression - Independent Test Set")
+    plt.xlabel("Predicted")
+    plt.ylabel("Actual")
+    plt.tight_layout()
+    plt.savefig(VICTIM_CONFUSION_MATRIX_PATH, dpi=150)
+    plt.close()
 
 
 # =============================================================================
@@ -482,7 +474,17 @@ def main():
     perform_eda(df, target_col)
 
     # Step 4: Preprocess
-    X, y, numeric_features, categorical_features = preprocess_features(df, target_col)
+    missing_features = [column for column in API_FEATURE_COLUMNS if column not in df.columns]
+    if missing_features:
+        raise ValueError(f"Victim feature columns missing from dataset: {missing_features}")
+    X = df[API_FEATURE_COLUMNS].copy()
+    target_mapping = {"Yes": 1, "No": 0, "yes": 1, "no": 0, 1: 1, 0: 0}
+    y = df[target_col].map(target_mapping)
+    if y.isnull().any():
+        raise ValueError(f"Unrecognized target values in column '{target_col}'.")
+    y = y.astype(int)
+    numeric_features = X.select_dtypes(include=["number"]).columns.tolist()
+    categorical_features = X.select_dtypes(include=["object", "str"]).columns.tolist()
     report_preprocessing(X, numeric_features, categorical_features)
     preprocessor = build_preprocessor(numeric_features, categorical_features)
 
@@ -499,6 +501,8 @@ def main():
 
     all_metrics = []
     probas_dict = {}
+    victim_metrics = None
+    victim_predictions = None
 
     for name, grid_search in tuned_models.items():
         metrics, y_pred, y_proba = evaluate_model(
@@ -511,6 +515,13 @@ def main():
         print_evaluation_report(y_test, y_pred, name)
         all_metrics.append(metrics)
         probas_dict[name] = y_proba
+        if name == "Logistic Regression":
+            victim_metrics = metrics
+            victim_predictions = y_pred
+
+    if victim_metrics is None or victim_predictions is None:
+        raise RuntimeError("Victim Logistic Regression evaluation did not produce predictions.")
+    save_victim_evaluation(y_test, victim_predictions, victim_metrics)
 
     comparison_df = pd.DataFrame(all_metrics)
     comparison_df.to_csv(METRICS_PATH, index=False)
@@ -520,11 +531,10 @@ def main():
     best_model_name = select_best_model(comparison_df)
     best_model = tuned_models[best_model_name]
 
-    # Step 9: Feature importance (Random Forest)
-    if "Random Forest" in tuned_models:
-        display_feature_importance(tuned_models["Random Forest"])
+    # Step 9: Feature Importance / Sensitivity Analysis (PPT Slide 15)
+    display_feature_importance(best_model)
 
-    # Step 10: Save best model
+    # Step 10: Save the Logistic Regression target model
     save_best_model(best_model, best_model_name, feature_columns=X.columns.tolist())
 
     # Step 11: Demo prediction
@@ -532,7 +542,7 @@ def main():
     print("SECTION 12: SAMPLE PREDICTION")
     print(f"{'=' * 70}")
 
-    sample_employee = X.iloc[0].to_dict()
+    sample_employee = X_test.iloc[0].to_dict()
     prediction_result = predict_employee_attrition(sample_employee)
     print("\nSample employee prediction:")
     for key, value in prediction_result.items():

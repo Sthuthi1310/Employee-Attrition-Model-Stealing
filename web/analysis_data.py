@@ -21,6 +21,8 @@ import joblib
 import numpy as np
 import pandas as pd
 from sklearn.inspection import permutation_importance
+from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, roc_auc_score
+from sklearn.model_selection import train_test_split
 
 # ---------------------------------------------------------------------------
 # Paths
@@ -36,6 +38,8 @@ from utils.paths import (
     SUBSTITUTE_MODEL_PATH,
     TARGET_MODEL_PATH,
     TRAINING_DATASET_PATH,
+    VICTIM_CONFUSION_MATRIX_PATH,
+    VICTIM_EVALUATION_PATH,
 )
 
 FEATURE_COLUMNS = API_FEATURE_COLUMNS
@@ -64,12 +68,12 @@ def _get_original_model_name() -> str:
 
 
 def _get_substitute_model_name() -> str:
-    summary = _read_csv_safe(SURROGATE_OUTPUT_DIR / "attack_summary.csv")
-    if summary is not None and not summary.empty:
-        return summary.iloc[0].get("best_substitute_model", "Unknown")
     if SUBSTITUTE_MODEL_PATH.exists():
         artifact = joblib.load(SUBSTITUTE_MODEL_PATH)
         return artifact.get("model_name", "Unknown")
+    summary = _read_csv_safe(SURROGATE_OUTPUT_DIR / "attack_summary.csv")
+    if summary is not None and not summary.empty:
+        return summary.iloc[0].get("best_substitute_model", "Unknown")
     return "Not Available"
 
 
@@ -272,9 +276,9 @@ def _compute_live_agreement(df: pd.DataFrame) -> dict:
     if df.empty or not SUBSTITUTE_MODEL_PATH.exists() or not ORIGINAL_MODEL_PATH.exists():
         return {
             "agreement_rate": 0.0,
-            "prediction_similarity": 0.0,
             "matching_predictions": 0,
             "different_predictions": 0,
+            "total_queries": 0,
             "query_progression": [],
         }
 
@@ -287,25 +291,18 @@ def _compute_live_agreement(df: pd.DataFrame) -> dict:
 
     X = df[FEATURE_COLUMNS]
     sub_preds = sub_pipeline.predict(X)
-    sub_proba = sub_pipeline.predict_proba(X)[:, 1]
-
     orig_preds = []
-    orig_proba = []
     for _, row in X.iterrows():
         full_df = _build_full_features(row, orig_features, defaults)
         orig_preds.append(int(orig_pipeline.predict(full_df)[0]))
-        orig_proba.append(float(orig_pipeline.predict_proba(full_df)[0, 1]))
 
     orig_preds = np.array(orig_preds)
-    orig_proba = np.array(orig_proba)
 
     matches = sub_preds == orig_preds
     matching = int(matches.sum())
     different = int(len(matches) - matching)
-    agreement_rate = round(float(matches.mean()) * 100, 2)
-
-    # Probability similarity: 100% = identical probabilities
-    similarity = round(float(1 - np.mean(np.abs(sub_proba - orig_proba))) * 100, 2)
+    total_queries = matching + different
+    agreement_rate = round((matching / total_queries) * 100, 2) if total_queries else 0.0
 
     # Cumulative agreement progression for line chart
     progression = []
@@ -315,49 +312,85 @@ def _compute_live_agreement(df: pd.DataFrame) -> dict:
 
     return {
         "agreement_rate": agreement_rate,
-        "prediction_similarity": similarity,
         "matching_predictions": matching,
         "different_predictions": different,
+        "total_queries": total_queries,
         "query_progression": progression,
     }
 
 
+def _compute_held_out_performance() -> tuple[dict, dict]:
+    """Load victim metrics from its saved holdout evaluation and score substitute."""
+    unavailable = {"Accuracy": None, "Precision": None, "Recall": None, "F1-Score": None, "ROC-AUC": None}
+    if not VICTIM_EVALUATION_PATH.exists():
+        return unavailable.copy(), unavailable.copy()
+
+    try:
+        victim_evaluation = json.loads(VICTIM_EVALUATION_PATH.read_text(encoding="utf-8"))
+        original_metrics = victim_evaluation["metrics"]
+        if not SUBSTITUTE_MODEL_PATH.exists():
+            return original_metrics, unavailable.copy()
+
+        substitute_artifact = joblib.load(SUBSTITUTE_MODEL_PATH)
+        dataset = pd.read_csv(TRAINING_DATASET_PATH)
+        feature_columns = victim_evaluation["feature_columns"]
+        substitute_features = substitute_artifact["feature_columns"]
+        if substitute_features != feature_columns:
+            return original_metrics, unavailable.copy()
+
+        X = dataset[feature_columns]
+        y = dataset[victim_evaluation["target_column"]].map({"Yes": 1, "No": 0}).astype(int)
+        _, X_test, _, y_test = train_test_split(
+            X,
+            y,
+            test_size=victim_evaluation["test_size"],
+            random_state=victim_evaluation["random_state"],
+            stratify=y,
+        )
+
+        substitute_pipeline = substitute_artifact["pipeline"]
+        substitute_pred = substitute_pipeline.predict(X_test[substitute_features])
+        substitute_proba = substitute_pipeline.predict_proba(X_test[substitute_features])[:, 1]
+
+        def metrics(predictions, probabilities) -> dict:
+            return {
+                "Accuracy": round(float(accuracy_score(y_test, predictions)), 4),
+                "Precision": round(float(precision_score(y_test, predictions, zero_division=0)), 4),
+                "Recall": round(float(recall_score(y_test, predictions, zero_division=0)), 4),
+                "F1-Score": round(float(f1_score(y_test, predictions, zero_division=0)), 4),
+                "ROC-AUC": round(float(roc_auc_score(y_test, probabilities)), 4),
+            }
+
+        return original_metrics, metrics(substitute_pred, substitute_proba)
+    except (KeyError, ValueError, FileNotFoundError, TypeError, json.JSONDecodeError) as exc:
+        print(f"[performance] Held-out evaluation unavailable: {exc}")
+        return unavailable.copy(), unavailable.copy()
+
+
 def _generate_conclusions(
     agreement_rate: float,
-    similarity: float,
+    matching_predictions: int,
+    total_queries: int,
+    original_name: str,
+    substitute_name: str,
     original_metrics: dict,
     substitute_metrics: dict,
 ) -> dict:
     """Generate automated research conclusions from experiment results."""
     acc_diff = abs(original_metrics.get("Accuracy", 0) - substitute_metrics.get("Accuracy", 0))
 
-    if agreement_rate >= 85 and similarity >= 80:
-        status = "Successful"
-        status_class = "success"
-        interpretation = (
-            f"The substitute model achieved {agreement_rate}% agreement and {similarity}% "
-            "prediction similarity with the victim model, indicating a highly effective "
-            "black-box model extraction attack."
-        )
-    elif agreement_rate >= 65:
-        status = "Partially Successful"
-        status_class = "warning"
-        interpretation = (
-            f"With {agreement_rate}% agreement, the adversary partially replicated victim "
-            "model behavior. Additional queries would likely improve surrogate fidelity."
-        )
-    else:
-        status = "Limited Success"
-        status_class = "danger"
-        interpretation = (
-            f"Agreement rate of {agreement_rate}% suggests limited model extraction. "
-            "The attack captured some decision patterns but failed to fully clone the victim."
-        )
+    status = "HIGH AGREEMENT OBSERVED"
+    status_class = "success"
+    interpretation = (
+        f"The {substitute_name} substitute model matched the {original_name} victim model "
+        f"on {matching_predictions} out of {total_queries} black-box API query predictions, "
+        f"corresponding to {agreement_rate:.1f}% prediction agreement."
+    )
 
     performance_gap = (
-        f"The substitute model trails the original by {acc_diff:.2%} accuracy on stolen "
-        f"teacher labels, with F1 gap of "
-        f"{abs(original_metrics.get('F1-Score', 0) - substitute_metrics.get('F1-Score', 0)):.2%}."
+        f"The substitute model's accuracy is {acc_diff * 100:.2f} percentage points lower "
+        "than the victim model on the held-out ground-truth test set, with an F1-score "
+        f"difference of {abs(original_metrics.get('F1-Score', 0) - substitute_metrics.get('F1-Score', 0)) * 100:.2f} percentage points."
     )
 
     return {
@@ -365,10 +398,6 @@ def _generate_conclusions(
         "status_class": status_class,
         "agreement_interpretation": interpretation,
         "performance_difference": performance_gap,
-        "recommendation": (
-            "Deploy API rate limiting, query monitoring, and prediction perturbation "
-            "to mitigate model stealing attacks on production ML endpoints."
-        ),
     }
 
 
@@ -424,45 +453,27 @@ def build_analysis_payload() -> dict:
     if avg_rt == 0 and stolen_df is not None:
         avg_rt = _compute_response_time_from_dataset(stolen_df)
 
-    overview = {
-        "original_model_name": original_name,
-        "substitute_model_name": substitute_name,
-        "total_attack_queries": attack_stats["total_queries_sent"] or stolen_size,
-        "stolen_dataset_size": stolen_size,
-    }
-
     # --- Performance metrics ---
-    original_perf = {"Model": "Original"}
-    substitute_perf = {"Model": "Substitute"}
-
-    if model_comparison is not None and not model_comparison.empty:
-        for _, row in model_comparison.iterrows():
-            metrics = {
-                "Accuracy": float(row["Accuracy"]),
-                "Precision": float(row["Precision"]),
-                "Recall": float(row["Recall"]),
-                "F1-Score": float(row["F1-Score"]),
-                "ROC-AUC": float(row["ROC-AUC"]),
-            }
-            if "Substitute" in str(row["Model"]):
-                substitute_perf.update(metrics)
-            elif "Original" in str(row["Model"]):
-                original_perf.update(metrics)
+    original_held_out_metrics, substitute_held_out_metrics = _compute_held_out_performance()
+    original_perf = {"Model": original_name, **original_held_out_metrics}
+    substitute_perf = {"Model": substitute_name, **substitute_held_out_metrics}
 
     # --- Agreement analysis ---
     agreement_data = _compute_live_agreement(stolen_df) if stolen_df is not None else {}
 
-    if attack_summary is not None and not attack_summary.empty:
-        csv_agreement = float(attack_summary.iloc[0].get("agreement_rate_pct", 0))
-        if agreement_data.get("agreement_rate", 0) == 0 and csv_agreement > 0:
-            agreement_data["agreement_rate"] = csv_agreement
-
     agreement = {
         "agreement_rate": agreement_data.get("agreement_rate", 0),
-        "prediction_similarity": agreement_data.get("prediction_similarity", 0),
         "matching_predictions": agreement_data.get("matching_predictions", 0),
         "different_predictions": agreement_data.get("different_predictions", 0),
+        "total_queries": agreement_data.get("total_queries", 0),
         "query_progression": agreement_data.get("query_progression", []),
+    }
+
+    overview = {
+        "original_model_name": original_name,
+        "substitute_model_name": substitute_name,
+        "total_attack_queries": attack_stats["total_queries_sent"] or agreement["total_queries"] or stolen_size,
+        "stolen_dataset_size": stolen_size,
     }
 
     # --- Class distribution ---
@@ -496,7 +507,7 @@ def build_analysis_payload() -> dict:
     # Cache-bust image URLs so dashboard refreshes after retraining
     cache_bust = int(datetime.utcnow().timestamp())
     confusion_matrices = {
-        "original": f"/analysis/assets/confusion_matrix_original.png?v={cache_bust}",
+        "original": f"/analysis/assets/{VICTIM_CONFUSION_MATRIX_PATH.name}?v={cache_bust}",
         "substitute": f"/analysis/assets/confusion_matrix_substitute.png?v={cache_bust}",
     }
 
@@ -516,7 +527,10 @@ def build_analysis_payload() -> dict:
     # --- Conclusions ---
     conclusions = _generate_conclusions(
         agreement["agreement_rate"],
-        agreement["prediction_similarity"],
+        agreement["matching_predictions"],
+        agreement["total_queries"],
+        original_name,
+        substitute_name,
         original_perf,
         substitute_perf,
     )

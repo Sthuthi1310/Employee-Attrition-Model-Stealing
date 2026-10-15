@@ -37,6 +37,8 @@ SCREENSHOTS_DIR = PROJECT_DIR / "screenshots"
 # Training pipeline artifacts
 METRICS_PATH = RESULTS_DIR / "model_comparison.csv"
 FEATURE_IMPORTANCE_PATH = RESULTS_DIR / "feature_importance.csv"
+VICTIM_EVALUATION_PATH = RESULTS_DIR / "victim_evaluation.json"
+VICTIM_CONFUSION_MATRIX_PATH = RESULTS_DIR / "victim_confusion_matrix.png"
 
 # Legacy aliases (for gradual migration)
 ORIGINAL_MODEL_PATH = TARGET_MODEL_PATH

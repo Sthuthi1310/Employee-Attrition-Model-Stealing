@@ -6,6 +6,7 @@ import numpy as np
 import pandas as pd
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
+from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
 TARGET_CANDIDATES = ["attrition", "employee attrition", "left", "churn", "turnover"]
@@ -70,9 +71,12 @@ def build_preprocessor(
     categorical_features: list[str],
 ) -> ColumnTransformer:
     """Create preprocessing pipeline: scale numeric, encode categorical."""
-    numeric_transformer = Pipeline(steps=[("scaler", StandardScaler())])
+    numeric_transformer = Pipeline(
+        steps=[("imputer", SimpleImputer(strategy="median")), ("scaler", StandardScaler())]
+    )
     categorical_transformer = Pipeline(
         steps=[
+            ("imputer", SimpleImputer(strategy="most_frequent")),
             (
                 "onehot",
                 OneHotEncoder(handle_unknown="ignore", sparse_output=False),

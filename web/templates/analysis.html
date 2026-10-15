@@ -45,9 +45,13 @@
     <header class="dashboard-header mb-4">
       <div class="row align-items-center">
         <div class="col-lg-8">
-          <span class="badge research-badge mb-2"><i class="bi bi-bug"></i> Model Extraction Research</span>
-          <h1 class="display-6 fw-bold mb-1">Model Stealing Analysis Dashboard</h1>
-          <p class="text-secondary mb-0">Black-box surrogate model evaluation against the victim ML API</p>
+          <span class="badge research-badge mb-2"><i class="bi bi-shield-shaded"></i> AI HEIST • Mini Project – Final Phase | 2025–2026</span>
+          <h1 class="display-6 fw-bold mb-1">AI HEIST: Model Stealing Using API Queries</h1>
+          <p class="text-secondary mb-1">Black-Box Model Stealing Attack: Random Forest Substitute Cloning Deployed Logistic Regression API</p>
+          <div class="small text-info mt-1">
+            <strong>Students:</strong> Sthuthi Sheela, Hemalatha H B, Bhavani, Vaishnavi Panchal &nbsp;|&nbsp;
+            <strong>Guide:</strong> Prof. Shruthi N M (Dept. of CSE, JSS STU, Mysuru)
+          </div>
         </div>
         <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
           <button type="button" class="btn btn-sm btn-outline-info mb-2" id="refresh-data">
@@ -104,7 +108,7 @@
 
     <!-- 2. Performance Comparison -->
     <section class="mb-4" aria-labelledby="performance-heading">
-      <h2 class="section-title" id="performance-heading"><i class="bi bi-bar-chart"></i> Performance Comparison</h2>
+      <h2 class="section-title" id="performance-heading"><i class="bi bi-bar-chart"></i> Model Performance Comparison</h2>
       <div class="row g-3" id="metric-cards">
         <!-- Populated by JS -->
       </div>
@@ -128,9 +132,9 @@
         <div class="col-md-6 col-xl-3">
           <div class="card analysis-card text-center h-100">
             <div class="card-body d-flex flex-column justify-content-center">
-              <p class="card-label">Prediction Similarity</p>
-              <h3 class="display-5 fw-bold text-purple" id="prediction-similarity">—</h3>
-              <small class="text-secondary">Probability alignment score</small>
+              <p class="card-label">Prediction Agreement</p>
+              <h3 class="display-5 fw-bold text-purple" id="prediction-agreement">—</h3>
+              <small class="text-secondary">Victim and substitute predictions</small>
             </div>
           </div>
         </div>
@@ -147,6 +151,14 @@
             <div class="card-body d-flex flex-column justify-content-center">
               <p class="card-label"><i class="bi bi-x-circle text-danger"></i> Different Predictions</p>
               <h3 class="display-5 fw-bold text-danger" id="different-preds">—</h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+          <div class="card analysis-card text-center h-100">
+            <div class="card-body d-flex flex-column justify-content-center">
+              <p class="card-label">Total Queries</p>
+              <h3 class="display-5 fw-bold text-info" id="agreement-total-queries">—</h3>
             </div>
           </div>
         </div>
@@ -196,7 +208,7 @@
       <div class="row g-4">
         <div class="col-md-6">
           <div class="card chart-card h-100">
-            <div class="card-header"><h3>Original (Victim) Model</h3></div>
+            <div class="card-header"><h3 id="cm-original-title">Original (Victim) Model</h3></div>
             <div class="card-body text-center p-4">
               <img id="cm-original" src="" alt="Original model confusion matrix" class="img-fluid cm-image rounded">
             </div>
@@ -204,7 +216,7 @@
         </div>
         <div class="col-md-6">
           <div class="card chart-card h-100">
-            <div class="card-header"><h3>Substitute Model</h3></div>
+            <div class="card-header"><h3 id="cm-substitute-title">Substitute Model</h3></div>
             <div class="card-body text-center p-4">
               <img id="cm-substitute" src="" alt="Substitute model confusion matrix" class="img-fluid cm-image rounded">
             </div>
@@ -258,7 +270,7 @@
       <div class="row g-4">
         <div class="col-lg-6">
           <div class="card chart-card h-100">
-            <div class="card-header"><h3>Original Model — Top 10</h3></div>
+            <div class="card-header"><h3 id="fi-original-title">Original Model — Top 10</h3></div>
             <div class="card-body">
               <div class="chart-container chart-container--lg"><canvas id="fiOriginalChart"></canvas></div>
               <div id="fiOriginalFallback" class="text-center text-secondary mt-3" style="display:none;">
@@ -269,7 +281,7 @@
         </div>
         <div class="col-lg-6">
           <div class="card chart-card h-100">
-            <div class="card-header"><h3>Substitute Model — Top 10</h3></div>
+            <div class="card-header"><h3 id="fi-substitute-title">Substitute Model — Top 10</h3></div>
             <div class="card-body">
               <div class="chart-container chart-container--lg"><canvas id="fiSubstituteChart"></canvas></div>
               <div id="fiSubstituteFallback" class="text-center text-secondary mt-3" style="display:none;">
@@ -296,11 +308,6 @@
               <p id="agreement-interpretation" class="text-secondary">—</p>
               <h4 class="mb-3 mt-4">Performance Difference</h4>
               <p id="performance-difference" class="text-secondary">—</p>
-              <div class="alert alert-cyber mt-4 mb-0" role="alert">
-                <i class="bi bi-shield-exclamation"></i>
-                <strong>Security Recommendation:</strong>
-                <span id="recommendation">—</span>
-              </div>
             </div>
           </div>
         </div>
